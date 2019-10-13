@@ -49,6 +49,7 @@
 <link href="{{ asset ('public/assetsvendors/general/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css" />
 <!--end:: Global Optional Vendors -->
 
+
 <!--begin::Global Theme Styles(used by all pages) -->
                     
                     <link href="{{ asset ('public/assets/css/demo4/style.bundle.css') }}" rel="stylesheet" type="text/css" />
