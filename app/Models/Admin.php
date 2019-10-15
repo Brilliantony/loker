@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Fondation\Auth\Admin as Authenticatable;
 
-class Admin extends Authenticatable
+class Admin extends Model
 {
     //
     use Notifiable;
