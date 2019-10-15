@@ -56,7 +56,11 @@ return [
         'applicant' => [
             'driver' => 'session',
             'provider' => 'applicants',
-        ]
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
 
     ],
 
@@ -80,20 +84,24 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
         ],
         'companies' => [
             'driver' => 'eloquent',
-            'model' => App\Company::class,
+            'model' => App\Models\UCompany::class,
         ],
         'schools' => [
             'driver' => 'eloquent',
-            'model' => App\School::class,
+            'model' => App\Models\USchool::class,
         ],
         'applicant' => [
             'driver' => 'eloquent',
-            'model' => App\Applicant::class,
+            'model' => App\Models\UApplicant::class,
         ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ]
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -133,6 +141,11 @@ return [
         ],
         'applicants' => [
             'provider' => 'applicants',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 60,
         ],
