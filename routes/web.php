@@ -106,5 +106,5 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('user-login','LoginController@index' );
 Route::post('validate-login', ['as'=>'user-login', 'uses'=>'Auth\LoginController@login']);
-Route::get('user-register', 'CompanyRegisterController@index');
+Route::get('company-register', 'CompanyRegisterController@index');
 Route::post('user-register', ['as'=>'user-register', 'uses'=>'Auth\RegisterController@register']);

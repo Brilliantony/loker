@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Loker - Sign In</title>
+    <title>Loker - Sign Up</title>
 
     <!-- Scripts -->
     {{-- <script src="{{ asset('public/js/app.js') }}" defer></script> --}}
@@ -91,22 +91,10 @@
                                             <input class="form-control" type="text" placeholder="Nama Perusahaan" name="company_name">
                                         </div>
                                         <div class="input-group">
-                                            <div class="form-group row">
-                                                <label class="col-form-label col-lg-12 col-sm-12 form-control" for="">Upload Logo</label>
-                                                <div class="col-lg-12 col-md-9 col-sm-12 form-control">
-                                                    <div class="dropzone dropzone-default dz-clickable" id="kt_dropzone_1">
-                                                        <div class="dropzone-msg dz-message needsclick">
-                                                            <h3 class="dropzone-msg-title">Drop files here or click to upload</h3>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        {{-- <input class="form-control" type="text" placeholder="Upload Logo" name="company_logo" autocomplete="off"> --}}
+                                            
+                                            <input class="uppy-FileInput-Input btn btn-label-brand btn-bold form-control" type="file" placeholder="Upload Logo" name="company_logo" > 
                                         </div>
-                                        <br>
-                                        <br>
-                                        <br>
+                                        
                                         <div class="input-group">
                                             <input class="form-control" type="number" placeholder="No.Telp/HP" name="company_telp">
                                         </div>

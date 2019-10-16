@@ -37,7 +37,7 @@ class SendMail extends Mailable
         $params=[
             'from'=>'Loker Magang.id',
             'newPassword'=>$this->newPassword,
-            'name'=>$this->name
+            'company_name'=>$this->name
         ];
 
         return $this->view('emails.verify-email',$params);
