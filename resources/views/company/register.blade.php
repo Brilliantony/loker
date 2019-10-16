@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="description" content="Login page">
@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Loker</title>
+    <title>Loker - Sign In</title>
 
     <!-- Scripts -->
     {{-- <script src="{{ asset('public/js/app.js') }}" defer></script> --}}
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
 
     <!--begin::Page Custom Styles(used by this page) -->
-    <link href="{{ asset ('public/assets/css/demo4/pages/login/login-2.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/css/demo4/pages/login/login-3.css')}}" rel="stylesheet" type="text/css" />
     <!--end::Page Custom Styles -->
 
     <!--begin:: Global Mandatory Vendors -->
@@ -66,35 +66,61 @@
 </head>
     <!-- end::Head -->
 
-<body style="background-image: url({{ asset ('public/assets/media/demos/demo4/header.jpg')}}); background-position: center top; background-size: 100% 350px;"  class="kt-page--loading-enabled kt-page--loading kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-page--loading" >
-    <div id="app">
-            <div class="kt-grid kt-grid--ver kt-grid--root kt-page">
-                    <div class="kt-grid kt-grid--hor kt-grid--root kt-login kt-login--v2 kt-login--signin" id="kt_login">
-                <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url({{ asset ('public/assets/media//bg/bg-1.jpg')}}::backdrop);">
-                    <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
-                        <div class="kt-login__container">
-                            <div class="kt-login__logo">
-                                <a href="#">
-                                    <img src="{{ asset ('public/assets/media/logos/logo-mini-2-md.png')}}">  	
-                                </a>
-                            </div>
-                            <div class="kt-login__signup">
+<body style="background-image: url({{ asset ('public/assets/media//bg/bg-3.jpg')}});" >
+	<div class="kt-grid kt-grid--ver kt-grid--root kt-page">
+            <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url(./assets/media//bg/bg-3.jpg);">
+            <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
+                <div class="kt-login__container">
+                    <div class="kt-login__logo">
+                        <a href="#">
+                            <img src="{{ asset ('public/assets/media/logos/logo-5.png')}}">  	
+                        </a>
+                    </div>
+                    <div class="kt-login__signin">
+                        <div class="kt-login__head">
+                            <h3 class="kt-login__title">Loker Magang</h3>
+                        </div>
+                            <div class="kt-login__signin">
                                     <div class="kt-login__head">
                                         <h3 class="kt-login__title">Sign Up</h3>
                                         <div class="kt-login__desc">Enter your details to create your account:</div>
                                     </div>
-                                    <form class="kt-login__form kt-form" action="">
+                                    <form class="kt-form" action="" onsubmit="return false" id="form-konten">
                                         <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Fullname" name="fullname">
+                                            <input class="form-control" type="text" placeholder="Nama Perusahaan" name="company_name">
                                         </div>
                                         <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Email" name="email" autocomplete="off">
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-lg-12 col-sm-12 form-control" for="">Upload Logo</label>
+                                                <div class="col-lg-12 col-md-9 col-sm-12 form-control">
+                                                    <div class="dropzone dropzone-default dz-clickable" id="kt_dropzone_1">
+                                                        <div class="dropzone-msg dz-message needsclick">
+                                                            <h3 class="dropzone-msg-title">Drop files here or click to upload</h3>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {{-- <input class="form-control" type="text" placeholder="Upload Logo" name="company_logo" autocomplete="off"> --}}
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <div class="input-group">
+                                            <input class="form-control" type="number" placeholder="No.Telp/HP" name="company_telp">
                                         </div>
                                         <div class="input-group">
-                                            <input class="form-control" type="password" placeholder="Password" name="password">
+                                            <input class="form-control" type="email" placeholder="Email" name="company_email">
                                         </div>
                                         <div class="input-group">
-                                            <input class="form-control" type="password" placeholder="Confirm Password" name="rpassword">
+                                            <input class="form-control" type="text" placeholder="Alamat" name="company_address">
+                                        </div>
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" placeholder="Provinsi" name="company_provinsi">
+                                        </div>
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" placeholder="Kabupaten/Kota" name="company_kota">
                                         </div>
                                         <div class="row kt-login__extra">
                                             <div class="col kt-align-left">
@@ -107,7 +133,7 @@
                                         </div>
                                         <div class="kt-login__actions">
                                             <button id="kt_login_signup_submit" class="btn btn-pill kt-login__btn-primary">Sign Up</button>&nbsp;&nbsp;
-                                            <button id="kt_login_signup_cancel" class="btn btn-pill kt-login__btn-secondary">Cancel</button>
+                                            <button id="kt_login_signup_cancel" class="btn btn-pill kt-login__btn-secondary" href="localhost/loker/user-login">Cancel</button>
                                         </div>
                                     </form>
                                 </div>
@@ -208,75 +234,21 @@
         <script src="{{ asset ('public/assets/js/demo4/pages/login/login-general.js')}}" type="text/javascript"></script>
         <!--end::Page Scripts -->                
 
+        <!--begin::Page Scripts(used by this page) -->
+        <script src="./assets/js/demo4/pages/crud/file-upload/dropzonejs.js" type="text/javascript"></script>
+        <!--end::Page Scripts -->
 
-{{-- <main class="py-4">
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ url('/validate-login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-        </main>
-    </div> --}}
-
+    <input type='hidden' name='_token' value='{{ csrf_token() }}'>
+    <script type="text/javascript">
+        $('#form-konten').submit(function () {
+            var data = getFormData('form-konten');
+            ajaxTransfer("{{url('/validate-login')}}", data, '#results');
+        });
+    
+        function redirectPage(){
+            redirect(1000, '/backend');
+        }
+    </script>
 </body>
 </html>
 

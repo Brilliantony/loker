@@ -35,12 +35,12 @@ class SendMail extends Mailable
     public function build()
     {
         $params=[
-            'from'=>'Panic Button Apps',
+            'from'=>'Loker Magang.id',
             'newPassword'=>$this->newPassword,
             'name'=>$this->name
         ];
 
-        return $this->view('emails.forgot-password',$params);
+        return $this->view('emails.verify-email',$params);
     }
 
 
