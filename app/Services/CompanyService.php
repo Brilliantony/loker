@@ -48,7 +48,7 @@ class UserService
     public function actionForm($params){
         try{
             $paramsId=[
-                'id'=>$params['id']
+                'company_id'=>$params['company_id']
             ];
 
             $result=$this->actionFindOne($paramsId);
@@ -69,14 +69,18 @@ class UserService
     public function actionSave($params){
         DB::beginTransaction();
         try{
-            $id = $params['id'];
+            $id = $params['company_id'];
             $company_name=$params['company_name'];
             $company_logo=$params['company_logo'];
             $company_telp=$params['company_telp'];
             $company_email=$params['company_email'];
             $company_address=$params['company_address'];
             $code_wilayah=$params['code_wilayah'];
-            //$rolesId=$params['roles_id'];
+            $attch_siup=$params['attch_siup'];
+            $attch_tdp=$params['attch_tdp'];
+            $attch_npwp=$params['attch_npwp'];
+            $attch_photo=$params['attch_photo'];
+
             $data = [
                 'company_name'=>$company_name,
                 'company_logo'=>$company_logo,
@@ -88,8 +92,8 @@ class UserService
                 //'roles_id'=>decrypt($rolesId)
             ];
 
-            //$rules = $this->rules();
-            //$rulesUpdate = $this->rulesUpdate();
+            $rules = $this->rules();
+            $rulesUpdate = $this->rulesUpdate();
 
             if(is_null($id)){
 
@@ -109,6 +113,13 @@ class UserService
                 $data->code_wilayah=$code_wilayah;
                 $data->save();
 
+                $data2 = new User();
+                $data2->email = $company_name;
+                $data2->mode = $mode;
+                $data2->mode_id = $mode_id;
+                $data2->privilage = $privilage;
+                $data2->save();
+
                 DB::commit();
                 $response = new ResponseMessageServiceParameter(200, 'Data berhasil disimpan!', null);
 
@@ -119,7 +130,7 @@ class UserService
                     $response = new ResponseMessageServiceParameter(404, $error, null);
                     return $response->getResponse();
                 }
-                $validate = $this->validate($id, $username);
+                $validate = $this->validate($id, $company_name);
                 if($validate['code'] == 200){
 
                     $data= Company::find($id);
@@ -129,6 +140,10 @@ class UserService
                     $data->company_email=$company_email;
                     $data->company_address=$company_address;
                     $data->code_wilayah=$code_wilayah;
+                    $data->attch_siup = $attch_siup;
+                    $data->attch_tdp = $attch_tdp;
+                    $data->attch_npwp = $attch_npwp;
+                    $data->attch_photo = $attch_photo;
                     $data->save();
                     DB::commit();
                     $response = new ResponseMessageServiceParameter(200, 'Data berhasil di update!', null);
@@ -174,8 +189,8 @@ class UserService
     {
         $rules = [
             'company_name'=>'required',
-            'company_logo'=>'required',
-            'company_telp'=>'required',
+            'company_logo'=>'required|file|image|mimes:jpeg,png,gif,webp|max:2048',
+            'company_telp'=>'required|max:12',
             'company_email'=>'required',
             'company_address'=>'required',
             'code_wilayah'=>'required',
@@ -188,8 +203,8 @@ class UserService
     {
         $rules = [
             'company_name'=>'required',
-            'company_logo'=>'required',
-            'company_telp'=>'required',
+            'company_logo'=>'required|file|image|mimes:jpeg,png,gif,webp|max:2048',
+            'company_telp'=>'required|max:12',
             'company_email'=>'required',
             'company_address'=>'required',
             'code_wilayah'=>'required',
@@ -298,7 +313,7 @@ class UserService
             DB::beginTransaction();
             $checkData->password=sha1($newPassword);
             $checkData->save();
-            Mail::to($checkData->email)->queue(new SendMail($checkData->fullname,$newPassword));
+            Mail::to($checkData->email)->queue(new SendMail($checkData->company_name,$newPassword));
             DB::commit();
             $response = new ResponseMessageServiceParameter(200, 'Forgot password successfully', null);
             return $response->getResponse();
@@ -327,7 +342,7 @@ class UserService
             DB::beginTransaction();
             $checkData->password=sha1($newPassword);
             $checkData->save();
-            Mail::to($checkData->email)->queue(new SendMail($checkData->fullname,$newPassword));
+            Mail::to($checkData->email)->queue(new SendMail($checkData->company_name,$newPassword));
             DB::commit();
             $response = new ResponseMessageServiceParameter(200, 'Forgot password successfully', null);
             return $response->getResponse();
@@ -373,7 +388,5 @@ class UserService
         return $response->getResponse();
 
     }
-
-
 
 }

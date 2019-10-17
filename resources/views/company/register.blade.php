@@ -1,70 +1,70 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="description" content="Login page">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>Loker - Sign Up</title>
-
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('public/js/app.js') }}" defer></script> --}}
-
-    <!--begin::Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
-
-    <!--begin::Page Custom Styles(used by this page) -->
-    <link href="{{ asset ('public/assets/css/demo4/pages/login/login-3.css')}}" rel="stylesheet" type="text/css" />
-    <!--end::Page Custom Styles -->
-
-    <!--begin:: Global Mandatory Vendors -->
-    <link href="{{ asset ('public/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css" />
-    <!--end:: Global Mandatory Vendors -->
-
-    <!--begin:: Global Optional Vendors -->
-    <link href="{{ asset ('public/assets/vendors/general/tether/dist/css/tether.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/select2/dist/css/select2.css" rel="stylesheet')}}" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/ion-rangeslider/css/ion.rangeSlider.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/nouislider/distribute/nouislider.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/owl.carousel/dist/assets/owl.carousel.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/owl.carousel/dist/assets/owl.theme.default.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/dropzone/dist/dropzone.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/quill/dist/quill.snow.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/@yaireo/tagify/dist/tagify.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/summernote/dist/summernote.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/animate.css/animate.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/toastr/build/toastr.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/dual-listbox/dist/dual-listbox.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/morris.js/morris.css" rel="stylesheet')}}" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/sweetalert2/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/socicon/css/socicon.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/custom/vendors/flaticon/flaticon.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/custom/vendors/flaticon2/flaticon.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset ('public/assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css" />
-    <!--end:: Global Optional Vendors -->
-
-    <!--begin::Global Theme Styles(used by all pages) -->
-                    
-    <link href="{{ asset ('public/assets/css/demo4/style.bundle.css')}}" rel="stylesheet" type="text/css" />
-    <!--end::Global Theme Styles -->
-    <!--begin::Layout Skins(used by all pages) -->
-
-    <!--end::Layout Skins -->
-    <link rel="shortcut icon" href="{{ asset ('public/assets/media/logos/favicon.ico')}}" />
-</head>
-    <!-- end::Head -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Login page">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+        <title>Loker - Sign Up</title>
+    
+        <!-- Scripts -->
+        {{-- <script src="{{ asset('public/js/app.js') }}" defer></script> --}}
+    
+        <!--begin::Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+    
+        <!--begin::Page Custom Styles(used by this page) -->
+        <link href="{{ asset ('public/assets/css/demo4/pages/login/login-3.css')}}" rel="stylesheet" type="text/css" />
+        <!--end::Page Custom Styles -->
+    
+        <!--begin:: Global Mandatory Vendors -->
+        <link href="{{ asset ('public/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css" />
+        <!--end:: Global Mandatory Vendors -->
+    
+        <!--begin:: Global Optional Vendors -->
+        <link href="{{ asset ('public/assets/vendors/general/tether/dist/css/tether.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/select2/dist/css/select2.css" rel="stylesheet')}}" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/ion-rangeslider/css/ion.rangeSlider.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/nouislider/distribute/nouislider.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/owl.carousel/dist/assets/owl.carousel.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/owl.carousel/dist/assets/owl.theme.default.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/dropzone/dist/dropzone.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/quill/dist/quill.snow.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/@yaireo/tagify/dist/tagify.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/summernote/dist/summernote.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/animate.css/animate.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/toastr/build/toastr.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/dual-listbox/dist/dual-listbox.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/morris.js/morris.css" rel="stylesheet')}}" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/sweetalert2/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/socicon/css/socicon.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/custom/vendors/flaticon/flaticon.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/custom/vendors/flaticon2/flaticon.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset ('public/assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css" />
+        <!--end:: Global Optional Vendors -->
+    
+        <!--begin::Global Theme Styles(used by all pages) -->
+                        
+        <link href="{{ asset ('public/assets/css/demo4/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+        <!--end::Global Theme Styles -->
+        <!--begin::Layout Skins(used by all pages) -->
+    
+        <!--end::Layout Skins -->
+        <link rel="shortcut icon" href="{{ asset ('public/assets/media/logos/favicon.ico')}}" />
+    </head>
+        <!-- end::Head -->
 
 <body style="background-image: url({{ asset ('public/assets/media//bg/bg-3.jpg')}});" >
 	<div class="kt-grid kt-grid--ver kt-grid--root kt-page">
@@ -86,30 +86,29 @@
                                         <h3 class="kt-login__title">Sign Up</h3>
                                         <div class="kt-login__desc">Enter your details to create your account:</div>
                                     </div>
+                                    <div id="result-form-konten"></div>
                                     <form class="kt-form" action="" onsubmit="return false" id="form-konten">
                                         <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Nama Perusahaan" name="company_name">
+                                            <input class="form-control" type="text" placeholder="Nama Perusahaan" name="company_name" id="company_name">
                                         </div>
                                         <div class="input-group">
                                             
-                                            <input class="uppy-FileInput-Input btn btn-label-brand btn-bold form-control" type="file" placeholder="Upload Logo" name="company_logo" > 
+                                            <input class="uppy-FileInput-Input btn btn-label-brand btn-bold form-control" type="file" placeholder="Upload Logo" name="company_logo" id="company_logo"> 
                                         </div>
                                         
                                         <div class="input-group">
-                                            <input class="form-control" type="number" placeholder="No.Telp/HP" name="company_telp">
+                                            <input class="form-control" type="number" placeholder="No.Telp/HP" name="company_telp" id="company_telp">
                                         </div>
                                         <div class="input-group">
-                                            <input class="form-control" type="email" placeholder="Email" name="company_email">
+                                            <input class="form-control" type="email" placeholder="Email" name="company_email" id="company_email">
                                         </div>
                                         <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Alamat" name="company_address">
+                                            <input class="form-control" type="text" placeholder="Alamat" name="company_address" id="company_address">
                                         </div>
                                         <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Provinsi" name="company_provinsi">
+                                            <input class="form-control" type="text" placeholder="Code_wilayah" name="company_provinsi" id="code_wilayah">
                                         </div>
-                                        <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Kabupaten/Kota" name="company_kota">
-                                        </div>
+                                        
                                         <div class="row kt-login__extra">
                                             <div class="col kt-align-left">
                                                 <label class="kt-checkbox">
@@ -120,17 +119,12 @@
                                             </div>
                                         </div>
                                         <div class="kt-login__actions">
-                                            <button id="kt_login_signup_submit" class="btn btn-pill kt-login__btn-primary">Sign Up</button>&nbsp;&nbsp;
+                                            <button type ="submit" id="kt_login_signup_submit" class="btn btn-pill kt-login__btn-primary" onclick="confirmData()">Sign Up</button>&nbsp;&nbsp;
                                             <button id="kt_login_signup_cancel" class="btn btn-pill kt-login__btn-secondary" href="localhost/loker/user-login">Cancel</button>
                                         </div>
                                     </form>
                                 </div>
-                                <div class="kt-login__account">
-                                        <span class="kt-login__account-msg">
-                                            Don't have an account yet ?
-                                        </span>&nbsp;&nbsp;
-                                        <a href="javascript:;" id="kt_login_signup" class="kt-link kt-link--light kt-login__account-link">Sign Up</a>
-                                </div>
+                                
                             </div>	
                         </div>
                     </div>
@@ -138,8 +132,7 @@
             </div>
                     
          <!-- end:: Page -->
-        <!-- begin::Global Config(global config for global JS sciprts) -->
-        <script>
+         <script>
             var KTAppOptions = {"colors":{"state":{"brand":"#366cf3","light":"#ffffff","dark":"#282a3c","primary":"#5867dd","success":"#34bfa3","info":"#36a3f7","warning":"#ffb822","danger":"#fd3995"},"base":{"label":["#c5cbe3","#a1a8c3","#3d4465","#3e4466"],"shape":["#f0f3ff","#d9dffa","#afb4d4","#646c9a"]}}};
         </script>
         <!-- end::Global Config -->
@@ -227,16 +220,43 @@
         <!--end::Page Scripts -->
 
     <input type='hidden' name='_token' value='{{ csrf_token() }}'>
-    <script type="text/javascript">
-        $('#form-konten').submit(function () {
-            var data = getFormData('form-konten');
-            ajaxTransfer("{{url('/validate-login')}}", data, '#results');
-        });
-    
+
+    <script>
+        $(document).ready(function () {
+            $('#form-konten').submit(function () {
+                var data = getFormData('form-konten');
+                ajaxTransfer('company/save', data, '#result-form-konten');
+            })
+        })
         function redirectPage(){
-            redirect(1000, '/backend');
+            redirect('1000','/user-login');
         }
     </script>
+
+    {{-- <script type="text/javascript">
+    function confirmData() {
+            var data = new FormData();
+            var company_name=$('#company_name').val();
+            var company_logo=$("#company_logo").val();
+            var company_telp=$('#company_telp').val();
+            var company_email=$('#company_email').val();
+            var company_address=$('#company_address').val();
+            var code_wilayah=$('#code_wilayah').val();
+
+            data.append('company_name', company_name);
+            data.append('company_logo',company_logo);
+            data.append('company_telp',company_telp);
+            data.append('company_email',company_email);
+            data.append('company_address',company_address);
+            data.append('code_wilayah',code_wilayah);
+            modalConfirm("Konfirmasi", "Apakah Anda Yakin ingin Menyimpan Data?", function () {
+                ajaxTransfer("/company/save", data, "#modal-output");
+            })
+        }
+        function redirectPage(){
+            redirect('1000','/user-login');
+        }
+    </script> --}}
 </body>
 </html>
 
