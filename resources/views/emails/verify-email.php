@@ -22,9 +22,9 @@
                     <b>{{ $name }}</b><br>
                     <br>
                     <br>
-                    Berikut informasi Password Anda:<br>
+                    Untuk konfirmasi email anda, masuk pada link dibawah ini untuk memasukkan password anda:<br>
                     <br>
-                    Password Baru: <b>{{$newPassword}}</b><br>
+                    Link : 
                     <br>
                     Demi keamanan, jangan berikan informasi ini kepada siapapun.<br>
                     <br>

@@ -83,4 +83,18 @@ trait Dataset
             'borderDash' => $dashed,
         ]);
     }
+
+    /**
+     * Set the label of the dataset.
+     *
+     * @param $label string
+     *
+     * @return self
+     */
+    public function label($label)
+    {
+        return $this->options([
+            'label' => $label,
+        ]);
+    }
 }

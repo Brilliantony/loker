@@ -45,11 +45,13 @@ class Chart extends BaseChart
      */
     public function formatOptions(bool $strict = false, bool $noBraces = false)
     {
-        $this->options([
-            'xAxis' => [
-                'categories' => json_decode($this->formatLabels()),
-            ],
-        ]);
+        if (count($this->labels) > 0) {
+            $this->options([
+                'xAxis' => [
+                    'categories' => json_decode($this->formatLabels()),
+                ],
+            ]);
+        }
 
         return parent::formatOptions($strict, $noBraces);
     }

@@ -344,11 +344,6 @@ class Html extends BaseWriter
      */
     public function generateHTMLHeader($pIncludeStyles = false)
     {
-        // Spreadsheet object known?
-        if ($this->spreadsheet === null) {
-            throw new WriterException('Internal Spreadsheet object not set to an instance of an object.');
-        }
-
         // Construct HTML
         $properties = $this->spreadsheet->getProperties();
         $html = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">' . PHP_EOL;
@@ -404,11 +399,6 @@ class Html extends BaseWriter
      */
     public function generateSheetData()
     {
-        // Spreadsheet object known?
-        if ($this->spreadsheet === null) {
-            throw new WriterException('Internal Spreadsheet object not set to an instance of an object.');
-        }
-
         // Ensure that Spans have been calculated?
         if ($this->sheetIndex !== null || !$this->spansAreCalculated) {
             $this->calculateSpans();
@@ -525,11 +515,6 @@ class Html extends BaseWriter
      */
     public function generateNavigation()
     {
-        // Spreadsheet object known?
-        if ($this->spreadsheet === null) {
-            throw new WriterException('Internal Spreadsheet object not set to an instance of an object.');
-        }
-
         // Fetch sheets
         $sheets = [];
         if ($this->sheetIndex === null) {
@@ -658,7 +643,10 @@ class Html extends BaseWriter
                     } else {
                         $imageDetails = getimagesize($filename);
                         if ($fp = fopen($filename, 'rb', 0)) {
-                            $picture = fread($fp, filesize($filename));
+                            $picture = '';
+                            while (!feof($fp)) {
+                                $picture .= fread($fp, 1024);
+                            }
                             fclose($fp);
                             // base64 encode the binary data, then break it
                             // into chunks according to RFC 2045 semantics
@@ -756,11 +744,6 @@ class Html extends BaseWriter
      */
     public function generateStyles($generateSurroundingHTML = true)
     {
-        // Spreadsheet object known?
-        if ($this->spreadsheet === null) {
-            throw new WriterException('Internal Spreadsheet object not set to an instance of an object.');
-        }
-
         // Build CSS
         $css = $this->buildCSS($generateSurroundingHTML);
 
@@ -800,11 +783,6 @@ class Html extends BaseWriter
      */
     public function buildCSS($generateSurroundingHTML = true)
     {
-        // Spreadsheet object known?
-        if ($this->spreadsheet === null) {
-            throw new WriterException('Internal Spreadsheet object not set to an instance of an object.');
-        }
-
         // Cached?
         if ($this->cssStyles !== null) {
             return $this->cssStyles;
@@ -913,8 +891,8 @@ class Html extends BaseWriter
                     $css['table.sheet' . $sheetIndex . ' col.col' . $column]['width'] = $width . 'pt';
 
                     if ($columnDimension->getVisible() === false) {
-                        $css['table.sheet' . $sheetIndex . ' col.col' . $column]['visibility'] = 'collapse';
-                        $css['table.sheet' . $sheetIndex . ' col.col' . $column]['*display'] = 'none'; // target IE6+7
+                        $css['table.sheet' . $sheetIndex . ' .column' . $column]['visibility'] = 'collapse';
+                        $css['table.sheet' . $sheetIndex . ' .column' . $column]['display'] = 'none'; // target IE6+7
                     }
                 }
             }
@@ -1563,14 +1541,14 @@ class Html extends BaseWriter
 
             // loop through all Excel merged cells
             foreach ($sheet->getMergeCells() as $cells) {
-                list($cells) = Coordinate::splitRange($cells);
+                [$cells] = Coordinate::splitRange($cells);
                 $first = $cells[0];
                 $last = $cells[1];
 
-                list($fc, $fr) = Coordinate::coordinateFromString($first);
+                [$fc, $fr] = Coordinate::coordinateFromString($first);
                 $fc = Coordinate::columnIndexFromString($fc) - 1;
 
-                list($lc, $lr) = Coordinate::coordinateFromString($last);
+                [$lc, $lr] = Coordinate::coordinateFromString($last);
                 $lc = Coordinate::columnIndexFromString($lc) - 1;
 
                 // loop through the individual cells in the individual merge

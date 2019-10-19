@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'programer1.fingerspot@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'LOKER MAGANG'),
     ],
 
     /*
@@ -84,7 +84,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => env('MAIL_USERNAME','postmaster@sandboxf099b05dcd4d44bfaebd7ccff6237df8.mailgun.org'),
 
     'password' => env('MAIL_PASSWORD'),
 

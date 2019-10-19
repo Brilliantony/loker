@@ -42,7 +42,7 @@ class LoginController extends Controller
     public function validateLogin(Request $request)
     {
         try{
-            $username = $request->input('email');
+            $email = $request->input('email');
             $password = $request->input('password');
 
             $params=[

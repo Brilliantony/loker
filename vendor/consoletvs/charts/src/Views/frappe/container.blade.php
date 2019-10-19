@@ -1,3 +1,3 @@
 <div id="{{ $chart->id }}">
-    @include('charts::loader')
 </div>
+@include('charts::loader')

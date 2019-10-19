@@ -6,6 +6,7 @@
 <a href="https://packagist.org/packages/consoletvs/charts"><img src="https://poser.pugx.org/consoletvs/charts/d/total.svg" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/consoletvs/charts"><img src="https://poser.pugx.org/consoletvs/charts/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/consoletvs/charts"><img src="https://poser.pugx.org/consoletvs/charts/license.svg" alt="License"></a>
+<a href="https://app.fossa.io/projects/git%2Bgithub.com%2FConsoleTVs%2FCharts?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2FConsoleTVs%2FCharts.svg?type=shield"/></a>
 </p>
 
 ## What is charts?
@@ -26,3 +27,6 @@ The documentation for the latest version of charts can be found here by pressing
 A sample screenshot of a chartjs chart created using Charts.
 
 <p align="center"><img src="https://image.prntscr.com/image/FDJCr7ywShKMUlFitEc_Ww.png"></p>
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FConsoleTVs%2FCharts.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FConsoleTVs%2FCharts?ref=badge_large)

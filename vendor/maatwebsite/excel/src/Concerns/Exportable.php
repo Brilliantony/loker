@@ -2,7 +2,7 @@
 
 namespace Maatwebsite\Excel\Concerns;
 
-use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Exporter;
 use Illuminate\Foundation\Bus\PendingDispatch;
 use Maatwebsite\Excel\Exceptions\NoFilenameGivenException;
 use Maatwebsite\Excel\Exceptions\NoFilePathGivenException;
@@ -12,42 +12,47 @@ trait Exportable
     /**
      * @param string      $fileName
      * @param string|null $writerType
+     * @param array       $headers
      *
      * @throws NoFilenameGivenException
      * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function download(string $fileName = null, string $writerType = null)
+    public function download(string $fileName = null, string $writerType = null, array $headers = null)
     {
-        $fileName = $fileName ?? $this->fileName ?? null;
+        $headers    = $headers ?? $this->headers ?? [];
+        $fileName   = $fileName ?? $this->fileName ?? null;
+        $writerType = $writerType ?? $this->writerType ?? null;
 
         if (null === $fileName) {
             throw new NoFilenameGivenException();
         }
 
-        return resolve(Excel::class)->download($this, $fileName, $writerType ?? $this->writerType ?? null);
+        return $this->getExporter()->download($this, $fileName, $writerType, $headers);
     }
 
     /**
      * @param string      $filePath
      * @param string|null $disk
      * @param string|null $writerType
+     * @param mixed       $diskOptions
      *
      * @throws NoFilePathGivenException
      * @return bool|PendingDispatch
      */
-    public function store(string $filePath = null, string $disk = null, string $writerType = null)
+    public function store(string $filePath = null, string $disk = null, string $writerType = null, $diskOptions = [])
     {
         $filePath = $filePath ?? $this->filePath ?? null;
 
         if (null === $filePath) {
-            throw new NoFilePathGivenException();
+            throw NoFilePathGivenException::export();
         }
 
-        return resolve(Excel::class)->store(
+        return $this->getExporter()->store(
             $this,
             $filePath,
             $disk ?? $this->disk ?? null,
-            $writerType ?? $this->writerType ?? null
+            $writerType ?? $this->writerType ?? null,
+            $diskOptions ?? $this->diskOptions ?? []
         );
     }
 
@@ -55,23 +60,25 @@ trait Exportable
      * @param string|null $filePath
      * @param string|null $disk
      * @param string|null $writerType
+     * @param mixed       $diskOptions
      *
      * @throws NoFilePathGivenException
      * @return PendingDispatch
      */
-    public function queue(string $filePath = null, string $disk = null, string $writerType = null)
+    public function queue(string $filePath = null, string $disk = null, string $writerType = null, $diskOptions = [])
     {
         $filePath = $filePath ?? $this->filePath ?? null;
 
         if (null === $filePath) {
-            throw new NoFilePathGivenException();
+            throw NoFilePathGivenException::export();
         }
 
-        return resolve(Excel::class)->queue(
+        return $this->getExporter()->queue(
             $this,
             $filePath,
             $disk ?? $this->disk ?? null,
-            $writerType ?? $this->writerType ?? null
+            $writerType ?? $this->writerType ?? null,
+            $diskOptions ?? $this->diskOptions ?? []
         );
     }
 
@@ -86,5 +93,13 @@ trait Exportable
     public function toResponse($request)
     {
         return $this->download();
+    }
+
+    /**
+     * @return Exporter
+     */
+    private function getExporter(): Exporter
+    {
+        return app(Exporter::class);
     }
 }

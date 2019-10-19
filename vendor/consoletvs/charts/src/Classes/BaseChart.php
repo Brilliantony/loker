@@ -52,6 +52,20 @@ class BaseChart
     public $options = [];
 
     /**
+     * Stores the plugins options.
+     *
+     * @var array
+     */
+    public $plugins = [];
+
+    /**
+     * Stores the plugin views.
+     *
+     * @var array
+     */
+    public $pluginsViews = [];
+
+    /**
      * Stores the chart script.
      *
      * @var string
@@ -99,6 +113,15 @@ class BaseChart
      * @var int
      */
     public $width = null;
+
+    /**
+     * Stores the available chart letters to create the ID.
+     *
+     * @var array
+     */
+    public $scriptAttributes = [
+        'type' => 'text/javascript',
+    ];
 
     /**
      * Stores the available chart letters to create the ID.
@@ -162,14 +185,39 @@ class BaseChart
      */
     public function options($options, bool $overwrite = false)
     {
+        if (!empty($options['plugins'])) {
+            $options['plugins'] = new Raw(trim(preg_replace('/\s\s+/', ' ', $options['plugins'])));
+        }
+
         if ($options instanceof Collection) {
             $options = $options->toArray();
         }
-
         if ($overwrite) {
             $this->options = $options;
         } else {
             $this->options = array_replace_recursive($this->options, $options);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set the plugins options.
+     *
+     * @param array|Collection $options
+     * @param bool             $overwrite
+     *
+     * @return self
+     */
+    public function plugins($plugins, bool $overwrite = true)
+    {
+        if ($plugins instanceof Collection) {
+            $plugins = $plugins->toArray();
+        }
+        if ($overwrite) {
+            $this->plugins = $plugins;
+        } else {
+            $this->plugins = array_replace_recursive($this->plugins, $plugins);
         }
 
         return $this;
@@ -296,6 +344,24 @@ class BaseChart
     }
 
     /**
+     * Formats the plugins options.
+     *
+     * @param bool $strict
+     *
+     * @return string
+     */
+    public function formatPlugins(bool $strict = false, bool $noBraces = false)
+    {
+        if (!$strict && count($this->plugins) === 0) {
+            return '';
+        }
+
+        $plugins = str_replace('"', '', Encoder::encode($this->plugins));
+
+        return $noBraces ? substr($plugins, 1, -1) : $plugins;
+    }
+
+    /**
      * Use this to pass values to json without any modification
      * Useful for defining callbacks.
      *
@@ -352,7 +418,7 @@ class BaseChart
      *
      * @param string $api_url
      *
-     * @return void
+     * @return self
      */
     public function load(string $api_url)
     {
@@ -366,7 +432,7 @@ class BaseChart
      *
      * @param bool $loader
      *
-     * @return void
+     * @return self
      */
     public function loader(bool $loader)
     {
@@ -380,7 +446,7 @@ class BaseChart
      *
      * @param string $color
      *
-     * @return void
+     * @return self
      */
     public function loaderColor(string $color)
     {
@@ -392,11 +458,41 @@ class BaseChart
     /**
      * Alias for the formatDatasets() method.
      *
-     * @return void
+     * @return string
      */
     public function api()
     {
         return $this->formatDatasets();
+    }
+
+    /**
+     * Sets an HTML attribute the the script tag of the chart.
+     *
+     * @param string $key
+     * @param string $value
+     *
+     * @return self
+     */
+    public function setScriptAttribute(string $key, string $value)
+    {
+        $this->scriptAttributes[$key] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Returns the string formatting of the script attributes.
+     *
+     * @return string
+     */
+    public function displayScriptAttributes(): string
+    {
+        $result = '';
+        foreach ($this->scriptAttributes as $key => $value) {
+            echo " {$key}=\"{$value}\"";
+        }
+
+        return $result;
     }
 
     /**

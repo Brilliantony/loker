@@ -14,7 +14,7 @@ class VerifyLogin
     public function handle(\Illuminate\Http\Request $request, \Closure $next)
     {
         if (empty(session('activeUser'))) {
-            return redirect('/login');
+            return redirect('/user-login');
         } else {
             return $next($request);
         }

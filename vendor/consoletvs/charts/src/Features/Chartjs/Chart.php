@@ -91,7 +91,7 @@ trait Chart
      * @param string $title
      * @param int    $font_size
      * @param string $color
-     * @param bool   $bold
+     * @param string $font_weight
      * @param string $font_family
      *
      * @return self
@@ -100,7 +100,7 @@ trait Chart
         string $title,
         int $font_size = 14,
         string $color = '#666',
-        bool $bold = true,
+        string $font_weight = 'bold',
         string $font_family = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
     ) {
         return $this->options([
@@ -109,7 +109,7 @@ trait Chart
                 'fontFamily' => $font_family,
                 'fontSize'   => $font_size,
                 'fontColor'  => $color,
-                'fontStyle'  => $bold,
+                'fontStyle'  => $font_weight,
                 'text'       => $title,
             ],
         ]);
