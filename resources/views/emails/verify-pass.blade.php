@@ -8,7 +8,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
     
-        <title>Loker - Sign Up</title>
+        <title>Verifikasi Akun</title>
     
         <!-- Scripts -->
         {{-- <script src="{{ asset('public/js/app.js') }}" defer></script> --}}
@@ -83,35 +83,18 @@
                         </div>
                             <div class="kt-login__signin">
                                     <div class="kt-login__head">
-                                        <h3 class="kt-login__title">Sign Up</h3>
-                                        <div class="kt-login__desc">Enter your details to create your account:</div>
+                                        <div class="kt-login__desc">Verifikasi Akun Anda</div>
                                     </div>
                                     <div id="result-form-konten"></div>
                                     <form class="kt-form" action="" onsubmit="return false" id="form-konten">
                                         <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Nama Perusahaan" name="company_name" id="company_name">
+                                            <input class="form-control" type="password" placeholder="Masukkan Password" name="password" id="pw1">
                                         </div>
                                         <div class="input-group">
-                                            <div class="form-control">
-                                            <label for="">Upload Logo</label>
-                                            <input  type="file" placeholder="Upload Logo" name="company_logo" id="company_logo">
-                                            </div>   
-                                        </div>
-                                        
-                                        <div class="input-group">
-                                            <input class="form-control" type="number" placeholder="No.Telp/HP" name="company_telp" id="company_telp">
-                                        </div>
-                                        <div class="input-group">
-                                            <input class="form-control" type="email" placeholder="Email" name="company_email" id="company_email">
-                                        </div>
-                                        <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Alamat" name="company_address" id="company_address">
-                                        </div>
-                                        <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Code_wilayah" name="company_provinsi" id="code_wilayah">
+                                            <input class="form-control" type="password" placeholder="Konfirmasi Password" name="password" id="pw2">
                                         </div>
                                         <div class="kt-login__actions">
-                                            <button type ="submit" class="btn btn-pill kt-login__btn-primary">Sign Up</button>&nbsp;&nbsp;
+                                            <button type ="submit" class="btn btn-primary">Submit    </button>&nbsp;&nbsp;
                                         </div>
                                     </form>
                                 
@@ -244,9 +227,23 @@
                 ajaxTransfer("/company/save", data, "#modal-output");
             })
         }
+
         function redirectPage(){
             redirect('1000','/user-login');
         }
+
+        window.onload = function () {
+                document.getElementById("pw1").onchange = validatePassword;
+                document.getElementById("pw2").onchange = validatePassword;
+            }
+            function validatePassword(){
+                var pass2=document.getElementById("pw2").value;
+                var pass1=document.getElementById("pw1").value;
+                if(pass1!=pass2)
+                    document.getElementById("pw2").setCustomValidity("Passwords Tidak Sama, Coba Lagi");
+                else
+                    document.getElementById("pw2").setCustomValidity('');
+            }
     </script>
 </body>
 </html>

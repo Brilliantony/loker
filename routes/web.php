@@ -3,16 +3,11 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('user-login','LoginController@index' );
-Route::get('company-register', 'CompanyController@index');
 
-#confirm submit
-Route::post('save', 'CompanyController@create');
-// Route::group(['prefix' => 'company'], function () {
-//     Route::get('/', 'Backend\CompanyController@index');
-//     Route::post('/add', 'Backend\CompanyController@add');
-//     Route::post('/save', 'Backend\CompanyController@save');
-//     Route::post('/delete', 'Backend\CompanyController@delete');
-// });
+#company
+Route::get('company-form-regis','Backend\CompanyController@formRegis');
+Route::post('company-register', 'Backend\CompanyController@register');
 
-Route::get('company', 'Backend\CompanyController@index');
-Route::post('company/save', 'Backend\CompanyController@save');
+#user
+Route::get('verify-pass-form', 'Backend\UserController@index');
+Route::post('verify-pass', 'Backend\UserController@createPW');

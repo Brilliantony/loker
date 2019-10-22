@@ -6,7 +6,8 @@ use App\Models\User;
 use App\Models\Company;
 use App\Models\School;
 use App\Models\Applicant;
-use App\Models\CompanyRegisterService;
+use App\Models\CompanyService;
+use App\ServiceParameters\ResponseMessageServiceParameter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -48,48 +49,27 @@ class CompanyController extends Controller
 
     public function index(Request $request)
     {
-        $params=Company::all();
-        return view('company.register', $params);
+        
     }
 
-    public  function add(Request $request){
-        try{
-
-            $company_id=$request->input('company_id');
-            $params=[
-                'company_id'=>$company_id
-            ];
-
-            $result=$this->CompanyService->actionForm($params);
-            if($result['code']==200){
-
-                if ($id != 0 || !is_null($id)) {
-                    
-                    #Edit
-                    $params=[
-                        'data'=>$result['data'],
-                    ];
-
-                }else{
-                    #add
-                    $params=[
-                        'data'=>$result['data'],
-                    ];
-                }
-
-
-                return view('company.register',$params);
-            }
-
-        }catch (\Exception $e){
-            return view('errors.internal-server');
-
-        }
+    public function formRegis(){
+        $company = new Company;
+        $user = new User;
+        $params = [
+            'company'=>$company,
+            'user'=>$user,
+        ];
+        return view('company.register',$params);
     }
-
-        public  function save(Request $request){
-
+    
+    public  function Register(Request $request){
             try{
+                $validation = $request->validate([
+                    'company_name' => 'required|string|max:255',
+                    'company_email' => 'required|string|email|max:255',
+                    'company_telp' => 'required|string|max:12',
+                ]);
+
                #Company
                 $company_id = $request->input('company_id');
                 $company_name = $request->input('company_name');
@@ -98,20 +78,25 @@ class CompanyController extends Controller
                 $company_email = $request->input('company_email');
                 $company_address = $request->input('company_address');
                 $code_wilayah = $request->input('code_wilayah');
-                
-                #
-                $params=[
-                    'company_id'=>$company_id,
+
+                $company = new Company;
+                $company->create([
                     'company_name'=>$company_name,
                     'company_logo'=>$company_logo,
                     'company_telp'=>$company_telp,
                     'company_email'=>$company_email,
                     'company_address'=>$company_address,
                     'code_wilayah'=>$code_wilayah,
-                ];
-    
-                $result = $this->CompanyService->actionSave($params);
+                ]);
+                $company->save();
 
+                $user = new User;
+                $user->create([
+                    'email'=>$company_email,
+                    'mode'=>1,
+                    'mode_id'=>$company_id,
+                ]);
+                $user->save();
 
                 if($result['code'] == 200){
                     return "
@@ -125,32 +110,43 @@ class CompanyController extends Controller
                 return view('errors.internal-server');
             }
         }
-    
-        public function  delete(Request $request){
-    
-            try{
-    
-                $id = $request->input('company_id');
-                $params=[
-                    'id'=>$id,
-                ];
-                $result = $this->userService->actionDelete($params);
-                if($result['code'] == 200){
-                    return "
-                <div class='alert alert-success'>".$result['message']."</div>
-                <script> scrollToTop(); reload(1500); </script>";
-                }else{
-                    return "<div class='alert alert-danger'>".$result['message']."</div>";
-                }
-    
-            }catch (\Exception $e){
-                return view('errors.internal-server');
-            }
-    
+
+    public function updateUpload(Request $request)
+        {
+            $data = Company::find($id);
+            $this->validate(request(), [
+                'attch_siup' => 'required',
+                'attch_tdp' => 'required',
+                'attch_npwp' => 'required',
+                'attch_photo' => 'required',
+            ]);
+            Company::find($id);
+            $data->nama = $request->input('attch_siup');
+            $data->telp = $request->input('attch_tdp');
+            $data->email = $request->input('attch_npwp');
+            $data->alamat = $request->input('attch_photo');
+            $data->save();
+            return redirect('user-login')->with('success','updated successfully');  
         }
+    
+    public function  delete(Request $request){
+    
+        $id =$request->id;
+        try{
+            Company::find($id)->delete();
+            return "
+                <div class'alert alert-success'>Data berhasil dihapus!</div>
+                <script> scrollToTop(); reload(1000); </script>";
+            
+        }catch(\Exception $e){
+            return "<div class='alert alert-danger'>Data gagal dihapus!</div>";
+        }
+    
+    }
       
     public function logoUpload(Request $request)
     {
+        
         $validation = $request->validate([
             'company_logo' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
         ]);
@@ -161,54 +157,4 @@ class CompanyController extends Controller
 
         return $logo_name;
     }
-
-    // public function create(Request $request)
-    // {
-    //     $company = new Company;
-    //     $user = new User;
-
-    //     $validation = $request->validate([
-    //         'company_name' => 'required|string|max:255',
-    //         'company_email' => 'required|string|email|max:255',
-    //         'company_telp' => 'required|string|max:12',
-    //     ]);
-        
-    //     #Company
-    //     $company_id = $request->input('company_id');
-    //     $company_name = $request->input('company_name');
-    //     $company_logo = $this->logoUpload($request);
-    //     $company_telp = $request->input('company_telp');
-    //     $company_email = $request->input('company_email');
-    //     $company_address = $request->input('company_address');
-    //     $code_wilayah = $request->input('code_wilayah');
-
-    //     #User
-    //     $mode = 1;
-
-    //     try
-    //     {
-    //         $company->create([
-    //             'company_name' => $company_name,
-    //             'company_logo' => $company_logo,
-    //             'company_telp' => $company_telp,
-    //             'company_email' => $company_email,
-    //             'company_address' => $company_address,
-    //             'code_wilayah' => $code_wilayah,
-    //         ]);
-
-    //         $user->create([
-    //             'company_email' => $company_name,
-    //             'mode' => $mode,
-    //             'mode_id' => $company_id,
-    //         ]);
-            
-    //         return "<div class='alert alert-success'>Company Sukses Ditambahkan!</div>
-    //                 <script> scrollToTop(); reload(1000); </script>";
-    //     }
-    //     catch(\Exception $e)
-    //     {
-    //         return "<div class='alert alert-danger'>User Gagal Ditambahkan!</div>
-    //                 <script> scrollToTop(); reload(1000); </script>";
-    //     }
-    // }
 }
