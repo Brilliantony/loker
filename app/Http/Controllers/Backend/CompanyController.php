@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Company;
-use App\Models\School;
-use App\Models\Applicant;
 use App\Models\CompanyService;
 use App\ServiceParameters\ResponseMessageServiceParameter;
 use Illuminate\Http\Request;
@@ -73,7 +72,7 @@ class CompanyController extends Controller
                #Company
                 $company_id = $request->input('company_id');
                 $company_name = $request->input('company_name');
-                $company_logo = $this->logoUpload($request);
+                $company_logo = $request->$this->logoUpload('company_logo');
                 $company_telp = $request->input('company_telp');
                 $company_email = $request->input('company_email');
                 $company_address = $request->input('company_address');
@@ -99,11 +98,12 @@ class CompanyController extends Controller
                 $user->save();
 
                 if($result['code'] == 200){
-                    return "
-                    <div class='alert alert-success'>".$result['message']."</div>
-                    <script> scrollToTop(); reload(1500); </script>";
+                    return  view('company.register');
+                    // "<div class='alert alert-success'>Register Sukses</div>
+                    // <script> scrollToTop(); reload(1500); </script>";
                 }else{
-                    return "<div class='alert alert-danger'>".$result['message']."</div>";
+                    return "Register gagal";
+                    // "<div class='alert alert-danger'>Register Gagal</div>";
                 }
     
             }catch (\Exception $e){
@@ -111,7 +111,7 @@ class CompanyController extends Controller
             }
         }
 
-    public function updateUpload(Request $request)
+    public function updateUpload(Request $request,$id)
         {
             $data = Company::find($id);
             $this->validate(request(), [
@@ -146,15 +146,17 @@ class CompanyController extends Controller
       
     public function logoUpload(Request $request)
     {
-        
+        $company_id=DB::table('t_company')->select('company_id')->orderBy('id','desc')->first();
+        $id = $company_id->id + 1;
         $validation = $request->validate([
             'company_logo' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
         ]);
+        $uploadedlogo = $request->file('company_logo');
+        $logo_name = $uploadedlogo->getClientOriginalName();
+        $logo_extension = $uploadedlogo->getClientOriginalExtension();
+        $name = $logo_name.'-'.$id.'.'.$logo_extension;
+        $path = $uploadedlogo->storeAs('public/company_logo',$name);
 
-        $logo = $request->file('company_logo');
-        $logo_name = $logo->getClientOriginalExtension();
-        Company::make($logo)->resize(300,200)->save(storage_path('app/uploads'.$name));
-
-        return $logo_name;
+        return dd($path);
     }
 }

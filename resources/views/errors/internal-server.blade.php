@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Panic App | 500 Internal Server Error</title>
+    <title>Loker | 500 Internal Server Error</title>
 
     <link href="{{asset('public/assets/template/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('public/assets/template/font-awesome/css/font-awesome.css')}}" rel="stylesheet">

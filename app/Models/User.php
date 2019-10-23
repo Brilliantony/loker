@@ -10,6 +10,7 @@ class User extends Model
 {
     use Notifiable;
 
+    protected $table="t_user";
     protected $fillable = [
         'email', 'password', 'mode', 'mode_id', 'privilege'
     ];
