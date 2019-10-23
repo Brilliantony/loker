@@ -61,8 +61,10 @@ class CompanyController extends Controller
         return view('company.register',$params);
     }
     
-    public  function Register(Request $request){
+    public function register(Request $request){
+        //dd($request->all());
             try{
+                
                 $validation = $request->validate([
                     'company_name' => 'required|string|max:255',
                     'company_email' => 'required|string|email|max:255',
@@ -70,13 +72,18 @@ class CompanyController extends Controller
                 ]);
 
                #Company
+               $file=$this->logoUpload($request);
+               if($file==false){
+
+               }
                 $company_id = $request->input('company_id');
                 $company_name = $request->input('company_name');
-                $company_logo = $request->$this->logoUpload('company_logo');
+                $company_logo = $file;
                 $company_telp = $request->input('company_telp');
                 $company_email = $request->input('company_email');
                 $company_address = $request->input('company_address');
                 $code_wilayah = $request->input('code_wilayah');
+              
 
                 $company = new Company;
                 $company->create([
@@ -88,7 +95,7 @@ class CompanyController extends Controller
                     'code_wilayah'=>$code_wilayah,
                 ]);
                 $company->save();
-
+                
                 $user = new User;
                 $user->create([
                     'email'=>$company_email,
@@ -98,16 +105,18 @@ class CompanyController extends Controller
                 $user->save();
 
                 if($result['code'] == 200){
-                    return  view('company.register');
-                    // "<div class='alert alert-success'>Register Sukses</div>
-                    // <script> scrollToTop(); reload(1500); </script>";
+                    return  
+                    // view('company.register');
+                    "<div class='alert alert-success'>Register Sukses</div>
+                    <script> scrollToTop(); reload(1500); </script>";
                 }else{
-                    return "Register gagal";
-                    // "<div class='alert alert-danger'>Register Gagal</div>";
+                    return 
+                    // "Register gagal";
+                    "<div class='alert alert-danger'>Register Gagal</div>";
                 }
     
             }catch (\Exception $e){
-                return view('errors.internal-server');
+                dd($e);
             }
         }
 
@@ -146,17 +155,18 @@ class CompanyController extends Controller
       
     public function logoUpload(Request $request)
     {
-        $company_id=DB::table('t_company')->select('company_id')->orderBy('id','desc')->first();
-        $id = $company_id->id + 1;
         $validation = $request->validate([
             'company_logo' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
         ]);
         $uploadedlogo = $request->file('company_logo');
         $logo_name = $uploadedlogo->getClientOriginalName();
-        $logo_extension = $uploadedlogo->getClientOriginalExtension();
-        $name = $logo_name.'-'.$id.'.'.$logo_extension;
-        $path = $uploadedlogo->storeAs('public/company_logo',$name);
+        //$logo_extension = $uploadedlogo->getClientOriginalExtension();
+        $name = $logo_name;
+        if($uploadedlogo->storeAs('public/company_logo',$name)){
+            return $name;
+        }else{
+            return false;
+        }
 
-        return dd($path);
     }
 }

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="Login page">
+        <meta name="description" content="Register page">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
         <!-- CSRF Token -->
@@ -87,7 +87,8 @@
                                         <div class="kt-login__desc">Enter your details to create your account:</div>
                                     </div>
                                     <div id="result-form-konten"></div>
-                                    <form class="kt-form" method="POST" id="form-konten">
+                                    <form class="kt-form"  id="form-konten" method="POST" enctype="multipart/form-data" action="{{ route('company.register') }}">
+                                    @csrf
                                         <div class="input-group">
                                             <input class="form-control" type="text" placeholder="Nama Perusahaan" name="company_name" id="company_name">
                                         </div>
@@ -111,7 +112,7 @@
                                             <input class="form-control" type="text" placeholder="Code wilayah" name="code_wilayah" id="code_wilayah">
                                         </div>
                                         <div class="kt-login__actions">
-                                            <button type ="button" class="btn btn-brand btn-elevate kt-login__btn-primary" onclick="confirmData()">Sign Up</button>&nbsp;&nbsp;
+                                            <button  class="btn btn-brand btn-elevate kt-login__btn-primary" onclick="confirmData()">Sign Up</button>&nbsp;&nbsp;
                                         </div>
                                     </form>
                                 
@@ -141,7 +142,7 @@
         <!--end:: Global Mandatory Vendors -->
 
         <!--begin:: Global Optional Vendors -->
-        {{-- <script src="{{ asset ('public/assets/vendors/general/jquery-form/dist/jquery.form.min.js')}}" type="text/javascript"></script>
+         <script src="{{ asset ('public/assets/vendors/general/jquery-form/dist/jquery.form.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/block-ui/jquery.blockUI.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/custom/js/vendors/bootstrap-datepicker.init.js')}}" type="text/javascript')}}"></script>
@@ -196,20 +197,20 @@
         <script src="{{ asset ('public/assets/vendors/general/jquery.repeater/src/jquery.input.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/jquery.repeater/src/repeater.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/dompurify/dist/purify.js')}}" type="text/javascript"></script>
-        <!--end:: Global Optional Vendors --> --}}
+        <!--end:: Global Optional Vendors --> 
 
-        {{-- <script src="{{asset('public/assets/corelib/core.js')}}" type="text/javascript"></script>
-        <!--begin::Global Theme Bundle(used by all pages) --> --}}
-        {{-- <script src="{{ asset ('public/assets/js/demo4/scripts.bundle.js')}}" type="text/javascript"></script>
+         <script src="{{asset('public/assets/corelib/core.js')}}" type="text/javascript"></script>
+        <!--begin::Global Theme Bundle(used by all pages) --> 
+         <script src="{{ asset ('public/assets/js/demo4/scripts.bundle.js')}}" type="text/javascript"></script>
         <!--end::Global Theme Bundle -->
 
         <!--begin::Page Scripts(used by this page) -->
         <script src="{{ asset ('public/assets/js/demo4/pages/login/login-general.js')}}" type="text/javascript"></script>
-        <!--end::Page Scripts -->                  --}}
+        <!--end::Page Scripts -->                  
 
-        {{-- <!--begin::Page Scripts(used by this page) -->
+         <!--begin::Page Scripts(used by this page) -->
         <script src="{{ asset ('public/assets/js/demo4/pages/crud/file-upload/dropzonejs.js')}}" type="text/javascript"></script>
-        <!--end::Page Scripts --> --}}
+        <!--end::Page Scripts --> 
         
     <script>
         baseURL = '{{url("/")}}';
@@ -219,7 +220,8 @@
 
     <script type="text/javascript">
         function confirmData() {
-            //var data = new FormData();
+        
+            var data = new FormData();
             var company_name=$('#company_name').val();
             var company_logo=$("#company_logo").val();
             var company_telp=$('#company_telp').val();
@@ -227,16 +229,25 @@
             var company_address=$('#company_address').val();
             var code_wilayah=$('#code_wilayah').val();
 
-            $.ajax( {
-                type      : "POST",
-                url       : "company-register",
-                data      : $("#form-konten").serialize(),
-                headers   :{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                success   : function(data){
-                    console.log(data);
-                }
-            });
+            // $.ajax( {
+            //     type      : "POST",
+            //     url       : "company-register",
+            //     data      : $("#form-konten").serialize(),
+            //     headers   :{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            //     success   : function(data){
+            //         console.log(data);
+            //     }
+            // });
 
+            data.append('company_name', company_name);
+            data.append('company_logo',company_logo);
+            data.append('company_telp',company_telp);
+            data.append('company_email',company_email);
+            data.append('company_address',company_address);
+            data.append('code_wilayah',code_wilayah);
+            modalConfirm("Konfirmasi", "Apakah Anda Yakin ingin Menyimpan Data?", function () {
+                ajaxTransfer("{{url('company-register')}}", data, "#modal-output");
+            })
             
         }
     </script>

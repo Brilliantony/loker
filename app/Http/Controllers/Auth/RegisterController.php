@@ -59,6 +59,7 @@ class RegisterController extends Controller
      */
     public function companyCreate(Request $request)
     {
+        dd($request->all());
         $validation = $request->validate([
             'company_name' => 'required|string|max:255',
             'company_email' => 'required|string|email|max:255',
@@ -84,6 +85,7 @@ class RegisterController extends Controller
                 'company_address' => $company_address,
                 'code_wilayah' => $code_wilayah,
             ]);
+            
             return "<div class='alert alert-success'>Company Sukses Ditambahkan!</div>
                     <script> scrollToTop(); reload(1000); </script>";
         }
