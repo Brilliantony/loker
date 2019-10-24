@@ -86,7 +86,7 @@
                                         <div class="kt-login__desc">Verifikasi Akun Anda</div>
                                     </div>
                                     <div id="result-form-konten"></div>
-                                    <form class="kt-form" action="" onsubmit="return false" id="form-konten">
+                                    <form class="kt-form"  id="form-konten" method="POST" enctype="multipart/form-data" action="{{ route('verify.password') }}">
                                         <div class="input-group">
                                             <input class="form-control" type="password" placeholder="Masukkan Password" name="password" id="pw1">
                                         </div>
@@ -94,7 +94,7 @@
                                             <input class="form-control" type="password" placeholder="Konfirmasi Password" name="password" id="pw2">
                                         </div>
                                         <div class="kt-login__actions">
-                                            <button type ="submit" class="btn btn-primary">Submit    </button>&nbsp;&nbsp;
+                                            <button class="btn btn-brand btn-elevate kt-login__btn-primary" onclick="confirmData()">Submit</button>&nbsp;&nbsp;
                                         </div>
                                     </form>
                                 
@@ -181,6 +181,8 @@
         <script src="{{ asset ('public/assets/vendors/general/dompurify/dist/purify.js')}}" type="text/javascript"></script>
         <!--end:: Global Optional Vendors -->
 
+        <script src="{{asset('public/assets/corelib/core.js')}}" type="text/javascript"></script>
+
         <!--begin::Global Theme Bundle(used by all pages) -->
         <script src="{{ asset ('public/assets/js/demo4/scripts.bundle.js')}}" type="text/javascript"></script>
         <!--end::Global Theme Bundle -->
@@ -195,44 +197,22 @@
 
     <input type='hidden' name='_token' value='{{ csrf_token() }}'>
 
-    {{-- <script>
-        $(document).ready(function () {
-            $('#form-konten').submit(function () {
-                var data = getFormData('form-konten');
-                ajaxTransfer('company/save', data, '#result-form-konten');
+    <script type="text/javascript">
+        function confirmData() {
+            var data = new FormData();
+            var password=$('#pw1').val();
+        
+            data.append('password', password);
+            modalConfirm("Konfirmasi", "Apakah Anda Yakin ingin Menyimpan Data?", function () {
+                ajaxTransfer("{{url('verify/Pass')}}", data, "#modal-output");
             })
-        })
-        function redirectPage(){
-            redirect('1000','/user-login');
+            
         }
-    </script> --}}
+    </script>
 
     <script type="text/javascript">
-    function confirmData() {
-            var data = new FormData();
-            var company_name=$('#company_name').val();
-            var company_logo=$("#company_logo").val();
-            var company_telp=$('#company_telp').val();
-            var company_email=$('#company_email').val();
-            var company_address=$('#company_address').val();
-            var code_wilayah=$('#code_wilayah').val();
 
-            data.append('company_name', company_name);
-            data.append('company_logo',company_logo);
-            data.append('company_telp',company_telp);
-            data.append('company_email',company_email);
-            data.append('company_address',company_address);
-            data.append('code_wilayah',code_wilayah);
-            modalConfirm("Konfirmasi", "Apakah Anda Yakin ingin Menyimpan Data?", function () {
-                ajaxTransfer("/company/save", data, "#modal-output");
-            })
-        }
-
-        function redirectPage(){
-            redirect('1000','/user-login');
-        }
-
-        window.onload = function () {
+          window.onload = function () {
                 document.getElementById("pw1").onchange = validatePassword;
                 document.getElementById("pw2").onchange = validatePassword;
             }

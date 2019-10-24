@@ -12,7 +12,7 @@ class User extends Model
 
     protected $table="t_user";
     protected $fillable = [
-        'email', 'password', 'mode', 'mode_id', 'privilege'
+        'email', 'password', 'mode', 'mode_id', 'privilege', 'token'
     ];
 
     public $timestamps = false;
@@ -21,4 +21,8 @@ class User extends Model
         'password', 'remember_token',
     ];
     //
+    public function verifyUser()
+    {
+        return $this->hasOne('App\Models\VerifyUser');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Support\Facades\DB;
+use App\Mail\SendMail;
 use App\Models\User;
 use App\Models\Company;
 use App\Models\CompanyService;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 
 
 class CompanyController extends Controller
@@ -71,12 +73,13 @@ class CompanyController extends Controller
                     'company_telp' => 'required|string|max:12',
                 ]);
 
-               #Company
-               $file=$this->logoUpload($request);
-               if($file==false){
+                $file=$this->logoUpload($request);
+                if($file==false){
+                    return "<div class='alert alert-success'Gagal Upload</div>
+                    <script> scrollToTop(); reload(1500); </script>";
+                }
 
-               }
-                $company_id = $request->input('company_id');
+               #Company       
                 $company_name = $request->input('company_name');
                 $company_logo = $file;
                 $company_telp = $request->input('company_telp');
@@ -94,27 +97,26 @@ class CompanyController extends Controller
                     'company_address'=>$company_address,
                     'code_wilayah'=>$code_wilayah,
                 ]);
-                $company->save();
+                
+                $company_id = DB::table('t_company')->select('company_id')->orderBy('company_id','desc')->first();
                 
                 $user = new User;
                 $user->create([
                     'email'=>$company_email,
                     'mode'=>1,
-                    'mode_id'=>$company_id,
+                    'mode_id'=>$company_id->company_id,
+                    'token'=> str_random(40),
                 ]);
-                $user->save();
 
-                if($result['code'] == 200){
-                    return  
-                    // view('company.register');
-                    "<div class='alert alert-success'>Register Sukses</div>
-                    <script> scrollToTop(); reload(1500); </script>";
-                }else{
-                    return 
-                    // "Register gagal";
-                    "<div class='alert alert-danger'>Register Gagal</div>";
-                }
-    
+                $checkEmail = DB::table('t_user')->where('email',$company_email)->first();
+                Mail::to($checkEmail->email)->send(new SendMail($checkEmail->email, $checkEmail->token));
+
+                $response = new ResponseMessageServiceParameter(200, 'Register Sukses, Cek Email Anda Untuk Verifikasi', null);
+                return $response->getResponse();
+                // return  "<div class='alert alert-success'>Register Sukses, Silakan check email anda untuk verifikasi</div>
+                // <script> scrollToTop(); reload(2000); </script>";
+                
+
             }catch (\Exception $e){
                 dd($e);
             }
@@ -168,5 +170,24 @@ class CompanyController extends Controller
             return false;
         }
 
+    }
+
+    public function verifyUser($token)
+    {
+        $user = User::where('token', $token)->first();
+        if(isset($user) ){
+            $verif_user = $user->user;
+            if(!$user->verified) {
+                $verif_user->user->verified = 1;
+                $verif_user->user->save();
+                $status = "Your e-mail is verified. You can now login.";
+            }else{
+                $status = "Your e-mail is already verified. You can now login.";
+            }
+        }else{
+            return redirect('form/company/uploadFile')->with('warning', "Sorry your email cannot be identified.");
+        }
+
+        return redirect('form/company/uploadFile')->with('status', $status);
     }
 }

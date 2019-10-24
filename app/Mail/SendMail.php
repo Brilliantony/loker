@@ -16,16 +16,23 @@ use Illuminate\Support\Facades\Mail;
 class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
+    public $email;
+    public $verifyUser;
     public $user;
+    public $token;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct($email,$token)
     {
-        $this->user=$user;
+        // $this->email=$email;
+        // $this->token=$token;
+        $this->email=$email;
+        $this->token = $token;
+        //$this->verifyUser=$verifyUser;
         
     }
     /**
@@ -35,13 +42,20 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        $params=[
-            'from'=>'Loker Magang',
-            'remember_token'=>$this->user->remember_token,
-            
-        ];
+        // $user = new User;
+        // $email = DB::table('t_user')->select('email')->first();
+        // $token = DB::table('verify_users')->select('token')->first();
+        // $params=[
+        //     'from'=>'Loker Magang',
+        //     'email'=>$email->email,
+        //     'token'=>$token,
+        // ];
 
-        return $this->view('emails.verify-email',$params);
+        return $this->view('emails.verify-email')->with([
+            'from' => 'LOKER MAGANG',
+            'email' => $this->email,
+            'token' => $this->token,
+        ]);
     }
 
 

@@ -1,12 +1,13 @@
 <?php
 Route::get('/', 'HomeController@index')->name('index');
-Route::get('user-login','LoginController@index' );
+Route::get('login','LoginController@index' );
 
 #company
-Route::get('company-form-regis','Backend\CompanyController@formRegis');
-//Route::post('company-form-regis','Backend\CompanyController@formRegis');
-Route::post('company-register', 'Backend\CompanyController@register')->name('company.register');
+Route::get('form/company/register','Backend\CompanyController@formRegis');
+Route::post('company/register', 'Backend\CompanyController@register')->name('company.register');
+Route::get('form/company/uploadFile','Backend\CompanyController@uploadFile');
 
 #user
-Route::get('verify-pass-form', 'Backend\UserController@index');
-Route::post('verify-pass', 'Backend\UserController@createPW');
+Route::get('form/verify/pass/{token}', 'Backend\UserController@formPass');
+Route::post('verify/pass', 'Backend\UserController@createPW')->name('verify.password');
+

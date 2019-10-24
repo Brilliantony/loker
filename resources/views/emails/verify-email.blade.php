@@ -19,7 +19,7 @@
         <tr>
             <td id="test" valign="top" style="padding-left:20px;line-height: 1.5;">
                 <p>Yth,<br>
-                    <b>Hai {{ $name }},</b><br>
+                    <b>Hai, {{ $email }},</b><br>
                     <br>
                     <br>
                     Kami sampaikan bahwa email yang Anda gunakan untuk akun Loker Magang belum terverifikasi.
@@ -27,7 +27,7 @@
                     <br>
                     Segera lakukan verifikasi email yang Anda gunakan dengan klik tautan dibawah ini.
                     <br>
-                    Link :  {{$remember_token}}
+                    Link : {{url('form/verify/pass',$token)}};
                     <br>
                     Demi keamanan, jangan berikan informasi ini kepada siapapun.<br>
                     <br>

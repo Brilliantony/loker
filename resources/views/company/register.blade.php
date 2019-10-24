@@ -209,7 +209,7 @@
         <!--end::Page Scripts -->                  
 
          <!--begin::Page Scripts(used by this page) -->
-        <script src="{{ asset ('public/assets/js/demo4/pages/crud/file-upload/dropzonejs.js')}}" type="text/javascript"></script>
+        {{-- <script src="{{ asset ('public/assets/js/demo4/pages/crud/file-upload/dropzonejs.js')}}" type="text/javascript"></script> --}}
         <!--end::Page Scripts --> 
         
     <script>
@@ -229,16 +229,6 @@
             var company_address=$('#company_address').val();
             var code_wilayah=$('#code_wilayah').val();
 
-            // $.ajax( {
-            //     type      : "POST",
-            //     url       : "company-register",
-            //     data      : $("#form-konten").serialize(),
-            //     headers   :{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            //     success   : function(data){
-            //         console.log(data);
-            //     }
-            // });
-
             data.append('company_name', company_name);
             data.append('company_logo',company_logo);
             data.append('company_telp',company_telp);
@@ -246,7 +236,7 @@
             data.append('company_address',company_address);
             data.append('code_wilayah',code_wilayah);
             modalConfirm("Konfirmasi", "Apakah Anda Yakin ingin Menyimpan Data?", function () {
-                ajaxTransfer("{{url('company-register')}}", data, "#modal-output");
+                ajaxTransfer("{{url('company/register')}}", data, "#modal-output");
             })
             
         }

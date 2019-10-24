@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('mode');
             $table->integer('mode_id');
             $table->string('privilege');
-            $table->rememberToken();
+            $table->string('remember_token', 100)->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +32,9 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_user');
+        //Schema::dropIfExists('t_user');
+        Schema::table('t_user', function (Blueprint $table) {
+            $table->dropColumn('remember_token');
+        });
     }
 }
