@@ -27,7 +27,7 @@
                     <br>
                     Segera lakukan verifikasi email yang Anda gunakan dengan klik tautan dibawah ini.
                     <br>
-                    Link : {{url('form/verify/pass',$token)}};
+                    Link : {{url('form/verify/pass',$token)}}
                     <br>
                     Demi keamanan, jangan berikan informasi ini kepada siapapun.<br>
                     <br>

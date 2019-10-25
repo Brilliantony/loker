@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Company;
 use App\Models\School;
@@ -35,15 +36,16 @@ class UserController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
-
+    public $token;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $token)
     {
         //$this->middleware('guest');
+        $this->token = $token;
     }
 
     /**
@@ -67,13 +69,13 @@ class UserController extends Controller
 
     public function formPass($token)
     {
-        $verifyUser = VerifyUser::where('token', $token)->first();
-        if($token){
-            $verifyUser = new VerifyUser;
-            $user = new User;
+        $this->token = $token;
+        $verifyUser = User::where('token', $token)->first();
+        if($verifyUser){
+            //$data = User::find($token);
+            $data = new User;
             $params = [
-                'user'=>$user,
-                'verifyUser'=>$verifyUser,
+                'data'=>$data,
             ];
             return view('emails.verify-pass',$params);
         }else{
@@ -82,17 +84,17 @@ class UserController extends Controller
 
     }
 
-    public function createPW(Request $request, $email)
+    public function createPW(Request $request, $token)
     {
         try{
-            $data = User::find($email);
+            $data = User::find($token);
             $this->validate(request(), [
                 'password' => 'required',
             ]);
-            User::find($email);
+            User::find($token);
             $data->password = $request->input('password');
             $data->save();
-            return redirect('form/company/uploadFile')->with('success','verifikasi berhasil');  
+            return view('company.uploadFile',$token)->with('success','verifikasi berhasil');  
         }catch(\Exception $e){
             dd($e);
         }
@@ -101,7 +103,7 @@ class UserController extends Controller
 
     public function verifyUser($token)
     {
-        $verifyUser = VerifyUser::where('token', $token)->first();
+        $verifyUser = User::where('token', $token)->first();
         if(isset($verifyUser) ){
             $user = $verifyUser->user;
             if(!$user->verified) {

@@ -86,7 +86,8 @@
                                         <div class="kt-login__desc">Verifikasi Akun Anda</div>
                                     </div>
                                     <div id="result-form-konten"></div>
-                                    <form class="kt-form"  id="form-konten" method="POST" enctype="multipart/form-data" action="{{ route('verify.password') }}">
+                                    <form class="kt-form"  id="form-konten" method="POST" enctype="multipart/form-data" action="{{ route('verify.password',$data->token) }}">
+                                        @csrf
                                         <div class="input-group">
                                             <input class="form-control" type="password" placeholder="Masukkan Password" name="password" id="pw1">
                                         </div>

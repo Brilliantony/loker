@@ -236,7 +236,7 @@
             data.append('company_address',company_address);
             data.append('code_wilayah',code_wilayah);
             modalConfirm("Konfirmasi", "Apakah Anda Yakin ingin Menyimpan Data?", function () {
-                ajaxTransfer("{{url('company/register')}}", data, "#modal-output");
+                ajaxTransfer("/company/register", data, "#modal-output");
             })
             
         }

@@ -341,7 +341,7 @@ function setInputPlaceholder(){
 	for(var i=0; i<labels.length; i++){
 		label = $(labels[i]).attr('for');
 		placeholder = $(labels[i]).html();
-		//$(labels[i]).parents('form').find('*[name='+label+']').attr('placeholder', placeholder);
+		$(labels[i]).parents('form').find('*[name='+label+']').attr('placeholder', placeholder);
 	}
 }
 
@@ -633,8 +633,8 @@ function redirect(timeout, url){
   }
 
 
-// $(document).ready(function(){
-//     initiateLoadingBar();
-// 	// setInputPlaceholder();
-// 	validateRequiredInput();
-// })
+$(document).ready(function(){
+    initiateLoadingBar();
+	// setInputPlaceholder();
+	validateRequiredInput();
+})

@@ -111,10 +111,9 @@ class CompanyController extends Controller
                 $checkEmail = DB::table('t_user')->where('email',$company_email)->first();
                 Mail::to($checkEmail->email)->send(new SendMail($checkEmail->email, $checkEmail->token));
 
-                $response = new ResponseMessageServiceParameter(200, 'Register Sukses, Cek Email Anda Untuk Verifikasi', null);
-                return $response->getResponse();
-                // return  "<div class='alert alert-success'>Register Sukses, Silakan check email anda untuk verifikasi</div>
-                // <script> scrollToTop(); reload(2000); </script>";
+                // $response = new ResponseMessageServiceParameter(200, 'Register Sukses, Cek Email Anda Untuk Verifikasi', null);
+                // return $response->getResponse();
+                return view('success.email-sended');
                 
 
             }catch (\Exception $e){
@@ -122,7 +121,7 @@ class CompanyController extends Controller
             }
         }
 
-    public function updateUpload(Request $request,$id)
+    public function updateUpload(Request $request, $id)
         {
             $data = Company::find($id);
             $this->validate(request(), [
@@ -145,9 +144,7 @@ class CompanyController extends Controller
         $id =$request->id;
         try{
             Company::find($id)->delete();
-            return "
-                <div class'alert alert-success'>Data berhasil dihapus!</div>
-                <script> scrollToTop(); reload(1000); </script>";
+            return view('success.email-sended');
             
         }catch(\Exception $e){
             return "<div class='alert alert-danger'>Data gagal dihapus!</div>";
@@ -158,14 +155,13 @@ class CompanyController extends Controller
     public function logoUpload(Request $request)
     {
         $validation = $request->validate([
-            'company_logo' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+            'company_logo' => 'required|file|image|mimes:jpeg,png|max:2048'
         ]);
         $uploadedlogo = $request->file('company_logo');
         $logo_name = $uploadedlogo->getClientOriginalName();
         //$logo_extension = $uploadedlogo->getClientOriginalExtension();
-        $name = $logo_name;
-        if($uploadedlogo->storeAs('public/company_logo',$name)){
-            return $name;
+        if($uploadedlogo->storeAs('public/company_logo',$logo_name)){
+            return $logo_name;
         }else{
             return false;
         }
