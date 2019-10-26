@@ -83,7 +83,7 @@
                         </div>
                             <div class="kt-login__signin">
                                     <div class="kt-login__head">
-                                        <h3 class="kt-login__title">Sign Up</h3>
+                                        <h3 class="kt-login__title">Company Upload File</h3>
                                         <div class="kt-login__desc">Enter your details to create your account:</div>
                                     </div>
                                     <div id="result-form-konten"></div>

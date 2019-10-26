@@ -86,7 +86,7 @@
                                         <div class="kt-login__desc">Verifikasi Akun Anda</div>
                                     </div>
                                     <div id="result-form-konten"></div>
-                                    <form class="kt-form"  id="form-konten" method="POST" enctype="multipart/form-data" action="{{ route('verify.password',$data->token) }}">
+                                    <form class="kt-form"  id="form-konten" method="POST" enctype="multipart/form-data" action="{{ route('verify.password') }}">
                                         @csrf
                                         <div class="input-group">
                                             <input class="form-control" type="password" placeholder="Masukkan Password" name="password" id="pw1">
@@ -95,6 +95,7 @@
                                             <input class="form-control" type="password" placeholder="Konfirmasi Password" name="password" id="pw2">
                                         </div>
                                         <div class="kt-login__actions">
+                                        <input type="hidden" id="user_id" name="user_id" value="{{$data->user_id}}">
                                             <button class="btn btn-brand btn-elevate kt-login__btn-primary" onclick="confirmData()">Submit</button>&nbsp;&nbsp;
                                         </div>
                                     </form>

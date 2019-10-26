@@ -17,7 +17,7 @@
 <center>
     <table width="" border="0" cellpadding="0" cellspacing="0" bgcolor="white">
         <tr>
-            <td id="test" valign="top" style="padding-left:20px;line-height: 1.5;">
+            <td id="test" valign="top" style="padding-left:20px;adding-right:20px;line-height: 1.5;">
                 <p>Yth,<br>
                     <b>Hai, {{ $email }},</b><br>
                     <br>

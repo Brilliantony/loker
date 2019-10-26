@@ -37,15 +37,17 @@ class UserController extends Controller
      */
     protected $redirectTo = '/home';
     public $token;
+    public $id;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(User $token)
+    public function __construct(User $id)
     {
         //$this->middleware('guest');
-        $this->token = $token;
+        //$this->token = $token;
+        $this->id = $id;
     }
 
     /**
@@ -69,13 +71,14 @@ class UserController extends Controller
 
     public function formPass($token)
     {
-        $this->token = $token;
+        //$this->id = $id;
         $verifyUser = User::where('token', $token)->first();
-        if($verifyUser){
+        $data_qrr   = DB::select("select * from t_user where token = '".$token."' ");
+        if(count($data_qrr) != 0){
             //$data = User::find($token);
             $data = new User;
             $params = [
-                'data'=>$data,
+                'data'=>$data_qrr[0],
             ];
             return view('emails.verify-pass',$params);
         }else{
@@ -84,40 +87,16 @@ class UserController extends Controller
 
     }
 
-    public function createPW(Request $request, $token)
+    public function createPW(Request $request)
     {
         try{
-            $data = User::find($token);
-            $this->validate(request(), [
-                'password' => 'required',
-            ]);
-            User::find($token);
-            $data->password = $request->input('password');
-            $data->save();
-            return view('company.uploadFile',$token)->with('success','verifikasi berhasil');  
+            DB::update("update t_user set `password` = '".Hash::make($request->input('password'))."', verified = '1' where user_id = '".$request->input('user_id')."' ");
+            return redirect('login')->with('success','verifikasi berhasil');
         }catch(\Exception $e){
             dd($e);
         }
         
     }
 
-    public function verifyUser($token)
-    {
-        $verifyUser = User::where('token', $token)->first();
-        if(isset($verifyUser) ){
-            $user = $verifyUser->user;
-            if(!$user->verified) {
-                $verifyUser->user->verified = 1;
-                $verifyUser->user->save();
-                $status = "Your e-mail is verified. You can now login.";
-            }else{
-                $status = "Your e-mail is already verified. You can now login.";
-            }
-        }else{
-            return redirect('form/company/uploadFile')->with('warning', "Sorry your email cannot be identified.");
-        }
-
-        return redirect('form/company/uploadFile')->with('status', $status);
-    }
 }
 
