@@ -66,7 +66,7 @@
     </head>
         <!-- end::Head -->
 
-<body style="background-image: url({{ asset ('public/assets/media//bg/bg-3.jpg')}});" >
+<body style="background-image: url({{ asset ('public/assets/media/bg/bg-3.jpg')}});" >
 	<div class="kt-grid kt-grid--ver kt-grid--root kt-page">
             <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
         <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url(./assets/media//bg/bg-3.jpg);">
@@ -84,43 +84,37 @@
                             <div class="kt-login__signin">
                                     <div class="kt-login__head">
                                         <h3 class="kt-login__title">Company Upload File</h3>
-                                        <div class="kt-login__desc">Enter your details to create your account:</div>
                                     </div>
                                     <div id="result-form-konten"></div>
-                                    <form class="kt-form" action="" onsubmit="return false" id="form-konten">
+                                    <form class="kt-form" action="{{ route('uploadFile') }}"method="post" enctype="multipart/form-data" id="form-konten">
+                                        @csrf
+                                        <label class="col-form-label">Upload siup</label>
                                         <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Nama Perusahaan" name="company_name" id="company_name">
-                                        </div>
+                                            <div class="dropzone dropzone-default" id="kt_dropzone_1">>
+                                                 <div class="dropzone-msg dz-message needsclick">
+                                                    <h3 class="dropzone-msg-title">Drop files here or click to upload.</h3>
+                                                    
+                                                </div>
+                                                <div class="fallback">
+                                                    <input type="file" name="attch_siup" id="attch_siup"> 
+                                                </div>
+                                                </div>
+                                            </div>
+                                        <label class="col-form-label">Upload tdp</label>
                                         <div class="input-group">
-                                            
-                                            <input class="uppy-FileInput-Input btn btn-label-brand btn-bold form-control" type="file" placeholder="Upload Logo" name="company_logo" id="company_logo"> 
-                                        </div>
-                                        
-                                        <div class="input-group">
-                                            <input class="form-control" type="number" placeholder="No.Telp/HP" name="company_telp" id="company_telp">
-                                        </div>
-                                        <div class="input-group">
-                                            <input class="form-control" type="email" placeholder="Email" name="company_email" id="company_email">
-                                        </div>
-                                        <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Alamat" name="company_address" id="company_address">
-                                        </div>
-                                        <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Code_wilayah" name="company_provinsi" id="code_wilayah">
-                                        </div>
-                                        
-                                        <div class="row kt-login__extra">
-                                            <div class="col kt-align-left">
-                                                <label class="kt-checkbox">
-                                                    <input type="checkbox" name="agree">I Agree the <a href="#" class="kt-link kt-login__link kt-font-bold">terms and conditions</a>.
-                                                    <span></span>
-                                                </label>
-                                                <span class="form-text text-muted"></span>
+                                            <div class="dropzone dropzone-default" id="kt_dropzone_1">>
+                                                <div class="dropzone-msg dz-message needsclick">
+                                                    <h3 class="dropzone-msg-title">Drop files here or click to upload.</h3>
+                                                     
+                                                </div>
+                                                <div class="fallback">
+                                                    <input type="attch_siup" name="attch_siup" id="attch_siup">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="kt-login__actions">
-                                            <button type ="submit" id="kt_login_signup_submit" class="btn btn-pill kt-login__btn-primary" onclick="confirmData()">Sign Up</button>&nbsp;&nbsp;
-                                            <button id="kt_login_signup_cancel" class="btn btn-pill kt-login__btn-secondary" href="localhost/loker/user-login">Cancel</button>
+                                            <input type="hidden" id="user_id" name="user_id" value="{{$data->user_id}}">
+                                            <button type ="submit" id="kt_login_signup_submit" class="btn btn-primary" onclick="confirmData()">Submit</button>&nbsp;&nbsp;
                                         </div>
                                     </form>
                                 </div>
@@ -153,7 +147,7 @@
         <script src="{{ asset ('public/assets/vendors/general/jquery-form/dist/jquery.form.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/block-ui/jquery.blockUI.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
-        <script src="{{ asset ('public/assets/vendors/custom/js/vendors/bootstrap-datepicker.init.js" type="text/javascript')}}"></script>
+        <script src="{{ asset ('public/assets/vendors/custom/js/vendors/bootstrap-datepicker.init.js')}}" type="text/javascript')}}"></script>
         <script src="{{ asset ('public/assets/vendors/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/custom/js/vendors/bootstrap-timepicker.init.js')}}" type="text/javascript"></script>
@@ -216,8 +210,7 @@
         <!--end::Page Scripts -->                
 
         <!--begin::Page Scripts(used by this page) -->
-        <script src="./assets/js/demo4/pages/crud/file-upload/dropzonejs.js" type="text/javascript"></script>
-        <!--end::Page Scripts -->
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script> --}}
 
     <input type='hidden' name='_token' value='{{ csrf_token() }}'>
 

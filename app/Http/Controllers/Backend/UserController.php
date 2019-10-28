@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\ServiceParameters\ResponseMessageServiceParameter;
 
 
 class UserController extends Controller
@@ -90,8 +91,16 @@ class UserController extends Controller
     public function createPW(Request $request)
     {
         try{
-            DB::update("update t_user set `password` = '".Hash::make($request->input('password'))."', verified = '1' where user_id = '".$request->input('user_id')."' ");
-            return redirect('login')->with('success','verifikasi berhasil');
+            $password = $request->input('password');
+            if(is_null($password) || $password == "")
+            {
+                $response = new ResponseMessageServiceParameter(404, 'Missing parameter password', null);
+                return $response->getResponse();
+            }
+            else{
+                DB::update("update t_user set `password` = '".sha1($request->input('password'))."', verified = '1' where user_id = '".$request->input('user_id')."' ");
+                return redirect('login')->with('success','verifikasi berhasil');
+            }
         }catch(\Exception $e){
             dd($e);
         }

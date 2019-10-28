@@ -22,7 +22,7 @@ class LoginService
     public function actionLogin($params,$isApi=false)
     {
         try{
-            $username=$params['email'];
+            $email=$params['email'];
             $password=$params['password'];
 
 

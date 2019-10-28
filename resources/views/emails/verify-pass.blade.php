@@ -129,7 +129,7 @@
         <script src="{{ asset ('public/assets/vendors/general/jquery-form/dist/jquery.form.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/block-ui/jquery.blockUI.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
-        <script src="{{ asset ('public/assets/vendors/custom/js/vendors/bootstrap-datepicker.init.js" type="text/javascript')}}"></script>
+        <script src="{{ asset ('public/assets/vendors/custom/js/vendors/bootstrap-datepicker.init.js')}}" type="text/javascript')}}"></script>
         <script src="{{ asset ('public/assets/vendors/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/custom/js/vendors/bootstrap-timepicker.init.js')}}" type="text/javascript"></script>
@@ -192,10 +192,6 @@
         <!--begin::Page Scripts(used by this page) -->
         <script src="{{ asset ('public/assets/js/demo4/pages/login/login-general.js')}}" type="text/javascript"></script>
         <!--end::Page Scripts -->                
-
-        <!--begin::Page Scripts(used by this page) -->
-        <script src="./assets/js/demo4/pages/crud/file-upload/dropzonejs.js" type="text/javascript"></script>
-        <!--end::Page Scripts -->
 
     <input type='hidden' name='_token' value='{{ csrf_token() }}'>
 

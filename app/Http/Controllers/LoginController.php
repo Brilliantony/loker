@@ -3,9 +3,11 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Support\Facades\DB;
 use App\Services\LoginService;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -21,22 +23,12 @@ class LoginController extends Controller
     public function index(Request $request)
     {
         if ($request->session()->exists('activeUser')) {
-            return redirect('/');
+            return redirect('form/company/uploadFile');
         }
         $params = [
             'title' => 'Login'
         ];
         return view('auth.login', $params);
-    }
-
-    public function setNullAlertSession(Request $request)
-    {
-        try{
-            $request->session()->put('alert', null);
-            return "ok";
-        }catch (\Exception $e){
-            return "failed";
-        }
     }
 
     public function validateLogin(Request $request)
@@ -45,21 +37,20 @@ class LoginController extends Controller
             $email = $request->input('email');
             $password = $request->input('password');
 
-            $params=[
-                'email'=>$email,
-                'password'=>$password
-            ];
-
-            $result = $this->loginService->actionLogin($params);
-
-            if($result['code']== 200){
-                $request->session()->put('activeUser', $result['data']);
-                return "<div class='alert alert-success'>".$result['message']."</div> <script>reload(1000);</script>";
-            }else{
-                return "<div class='alert alert-warning'>".$result['message']."</div>";
+            $activeUser=User::where(['email'=>$email])->first();
+            if($activeUser->email!=$email) {
+                echo "<div class='alert alert-danger'>Anda bukan Admin!</div>";
+                return view('auth.login');
             }
+            if($activeUser->password!=sha1($password)){
+                echo "<div class='alert alert-danger'>Password Salah!</div>";
+                return view('auth.login');
+            }
+            $request->session()->put('activeUser', $activeUser);
+            return redirect('form/company/uploadFile');
         }catch(\Exception $e){
-            return "<div class='alert alert-danger'>Terjadi kesalahan pada server</div>";
+            //return "<div class='alert alert-danger'>Terjadi kesalahan pada server</div>";
+            dd($e);
         }
     }
 

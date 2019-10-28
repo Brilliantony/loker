@@ -1,97 +1,91 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="Register page">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-    
-        <title>Loker - Sign In</title>
-    
-        <!-- Scripts -->
-        {{-- <script src="{{ asset('public/js/app.js') }}" defer></script> --}}
-    
-        <!--begin::Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
-    
-        <!--begin::Page Custom Styles(used by this page) -->
-        <link href="{{ asset ('public/assets/css/demo4/pages/login/login-3.css')}}" rel="stylesheet" type="text/css" />
-        <!--end::Page Custom Styles -->
-    
-        <!--begin:: Global Mandatory Vendors -->
-        <link href="{{ asset ('public/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css" />
-        <!--end:: Global Mandatory Vendors -->
-    
-        <!--begin:: Global Optional Vendors -->
-        <link href="{{ asset ('public/assets/vendors/general/tether/dist/css/tether.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/select2/dist/css/select2.css" rel="stylesheet')}}" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/ion-rangeslider/css/ion.rangeSlider.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/nouislider/distribute/nouislider.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/owl.carousel/dist/assets/owl.carousel.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/owl.carousel/dist/assets/owl.theme.default.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/dropzone/dist/dropzone.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/quill/dist/quill.snow.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/@yaireo/tagify/dist/tagify.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/summernote/dist/summernote.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/animate.css/animate.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/toastr/build/toastr.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/dual-listbox/dist/dual-listbox.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/morris.js/morris.css" rel="stylesheet')}}" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/sweetalert2/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/socicon/css/socicon.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/custom/vendors/flaticon/flaticon.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/custom/vendors/flaticon2/flaticon.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css" />
-        <!--end:: Global Optional Vendors -->
-    
-        <!--begin::Global Theme Styles(used by all pages) -->
-                        
-        <link href="{{ asset ('public/assets/css/demo4/style.bundle.css')}}" rel="stylesheet" type="text/css" />
-        <!--end::Global Theme Styles -->
-        <!--begin::Layout Skins(used by all pages) -->
-    
-        <!--end::Layout Skins -->
-        <link rel="shortcut icon" href="{{ asset ('public/assets/media/logos/favicon.ico')}}" />
-    </head>
-        <!-- end::Head -->
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Login page">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<body style="background-image: url({{ asset ('public/assets/media//bg/bg-3.jpg')}});" >
-	<div class="kt-grid kt-grid--ver kt-grid--root kt-page">
-            <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
-        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url({{ asset ('public/assets/media//bg/bg-3.jpg')}});">
-            <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
-                <div class="kt-login__container">
-                    <div class="kt-login__logo">
-                        <a href="#">
-                            <img src="{{ asset ('public/assets/media/logos/logo-5.png')}}">  	
-                        </a>
-                    </div>
-                  
-                        <div class="kt-login__head">
-                            <h3 class="kt-login__title">Loker Magang</h3>
-                        </div>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>Loker - Sign In</title>
+
+    <!-- Scripts -->
+    {{-- <script src="{{ asset('public/js/app.js') }}" defer></script> --}}
+
+    <!--begin::Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+
+    <!--begin::Page Custom Styles(used by this page) -->
+    <link href="{{ asset ('public/assets/css/demo4/pages/login/login-2.css')}}" rel="stylesheet" type="text/css" />
+    <!--end::Page Custom Styles -->
+
+    <!--begin:: Global Mandatory Vendors -->
+    <link href="{{ asset ('public/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css" />
+    <!--end:: Global Mandatory Vendors -->
+
+    <!--begin:: Global Optional Vendors -->
+    <link href="{{ asset ('public/assets/vendors/general/tether/dist/css/tether.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/select2/dist/css/select2.css" rel="stylesheet')}}" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/ion-rangeslider/css/ion.rangeSlider.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/nouislider/distribute/nouislider.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/owl.carousel/dist/assets/owl.carousel.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/owl.carousel/dist/assets/owl.theme.default.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/dropzone/dist/dropzone.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/quill/dist/quill.snow.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/@yaireo/tagify/dist/tagify.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/summernote/dist/summernote.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/animate.css/animate.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/toastr/build/toastr.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/dual-listbox/dist/dual-listbox.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/morris.js/morris.css" rel="stylesheet')}}" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/sweetalert2/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/socicon/css/socicon.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/custom/vendors/flaticon/flaticon.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/custom/vendors/flaticon2/flaticon.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css" />
+    <!--end:: Global Optional Vendors -->
+
+    <!--begin::Global Theme Styles(used by all pages) -->
+                    
+    <link href="{{ asset ('public/assets/css/demo4/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+    <!--end::Global Theme Styles -->
+    <!--begin::Layout Skins(used by all pages) -->
+
+    <!--end::Layout Skins -->
+    <link rel="shortcut icon" href="{{ asset ('public/assets/media/logos/favicon.ico')}}" />
+</head>
+    <!-- end::Head -->
+
+<body style="background-image: url({{ asset ('public/assets/media//bg/bg-1.jpg')}});" >
+    <div id="app">
+         <div class="kt-grid kt-grid--ver kt-grid--root kt-page">
+            <div class="kt-grid kt-grid--hor kt-grid--root kt-login kt-login--v2 kt-login--signin" id="kt_login">
+                <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" >
+                    <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
+                        <div class="kt-login__container">
+                            <div class="kt-login__logo">
+                                <a href="#">
+                                    <img src="{{ asset ('public/assets/media/logos/logo-mini-2-md.png')}}">  	
+                                </a>
+                            </div>
                             <div class="kt-login__signin">
                                     <div class="kt-login__head">
-                                        <h3 class="kt-login__title">Sign In</h3>
+                                        <h3 class="kt-login__title">Loker Magang | Sign In</h3>
                                     </div>
-                                    <div id="result-form-konten"></div>
-                                    <form class="kt-form"  id="form-konten" method="POST" enctype="multipart/form-data" action="{{ url('validate-login') }}">
-                                    @csrf
+                                    <form class="kt-form" method="POST" action="{{ url('/validate-login') }}" onsubmit="return false" id="form-konten">
                                         <div class="input-group">
                                             <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" placeholder="Email" name="email" value="{{ old('email') }}" autocomplete="off">
                                         </div>
-                                        
                                         <div class="input-group">
                                             <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" type="password" placeholder="Password" name="password">
                                             @if ($errors->has('password'))
@@ -103,7 +97,7 @@
                                         <div class="row kt-login__extra">
                                             <div class="col">
                                                 <label class="kt-checkbox">
-                                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember me
+                                                    <input type="checkbox" name="remember"> Remember me
                                                     <span></span>
                                                 </label>
                                             </div>
@@ -112,22 +106,25 @@
                                             </div>
                                         </div>
                                         <div class="kt-login__actions">
-                                            <button  class="btn btn-brand btn-elevate kt-login__btn-primary" type="submit">Sign In</button>&nbsp;&nbsp;
+                                            <button id="kt_login_signin_submit" class="btn btn-pill kt-login__btn-primary" type="submit">Sign In</button>
                                         </div>
                                     </form>
-                                    </div>	<div class="kt-login__account">
+                                </div>
+                                <div class="kt-login__account">
                                         <span class="kt-login__account-msg">
                                             Don't have an account yet ?
                                         </span>&nbsp;&nbsp;
-                                        <a href="javascript:;" id="kt_login_signup" class="kt-link kt-link--light kt-login__account-link" action="{{ url('form/company/register') }}">Sign Up</a>
+                                        <a href="javascript:;" id="kt_login_signup" class="kt-link kt-link--light kt-login__account-link">Sign Up</a>
                                 </div>
-                            </div>
+                            </div>	
                         </div>
-                    </div>	
-                </div>
+                    </div>
+                </div>	
+            </div>
                     
          <!-- end:: Page -->
-         <script>
+        <!-- begin::Global Config(global config for global JS sciprts) -->
+        <script>
             var KTAppOptions = {"colors":{"state":{"brand":"#366cf3","light":"#ffffff","dark":"#282a3c","primary":"#5867dd","success":"#34bfa3","info":"#36a3f7","warning":"#ffb822","danger":"#fd3995"},"base":{"label":["#c5cbe3","#a1a8c3","#3d4465","#3e4466"],"shape":["#f0f3ff","#d9dffa","#afb4d4","#646c9a"]}}};
         </script>
         <!-- end::Global Config -->
@@ -145,10 +142,10 @@
         <!--end:: Global Mandatory Vendors -->
 
         <!--begin:: Global Optional Vendors -->
-         <script src="{{ asset ('public/assets/vendors/general/jquery-form/dist/jquery.form.min.js')}}" type="text/javascript"></script>
+        <script src="{{ asset ('public/assets/vendors/general/jquery-form/dist/jquery.form.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/block-ui/jquery.blockUI.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
-        <script src="{{ asset ('public/assets/vendors/custom/js/vendors/bootstrap-datepicker.init.js')}}" type="text/javascript')}}"></script>
+        <script src="{{ asset ('public/assets/vendors/custom/js/vendors/bootstrap-datepicker.init.js" type="text/javascript')}}"></script>
         <script src="{{ asset ('public/assets/vendors/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/custom/js/vendors/bootstrap-timepicker.init.js')}}" type="text/javascript"></script>
@@ -200,25 +197,15 @@
         <script src="{{ asset ('public/assets/vendors/general/jquery.repeater/src/jquery.input.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/jquery.repeater/src/repeater.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/dompurify/dist/purify.js')}}" type="text/javascript"></script>
-        <!--end:: Global Optional Vendors --> 
+        <!--end:: Global Optional Vendors -->
 
-         <script src="{{asset('public/assets/corelib/core.js')}}" type="text/javascript"></script>
-        <!--begin::Global Theme Bundle(used by all pages) --> 
-         <script src="{{ asset ('public/assets/js/demo4/scripts.bundle.js')}}" type="text/javascript"></script>
+        <!--begin::Global Theme Bundle(used by all pages) -->
+        <script src="{{ asset ('public/assets/js/demo4/scripts.bundle.js')}}" type="text/javascript"></script>
         <!--end::Global Theme Bundle -->
 
         <!--begin::Page Scripts(used by this page) -->
         <script src="{{ asset ('public/assets/js/demo4/pages/login/login-general.js')}}" type="text/javascript"></script>
-        <!--end::Page Scripts -->                  
-
-         <!--begin::Page Scripts(used by this page) -->
-        {{-- <script src="{{ asset ('public/assets/js/demo4/pages/crud/file-upload/dropzonejs.js')}}" type="text/javascript"></script> --}}
-        <!--end::Page Scripts --> 
-        
-    <script>
-        baseURL = '{{url("/")}}';
-    </script>
-
+        <!--end::Page Scripts -->                
     <input type='hidden' name='_token' value='{{ csrf_token() }}'>
     <script type="text/javascript">
         $('#form-konten').submit(function () {

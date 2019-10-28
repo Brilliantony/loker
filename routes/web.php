@@ -1,11 +1,12 @@
 <?php
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('login','LoginController@index' );
+Route::post('validate-login','LoginController@validateLogin');
 
 #company
 Route::get('form/company/register','Backend\CompanyController@formRegis');
 Route::post('company/register', 'Backend\CompanyController@register')->name('company.register');
-Route::get('form/company/uploadFile','Backend\CompanyController@uploadFile');
+Route::get('form/company/uploadFile','Backend\CompanyController@formUpload')->name('uploadFile');
 
 #user
 Route::get('form/verify/pass/{token}', 'Backend\UserController@formPass');

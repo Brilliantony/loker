@@ -62,6 +62,34 @@ class CompanyController extends Controller
         ];
         return view('company.register',$params);
     }
+
+    public function formUpload(Request $request){
+        
+        try{
+            if($request->session()->exists('activeUser')){
+                $user_id = $request->input('user_id');
+                $data_qrr = DB::select("select * from t_user where user_id = '".$user_id."' ");
+                //dd($data_qrr);
+               
+                    $data = new User;
+                    $params = [
+                        'data'=>$data,
+                    ];
+                    
+                    return view('company.uploadFile',$params);
+                
+                
+            }
+            else{
+                echo "<div class='alert alert-danger'>Login dulu!</div>";
+                return view('auth.login');
+            }
+        }
+        catch(\Exception $e)
+        {
+            dd($e);
+        }
+    }
     
     public function register(Request $request){
         //dd($request->all());
@@ -121,22 +149,31 @@ class CompanyController extends Controller
             }
         }
 
-    public function updateUpload(Request $request, $id)
+    public function updateUpload(Request $request)
         {
-            $data = Company::find($id);
-            $this->validate(request(), [
-                'attch_siup' => 'required',
-                'attch_tdp' => 'required',
-                'attch_npwp' => 'required',
-                'attch_photo' => 'required',
-            ]);
-            Company::find($id);
-            $data->nama = $request->input('attch_siup');
-            $data->telp = $request->input('attch_tdp');
-            $data->email = $request->input('attch_npwp');
-            $data->alamat = $request->input('attch_photo');
-            $data->save();
-            return redirect('user-login')->with('success','updated successfully');  
+            try{
+                if($request->session()->exists('activeUser'))
+                {
+                    $id = $request->input('user_id');
+                    $attch_siup = $this->uploadSiup($request);
+                    $attch_tdp = $this->uploadTdp($request);
+                    $attch_npwp = $this->uploadNpwp($request);
+                    $attch_photo = $this->uploadPhoto($request);
+
+                    $mode_id = DB::select("select mode_id from t_user where user_id = '".$id."' ");
+
+                    $data = Company::where('mode_id',$mode_id);
+                    $data->attch_siup = $request->uploadSiup($attch_siup,$data->company_id);
+                    $data->attch_tdp = $request->input('attch_tdp');
+                    $data->attch_npwp = $request->input('attch_npwp');
+                    $data->attch_photo = $request->input('attch_photo');
+                    $data->save();
+                    return redirect('user-login')->with('success','updated successfully');  
+                }
+            }catch(\Exception $e){
+                dd($e);
+            }
+
         }
     
     public function  delete(Request $request){
@@ -168,22 +205,76 @@ class CompanyController extends Controller
 
     }
 
-    public function verifyUser($token)
+    public function uploadSiup(Request $request, $id)
     {
-        $user = User::where('token', $token)->first();
-        if(isset($user) ){
-            $verif_user = $user->user;
-            if(!$user->verified) {
-                $verif_user->user->verified = 1;
-                $verif_user->user->save();
-                $status = "Your e-mail is verified. You can now login.";
-            }else{
-                $status = "Your e-mail is already verified. You can now login.";
-            }
+        $user_id = User::where(['user_id'=>$id])->first();
+        $validation = $request->validate([
+            'attch_siup' => 'required|file|image|mimes:jpeg,png,pdf|max:2048'
+        ]);
+        $error = $validation->errors()->first();
+        $file = $request->file('attch_siup');
+        $name = $file->getClientOriginalName();
+        //$logo_extension = $uploadedlogo->getClientOriginalExtension();
+        if($file->storeAs('public/company_siup/'.$user_id.'',$name)){
+            return $name;
         }else{
-            return redirect('form/company/uploadFile')->with('warning', "Sorry your email cannot be identified.");
+            $response = new ResponseMessageServiceParameter(404, $error, $name);
+            return $response->getResponse();
         }
 
-        return redirect('form/company/uploadFile')->with('status', $status);
+    }
+
+    public function uploadTdp(Request $request, $id)
+    {
+        $user_id = User::where(['user_id'=>$id])->first();
+        $validation = $request->validate([
+            'attch_tdp' => 'required|file|image|mimes:jpeg,png,pdf|max:2048'
+        ]);
+        $error = $validation->errors()->first();
+        $file = $request->file('attch_tdp');
+        $name = $file->getClientOriginalName();
+        //$logo_extension = $uploadedlogo->getClientOriginalExtension();
+        if($file->storeAs('public/company_tdp/'.$user_id.'',$name)){
+            return $name;
+        }else{
+            $response = new ResponseMessageServiceParameter(404, $error, $name);
+            return $response->getResponse();
+        }
+
+    }
+
+    public function uploadNpwp(Request $request, $id)
+    {
+        $user_id = User::where(['user_id'=>$id])->first();
+        $validation = $request->validate([
+            'attch_npwp' => 'required|file|image|mimes:jpeg,png,pdf|max:2048'
+        ]);
+        $error = $validation->errors()->first();
+        $file = $request->file('attch_npwp');
+        $name = $file->getClientOriginalName();
+        if($file->storeAs('public/company_npwp/'.$user_id.'',$name)){
+            return $name;
+        }else{
+            $response = new ResponseMessageServiceParameter(404, $error, $name);
+            return $response->getResponse();
+        }
+
+    }
+
+    public function uploadPhoto(Request $request, $id)
+    {
+        $user_id = User::where(['user_id'=>$id])->first();
+        $validation = $request->validate([
+            'attch_npwp' => 'required|file|image|mimes:jpeg,png,pdf|max:2048'
+        ]);
+        $error = $validation->errors()->first();
+        $file = $request->file('attch_npwp');
+        $name = $file->getClientOriginalName();
+        if($file->storeAs('public/company_npwp/'.$user_id.'',$name)){
+            response()->json($name, 200);
+        }else{
+            $response = new ResponseMessageServiceParameter(404, $error, $name);
+            return $response->getResponse();
+        }
     }
 }
