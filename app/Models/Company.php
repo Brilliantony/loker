@@ -13,4 +13,5 @@ class Company extends Model
     //
 
     public $timestamps = false;
+
 }

@@ -68,17 +68,20 @@ class CompanyController extends Controller
         try{
             if($request->session()->exists('activeUser')){
                 $user_id = $request->input('user_id');
-                $data_qrr = DB::select("select * from t_user where user_id = '".$user_id."' ");
-                //dd($data_qrr);
-               
+                //dd($user_id);
+                $data_qrr   = DB::select("select * from t_user where id = '".$user_id."' ");
+                
+                if(count($data_qrr) != 0){
+                    //$data = User::find($token);
+                    // dd($data_qrr[0]);
                     $data = new User;
                     $params = [
-                        'data'=>$data,
+                        'data'=>$data_qrr[0],
                     ];
-                    
                     return view('company.uploadFile',$params);
-                
-                
+                }else{
+                    return view('errors.internal-server');
+                }
             }
             else{
                 echo "<div class='alert alert-danger'>Login dulu!</div>";
@@ -149,26 +152,27 @@ class CompanyController extends Controller
             }
         }
 
-    public function updateUpload(Request $request)
+    public function updateUpload(Request $request, $id)
         {
             try{
                 if($request->session()->exists('activeUser'))
                 {
                     $id = $request->input('user_id');
-                    $attch_siup = $this->uploadSiup($request);
-                    $attch_tdp = $this->uploadTdp($request);
-                    $attch_npwp = $this->uploadNpwp($request);
-                    $attch_photo = $this->uploadPhoto($request);
+                    $attch_siup = $this->uploadSiup($request, $id);
+                    $attch_tdp = $this->uploadTdp($request, $id);
+                    $attch_npwp = $this->uploadNpwp($request, $id);
+                    $attch_photo = $this->uploadPhoto($request, $id);
 
                     $mode_id = DB::select("select mode_id from t_user where user_id = '".$id."' ");
 
-                    $data = Company::where('mode_id',$mode_id);
-                    $data->attch_siup = $request->uploadSiup($attch_siup,$data->company_id);
-                    $data->attch_tdp = $request->input('attch_tdp');
-                    $data->attch_npwp = $request->input('attch_npwp');
-                    $data->attch_photo = $request->input('attch_photo');
+                    $data = Company::where('company_id',$mode_id);
+                    $data->attch_siup = $attch_siup;
+                    $data->attch_tdp = $attch_tdp;
+                    $data->attch_npwp = $attch_npwp;
+                    $data->attch_photo = $attch_photo;
                     $data->save();
-                    return redirect('user-login')->with('success','updated successfully');  
+                    echo "<div class='alert alert-danger'>success upladed!</div>";
+                    return redirect('/');
                 }
             }catch(\Exception $e){
                 dd($e);
@@ -205,9 +209,9 @@ class CompanyController extends Controller
 
     }
 
-    public function uploadSiup(Request $request, $id)
+    public function uploadSiup(Request $request, $user_id)
     {
-        $user_id = User::where(['user_id'=>$id])->first();
+        $user = User::where(['user_id'=>$user_id])->first();
         $validation = $request->validate([
             'attch_siup' => 'required|file|image|mimes:jpeg,png,pdf|max:2048'
         ]);
@@ -215,7 +219,7 @@ class CompanyController extends Controller
         $file = $request->file('attch_siup');
         $name = $file->getClientOriginalName();
         //$logo_extension = $uploadedlogo->getClientOriginalExtension();
-        if($file->storeAs('public/company_siup/'.$user_id.'',$name)){
+        if($file->storeAs('public/company_siup/'.$user->user_id.'',$name)){
             return $name;
         }else{
             $response = new ResponseMessageServiceParameter(404, $error, $name);
@@ -224,9 +228,9 @@ class CompanyController extends Controller
 
     }
 
-    public function uploadTdp(Request $request, $id)
+    public function uploadTdp(Request $request, $user_id)
     {
-        $user_id = User::where(['user_id'=>$id])->first();
+        $user = User::where(['user_id'=>$user_id])->first();
         $validation = $request->validate([
             'attch_tdp' => 'required|file|image|mimes:jpeg,png,pdf|max:2048'
         ]);
@@ -234,7 +238,7 @@ class CompanyController extends Controller
         $file = $request->file('attch_tdp');
         $name = $file->getClientOriginalName();
         //$logo_extension = $uploadedlogo->getClientOriginalExtension();
-        if($file->storeAs('public/company_tdp/'.$user_id.'',$name)){
+        if($file->storeAs('public/company_tdp/'.$user->user_id.'',$name)){
             return $name;
         }else{
             $response = new ResponseMessageServiceParameter(404, $error, $name);
@@ -243,16 +247,16 @@ class CompanyController extends Controller
 
     }
 
-    public function uploadNpwp(Request $request, $id)
+    public function uploadNpwp(Request $request, $user_id)
     {
-        $user_id = User::where(['user_id'=>$id])->first();
+        $user = User::where(['user_id'=>$user_id])->first();
         $validation = $request->validate([
             'attch_npwp' => 'required|file|image|mimes:jpeg,png,pdf|max:2048'
         ]);
         $error = $validation->errors()->first();
         $file = $request->file('attch_npwp');
         $name = $file->getClientOriginalName();
-        if($file->storeAs('public/company_npwp/'.$user_id.'',$name)){
+        if($file->storeAs('public/company_npwp/'.$user->user_id.'',$name)){
             return $name;
         }else{
             $response = new ResponseMessageServiceParameter(404, $error, $name);
@@ -261,17 +265,17 @@ class CompanyController extends Controller
 
     }
 
-    public function uploadPhoto(Request $request, $id)
+    public function uploadPhoto(Request $request, $user_id)
     {
-        $user_id = User::where(['user_id'=>$id])->first();
+        $user = User::where(['user_id'=>$user_id])->first();
         $validation = $request->validate([
             'attch_npwp' => 'required|file|image|mimes:jpeg,png,pdf|max:2048'
         ]);
         $error = $validation->errors()->first();
         $file = $request->file('attch_npwp');
         $name = $file->getClientOriginalName();
-        if($file->storeAs('public/company_npwp/'.$user_id.'',$name)){
-            response()->json($name, 200);
+        if($file->storeAs('public/company_npwp/'.$user->user_id.'',$name)){
+            return $name;
         }else{
             $response = new ResponseMessageServiceParameter(404, $error, $name);
             return $response->getResponse();

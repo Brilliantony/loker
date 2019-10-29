@@ -86,32 +86,34 @@
                                         <h3 class="kt-login__title">Company Upload File</h3>
                                     </div>
                                     <div id="result-form-konten"></div>
-                                    <form class="kt-form" action="{{ route('uploadFile') }}"method="post" enctype="multipart/form-data" id="form-konten">
+                                    <form class="kt-form" action="{{ route('uploadFile',$data[0]) }}"method="post" enctype="multipart/form-data" id="form-konten">
                                         @csrf
-                                        <label class="col-form-label">Upload siup</label>
+                                        <div class="container" style="padding-left:15%">
                                         <div class="input-group">
-                                            <div class="dropzone dropzone-default" id="kt_dropzone_1">>
-                                                 <div class="dropzone-msg dz-message needsclick">
-                                                    <h3 class="dropzone-msg-title">Drop files here or click to upload.</h3>
-                                                    
-                                                </div>
-                                                <div class="fallback">
-                                                    <input type="file" name="attch_siup" id="attch_siup"> 
-                                                </div>
-                                                </div>
-                                            </div>
-                                        <label class="col-form-label">Upload tdp</label>
-                                        <div class="input-group">
-                                            <div class="dropzone dropzone-default" id="kt_dropzone_1">>
-                                                <div class="dropzone-msg dz-message needsclick">
-                                                    <h3 class="dropzone-msg-title">Drop files here or click to upload.</h3>
-                                                     
-                                                </div>
-                                                <div class="fallback">
-                                                    <input type="attch_siup" name="attch_siup" id="attch_siup">
-                                                </div>
-                                            </div>
+                                            <div class="form-control">
+                                            <label for="">Upload SIUP</label>
+                                            <input  type="file" placeholder="Upload SIUP" name="attch_siup" id="attch_siup">
+                                            </div>   
                                         </div>
+                                        <div class="input-group">
+                                            <div class="form-control">
+                                            <label for="">Upload TDP</label>
+                                            <input  type="file" placeholder="Upload TDP" name="attch_tdp" id="attch_tdp">
+                                            </div>   
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="form-control">
+                                            <label for="">Upload NPWP</label>
+                                            <input  type="file" placeholder="Upload NPWP" name="attch_npwp" id="attch_npwp">
+                                            </div>   
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="form-control">
+                                            <label for="">Upload Photo Company</label>
+                                            <input  type="file" placeholder="Upload Photo" name="attch_photo" id="attch_photo">
+                                            </div>   
+                                        </div>
+                                    </div>
                                         <div class="kt-login__actions">
                                             <input type="hidden" id="user_id" name="user_id" value="{{$data->user_id}}">
                                             <button type ="submit" id="kt_login_signup_submit" class="btn btn-primary" onclick="confirmData()">Submit</button>&nbsp;&nbsp;
@@ -201,6 +203,8 @@
         <script src="{{ asset ('public/assets/vendors/general/dompurify/dist/purify.js')}}" type="text/javascript"></script>
         <!--end:: Global Optional Vendors -->
 
+        <script src="{{asset('public/assets/corelib/core.js')}}" type="text/javascript"></script>
+
         <!--begin::Global Theme Bundle(used by all pages) -->
         <script src="{{ asset ('public/assets/js/demo4/scripts.bundle.js')}}" type="text/javascript"></script>
         <!--end::Global Theme Bundle -->
@@ -214,42 +218,39 @@
 
     <input type='hidden' name='_token' value='{{ csrf_token() }}'>
 
-    <script>
+    {{-- <script>
         $(document).ready(function () {
             $('#form-konten').submit(function () {
                 var data = getFormData('form-konten');
-                ajaxTransfer('company/save', data, '#result-form-konten');
+                ajaxTransfer('company/saveform/company/uploadFile', data, '#result-form-konten');
             })
         })
         function redirectPage(){
             redirect('1000','/user-login');
         }
-    </script>
+    </script> --}}
 
-    {{-- <script type="text/javascript">
+    <script type="text/javascript">
     function confirmData() {
             var data = new FormData();
-            var company_name=$('#company_name').val();
-            var company_logo=$("#company_logo").val();
-            var company_telp=$('#company_telp').val();
-            var company_email=$('#company_email').val();
-            var company_address=$('#company_address').val();
-            var code_wilayah=$('#code_wilayah').val();
+            var attch_siup=$('#attch_siup').val();
+            var attch_tdp=$("#attch_tdp").val();
+            var attch_npwp=$('#attch_npwp').val();
+            var attch_photo=$('#attch_photo').val();
 
-            data.append('company_name', company_name);
-            data.append('company_logo',company_logo);
-            data.append('company_telp',company_telp);
-            data.append('company_email',company_email);
-            data.append('company_address',company_address);
-            data.append('code_wilayah',code_wilayah);
+            data.append('attch_siup', attch_siup);
+            data.append('attch_tdp',attch_tdp);
+            data.append('attch_npwp',attch_npwp);
+            data.append('attch_photo',attch_photo);
+
             modalConfirm("Konfirmasi", "Apakah Anda Yakin ingin Menyimpan Data?", function () {
-                ajaxTransfer("/company/save", data, "#modal-output");
+                ajaxTransfer("{{url('form/company/uploadFile/{$data->user_id}')}}", data, "#modal-output");
             })
         }
-        function redirectPage(){
-            redirect('1000','/user-login');
-        }
-    </script> --}}
+        // function redirectPage(){
+        //     redirect('1000','/user-login');
+        // }
+    </script>
 </body>
 </html>
 

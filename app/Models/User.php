@@ -21,8 +21,8 @@ class User extends Model
         'password', 'remember_token',
     ];
     //
-    public function verifyUser()
+    public function company()
     {
-        return $this->hasOne('App\Models\VerifyUser');
+        return $this->hasOne('App\Models\Company');
     }
 }

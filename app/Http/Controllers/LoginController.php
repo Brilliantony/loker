@@ -22,9 +22,6 @@ class LoginController extends Controller
 
     public function index(Request $request)
     {
-        if ($request->session()->exists('activeUser')) {
-            return redirect('form/company/uploadFile');
-        }
         $params = [
             'title' => 'Login'
         ];
@@ -46,6 +43,8 @@ class LoginController extends Controller
                 echo "<div class='alert alert-danger'>Password Salah!</div>";
                 return view('auth.login');
             }
+
+
             $request->session()->put('activeUser', $activeUser);
             return redirect('form/company/uploadFile');
         }catch(\Exception $e){
