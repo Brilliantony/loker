@@ -5,8 +5,9 @@ Route::post('validate-login','LoginController@validateLogin');
 
 #company
 Route::get('form/company/register','Backend\CompanyController@formRegis');
+Route::get('form/company/uploadFile','Backend\CompanyController@formUpload')->name('formUploadFile');
 Route::post('company/register', 'Backend\CompanyController@register')->name('company.register');
-Route::get('form/company/uploadFile','Backend\CompanyController@formUpload')->name('uploadFile');
+Route::post('company/uploadFile','Backend\CompanyController@updateUpload');
 
 #user
 Route::get('form/verify/pass/{token}', 'Backend\UserController@formPass');

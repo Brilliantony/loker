@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+use Auth;
 
 
 class CompanyController extends Controller
@@ -67,13 +68,11 @@ class CompanyController extends Controller
         
         try{
             if($request->session()->exists('activeUser')){
-                $user_id = $request->input('user_id');
+
+                $user_id = $request->session()->get('activeUser')->user_id;
                 //dd($user_id);
-                $data_qrr   = DB::select("select * from t_user where id = '".$user_id."' ");
-                
+                $data_qrr   = DB::select("select * from t_user where user_id = '".$user_id."' ");
                 if(count($data_qrr) != 0){
-                    //$data = User::find($token);
-                    // dd($data_qrr[0]);
                     $data = new User;
                     $params = [
                         'data'=>$data_qrr[0],
@@ -152,18 +151,18 @@ class CompanyController extends Controller
             }
         }
 
-    public function updateUpload(Request $request, $id)
+    public function updateUpload(Request $request)
         {
             try{
                 if($request->session()->exists('activeUser'))
                 {
-                    $id = $request->input('user_id');
-                    $attch_siup = $this->uploadSiup($request, $id);
-                    $attch_tdp = $this->uploadTdp($request, $id);
-                    $attch_npwp = $this->uploadNpwp($request, $id);
-                    $attch_photo = $this->uploadPhoto($request, $id);
+                    $user_id = $request->session()->get('activeUser')->user_id;
+                    $attch_siup = $this->uploadSiup($request, $user_id);
+                    $attch_tdp = $this->uploadTdp($request, $user_id);
+                    $attch_npwp = $this->uploadNpwp($request, $user_id);
+                    $attch_photo = $this->uploadPhoto($request, $_user_id);
 
-                    $mode_id = DB::select("select mode_id from t_user where user_id = '".$id."' ");
+                    $mode_id = DB::select("select mode_id from t_user where user_id = '".$user_id."' ");
 
                     $data = Company::where('company_id',$mode_id);
                     $data->attch_siup = $attch_siup;

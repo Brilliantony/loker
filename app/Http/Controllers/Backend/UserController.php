@@ -70,11 +70,10 @@ class UserController extends Controller
         
     }
 
-    public function formPass($token)
+    public function formPass($user_id)
     {
         //$this->id = $id;
-        $verifyUser = User::where('token', $token)->first();
-        $data_qrr   = DB::select("select * from t_user where token = '".$token."' ");
+       
         if(count($data_qrr) != 0){
             //$data = User::find($token);
             $data = new User;

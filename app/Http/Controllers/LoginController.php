@@ -8,24 +8,21 @@ use App\Services\LoginService;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-
+Use Auth;
 class LoginController extends Controller
 {
-    private  $loginService;
+    private  $user_id;
 
-    public function __construct()
+    // public function __construct($user_id)
+    // {
+    //   $this->$user_id = $user_id;
+
+    // }
+
+    public function index()
     {
-        $this->loginService= new LoginService();
-        //$this->loginService->initializeUser();
 
-    }
-
-    public function index(Request $request)
-    {
-        $params = [
-            'title' => 'Login'
-        ];
-        return view('auth.login', $params);
+        return view('auth.login');
     }
 
     public function validateLogin(Request $request)
@@ -35,6 +32,7 @@ class LoginController extends Controller
             $password = $request->input('password');
 
             $activeUser=User::where(['email'=>$email])->first();
+            
             if($activeUser->email!=$email) {
                 echo "<div class='alert alert-danger'>Anda bukan Admin!</div>";
                 return view('auth.login');
@@ -43,7 +41,6 @@ class LoginController extends Controller
                 echo "<div class='alert alert-danger'>Password Salah!</div>";
                 return view('auth.login');
             }
-
 
             $request->session()->put('activeUser', $activeUser);
             return redirect('form/company/uploadFile');

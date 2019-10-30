@@ -1,135 +1,153 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="Login page">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-    
-        <title>Loker - Sign Up</title>
-    
-        <!-- Scripts -->
-        {{-- <script src="{{ asset('public/js/app.js') }}" defer></script> --}}
-    
-        <!--begin::Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
-    
-        <!--begin::Page Custom Styles(used by this page) -->
-        <link href="{{ asset ('public/assets/css/demo4/pages/login/login-3.css')}}" rel="stylesheet" type="text/css" />
-        <!--end::Page Custom Styles -->
-    
-        <!--begin:: Global Mandatory Vendors -->
-        <link href="{{ asset ('public/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css" />
-        <!--end:: Global Mandatory Vendors -->
-    
-        <!--begin:: Global Optional Vendors -->
-        <link href="{{ asset ('public/assets/vendors/general/tether/dist/css/tether.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/select2/dist/css/select2.css" rel="stylesheet')}}" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/ion-rangeslider/css/ion.rangeSlider.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/nouislider/distribute/nouislider.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/owl.carousel/dist/assets/owl.carousel.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/owl.carousel/dist/assets/owl.theme.default.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/dropzone/dist/dropzone.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/quill/dist/quill.snow.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/@yaireo/tagify/dist/tagify.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/summernote/dist/summernote.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/animate.css/animate.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/toastr/build/toastr.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/dual-listbox/dist/dual-listbox.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/morris.js/morris.css" rel="stylesheet')}}" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/sweetalert2/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/socicon/css/socicon.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/custom/vendors/flaticon/flaticon.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/custom/vendors/flaticon2/flaticon.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset ('public/assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css" />
-        <!--end:: Global Optional Vendors -->
-    
-        <!--begin::Global Theme Styles(used by all pages) -->
-                        
-        <link href="{{ asset ('public/assets/css/demo4/style.bundle.css')}}" rel="stylesheet" type="text/css" />
-        <!--end::Global Theme Styles -->
-        <!--begin::Layout Skins(used by all pages) -->
-    
-        <!--end::Layout Skins -->
-        <link rel="shortcut icon" href="{{ asset ('public/assets/media/logos/favicon.ico')}}" />
-    </head>
-        <!-- end::Head -->
 
-<body style="background-image: url({{ asset ('public/assets/media/bg/bg-3.jpg')}});" >
-	<div class="kt-grid kt-grid--ver kt-grid--root kt-page">
-            <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
-        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url(./assets/media//bg/bg-3.jpg);">
-            <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
-                <div class="kt-login__container">
-                    <div class="kt-login__logo">
-                        <a href="#">
-                            <img src="{{ asset ('public/assets/media/logos/logo-5.png')}}">  	
-                        </a>
-                    </div>
-                    <div class="kt-login__signin">
-                        <div class="kt-login__head">
-                            <h3 class="kt-login__title">Loker Magang</h3>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Login page">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>Loker</title>
+
+    <!-- Scripts -->
+    {{--
+    <script src="{{ asset('public/js/app.js') }}" defer></script> --}}
+
+    <!--begin::Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+
+    <!--begin::Page Custom Styles(used by this page) -->
+    <link href="{{ asset ('public/assets/css/demo4/pages/login/login-3.css')}}" rel="stylesheet" type="text/css" />
+    <!--end::Page Custom Styles -->
+
+    <!--begin:: Global Mandatory Vendors -->
+    <link href="{{ asset ('public/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" type="text/css" />
+    <!--end:: Global Mandatory Vendors -->
+
+    <!--begin:: Global Optional Vendors -->
+    <link href="{{ asset ('public/assets/vendors/general/tether/dist/css/tether.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/select2/dist/css/select2.css" rel="stylesheet')}}" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/ion-rangeslider/css/ion.rangeSlider.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/nouislider/distribute/nouislider.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/owl.carousel/dist/assets/owl.carousel.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/owl.carousel/dist/assets/owl.theme.default.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/dropzone/dist/dropzone.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/quill/dist/quill.snow.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/@yaireo/tagify/dist/tagify.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/summernote/dist/summernote.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/animate.css/animate.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/toastr/build/toastr.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/dual-listbox/dist/dual-listbox.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/morris.js/morris.css" rel="stylesheet')}}" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/sweetalert2/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/socicon/css/socicon.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/custom/vendors/flaticon/flaticon.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/custom/vendors/flaticon2/flaticon.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset ('public/assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css" />
+    <!--end:: Global Optional Vendors -->
+
+    <!--begin::Global Theme Styles(used by all pages) -->
+
+    <link href="{{ asset ('public/assets/css/demo4/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+    <!--end::Global Theme Styles -->
+    <!--begin::Layout Skins(used by all pages) -->
+
+    <!--end::Layout Skins -->
+    <link rel="shortcut icon" href="{{ asset ('public/assets/media/logos/favicon.ico')}}" />
+</head>
+<!-- end::Head -->
+
+<body style="background-image: url({{ asset ('public/assets/media/bg/bg-3.jpg')}});">
+    <div class="kt-grid kt-grid--ver kt-grid--root kt-page">
+        <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url(./assets/media//bg/bg-3.jpg);">
+                <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
+                    <div class="kt-login__container">
+                        <div class="kt-login__logo">
+                            <a href="#">
+                                <img src="{{ asset ('public/assets/media/logos/logo-5.png')}}">
+                            </a>
                         </div>
+                        <div class="kt-login__signin">
+                            <div class="kt-login__head">
+                                <h3 class="kt-login__title">Loker Magang</h3>
+                            </div>
                             <div class="kt-login__signin">
-                                    <div class="kt-login__head">
-                                        <h3 class="kt-login__title">Company Upload File</h3>
-                                    </div>
-                                    <div id="result-form-konten"></div>
-                                    <form class="kt-form" action="{{ route('uploadFile',$data[0]) }}"method="post" enctype="multipart/form-data" id="form-konten">
-                                        @csrf
-                                        <div class="container" style="padding-left:15%">
-                                        <div class="input-group">
-                                            <div class="form-control">
-                                            <label for="">Upload SIUP</label>
-                                            <input  type="file" placeholder="Upload SIUP" name="attch_siup" id="attch_siup">
-                                            </div>   
-                                        </div>
-                                        <div class="input-group">
-                                            <div class="form-control">
-                                            <label for="">Upload TDP</label>
-                                            <input  type="file" placeholder="Upload TDP" name="attch_tdp" id="attch_tdp">
-                                            </div>   
-                                        </div>
-                                        <div class="input-group">
-                                            <div class="form-control">
-                                            <label for="">Upload NPWP</label>
-                                            <input  type="file" placeholder="Upload NPWP" name="attch_npwp" id="attch_npwp">
-                                            </div>   
-                                        </div>
-                                        <div class="input-group">
-                                            <div class="form-control">
-                                            <label for="">Upload Photo Company</label>
-                                            <input  type="file" placeholder="Upload Photo" name="attch_photo" id="attch_photo">
-                                            </div>   
-                                        </div>
-                                    </div>
-                                        <div class="kt-login__actions">
-                                            <input type="hidden" id="user_id" name="user_id" value="{{$data->user_id}}">
-                                            <button type ="submit" id="kt_login_signup_submit" class="btn btn-primary" onclick="confirmData()">Submit</button>&nbsp;&nbsp;
-                                        </div>
-                                    </form>
+                                <div class="kt-login__head">
+                                    <h3 class="kt-login__title">Company Upload File</h3>
                                 </div>
-                                
-                            </div>	
+                                <div id="result-form-konten"></div>
+                                <form class="kt-form" action="{{ url('company/uploadFile') }}" method="POST" enctype="multipart/form-data" id="form-konten">
+                                    @csrf
+                                    <div class="container" style="padding-left:15%">
+                                        <div class="input-group">
+                                            <div class="form-control">
+                                                <label for="">Upload SIUP</label>
+                                                <input type="file" placeholder="Upload SIUP" name="attch_siup" id="attch_siup">
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="form-control">
+                                                <label for="">Upload TDP</label>
+                                                <input type="file" placeholder="Upload TDP" name="attch_tdp" id="attch_tdp">
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="form-control">
+                                                <label for="">Upload NPWP</label>
+                                                <input type="file" placeholder="Upload NPWP" name="attch_npwp" id="attch_npwp">
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="form-control">
+                                                <label for="">Upload Photo Company</label>
+                                                <input type="file" placeholder="Upload Photo" name="attch_photo" id="attch_photo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-login__actions">
+                                        <button type="submit" id="kt_login_signup_submit" class="btn btn-primary">Submit</button>&nbsp;&nbsp;
+                                    </div>
+                                </form>
+                            </div>
+
                         </div>
                     </div>
-                </div>	
+                </div>
             </div>
-                    
-         <!-- end:: Page -->
-         <script>
-            var KTAppOptions = {"colors":{"state":{"brand":"#366cf3","light":"#ffffff","dark":"#282a3c","primary":"#5867dd","success":"#34bfa3","info":"#36a3f7","warning":"#ffb822","danger":"#fd3995"},"base":{"label":["#c5cbe3","#a1a8c3","#3d4465","#3e4466"],"shape":["#f0f3ff","#d9dffa","#afb4d4","#646c9a"]}}};
+        </div>
+
+        <!-- end:: Page -->
+        <script>
+            var KTAppOptions = {
+                "colors": {
+                    "state": {
+                        "brand": "#366cf3",
+                        "light": "#ffffff",
+                        "dark": "#282a3c",
+                        "primary": "#5867dd",
+                        "success": "#34bfa3",
+                        "info": "#36a3f7",
+                        "warning": "#ffb822",
+                        "danger": "#fd3995"
+                    },
+                    "base": {
+                        "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                        "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+                    }
+                }
+            };
         </script>
         <!-- end::Global Config -->
 
@@ -211,46 +229,40 @@
 
         <!--begin::Page Scripts(used by this page) -->
         <script src="{{ asset ('public/assets/js/demo4/pages/login/login-general.js')}}" type="text/javascript"></script>
-        <!--end::Page Scripts -->                
+        <!--end::Page Scripts -->
 
         <!--begin::Page Scripts(used by this page) -->
-        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script> --}}
+        {{--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script> --}}
+        <script>
+            baseURL = '{{url("/")}}';
+        </script>
+        <input type='hidden' name='_token' value='{{ csrf_token() }}'> {{--
+        <script type="text/javascript">
+            function confirmData() {
+                var data = new FormData();
+                var attch_siup = $('#attch_siup').val();
+                var attch_tdp = $("#attch_tdp").val();
+                var attch_npwp = $('#attch_npwp').val();
+                var attch_photo = $('#attch_photo').val();
 
-    <input type='hidden' name='_token' value='{{ csrf_token() }}'>
+                data.append('attch_siup', attch_siup);
+                data.append('attch_tdp', attch_tdp);
+                data.append('attch_npwp', attch_npwp);
+                data.append('attch_photo', attch_photo);
 
-    {{-- <script>
-        $(document).ready(function () {
-            $('#form-konten').submit(function () {
+                modalConfirm("Konfirmasi", "Apakah Anda Yakin ingin Menyimpan Data?", function() {
+                    ajaxTransfer("{{url('company/uploadFile')}}", data, "#modal-output");
+                })
+            }
+        </script> --}}
+
+        <script type="text/javascript">
+            $('#form-konten').submit(function() {
                 var data = getFormData('form-konten');
-                ajaxTransfer('company/saveform/company/uploadFile', data, '#result-form-konten');
-            })
-        })
-        function redirectPage(){
-            redirect('1000','/user-login');
-        }
-    </script> --}}
-
-    <script type="text/javascript">
-    function confirmData() {
-            var data = new FormData();
-            var attch_siup=$('#attch_siup').val();
-            var attch_tdp=$("#attch_tdp").val();
-            var attch_npwp=$('#attch_npwp').val();
-            var attch_photo=$('#attch_photo').val();
-
-            data.append('attch_siup', attch_siup);
-            data.append('attch_tdp',attch_tdp);
-            data.append('attch_npwp',attch_npwp);
-            data.append('attch_photo',attch_photo);
-
-            modalConfirm("Konfirmasi", "Apakah Anda Yakin ingin Menyimpan Data?", function () {
-                ajaxTransfer("{{url('form/company/uploadFile/{$data->user_id}')}}", data, "#modal-output");
-            })
-        }
-        // function redirectPage(){
-        //     redirect('1000','/user-login');
-        // }
-    </script>
+                ajaxTransfer("{{url('company/uploadFile')}}", data, '#results');
+            });
+        </script>
 </body>
-</html>
 
+</html>
