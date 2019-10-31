@@ -7,9 +7,11 @@ Route::post('validate-login','LoginController@validateLogin');
 Route::get('form/company/register','Backend\CompanyController@formRegis');
 Route::get('form/company/uploadFile','Backend\CompanyController@formUpload')->name('formUploadFile');
 Route::post('company/register', 'Backend\CompanyController@register')->name('company.register');
-Route::post('company/uploadFile','Backend\CompanyController@updateUpload');
+Route::post('company/uploadFile','Backend\CompanyController@updateUpload')->name('upload');
+
 
 #user
 Route::get('form/verify/pass/{token}', 'Backend\UserController@formPass');
 Route::post('verify/pass', 'Backend\UserController@createPW')->name('verify.password');
 
+Route::post('upload-file','Backend\UploadController@create')->name('upload-file');

@@ -113,11 +113,10 @@
                                         <a href="javascript:;" id="kt_login_forgot" class="kt-link kt-login__link">Forget Password ?</a>
                                     </div>
                                 </div>
-                                <div class="kt-login__actions">
-                                    {{--
-                                    <input type="hidden" id="user_id" name="user_id" value="{{$data->user_id}}"> --}}
-                                    <button class="btn btn-brand btn-elevate kt-login__btn-primary" type="submit">Sign In</button>&nbsp;&nbsp;
-                                </div>
+                                    <div class="kt-login__actions">
+                                        <button class="btn btn-brand btn-elevate kt-login__btn-primary" type="submit">Sign In</button>&nbsp;&nbsp;
+                                        
+                                    </div>
                             </form>
                         </div>
                         <div class="kt-login__account">

@@ -88,7 +88,7 @@
                                     <h3 class="kt-login__title">Company Upload File</h3>
                                 </div>
                                 <div id="result-form-konten"></div>
-                                <form class="kt-form" action="{{ url('company/uploadFile') }}" method="POST" enctype="multipart/form-data" id="form-konten">
+                                <form class="kt-form" action="{{ route('upload') }}" method="POST" enctype="multipart/form-data" id="form-konten">
                                     @csrf
                                     <div class="container" style="padding-left:15%">
                                         <div class="input-group">
@@ -117,7 +117,8 @@
                                         </div>
                                     </div>
                                     <div class="kt-login__actions">
-                                        <button type="submit" id="kt_login_signup_submit" class="btn btn-primary">Submit</button>&nbsp;&nbsp;
+                                        <button type="submit"  class="btn btn-primary">Submit</button>&nbsp;&nbsp;
+                                        <a class="btn btn-primary" href="{{ url('/') }}">Homepage</a>&nbsp;&nbsp;
                                     </div>
                                 </form>
                             </div>
@@ -258,6 +259,13 @@
         </script> --}}
 
         <script type="text/javascript">
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             $('#form-konten').submit(function() {
                 var data = getFormData('form-konten');
                 ajaxTransfer("{{url('company/uploadFile')}}", data, '#results');

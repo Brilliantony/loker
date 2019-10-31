@@ -11,6 +11,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $table="t_user";
+    protected $primaryKey = 'user_id';
     protected $fillable = [
         'email', 'password', 'mode', 'mode_id', 'privilege', 'token'
     ];

@@ -13,7 +13,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
-use Auth;
 
 
 class CompanyController extends Controller
@@ -153,28 +152,30 @@ class CompanyController extends Controller
 
     public function updateUpload(Request $request)
         {
+            $activeUser = User::find(session()->get('activeUser')->user_id);
+            $activeCompany = Company::find($activeUser->mode_id);
+     
+            $attch_siup = $request->file('attch_siup');
+            $attch_tdp = $request->file('attch_tdp');
+            $attch_npwp = $request->file('attch_npwp');
+            $attch_photo = $request->file('attch_photo');
+           
+            $activeCompany->attch_siup = $attch_siup->getClientOriginalName();
+            $activeCompany->attch_tdp = $attch_tdp->getClientOriginalName();
+            $activeCompany->attch_npwp = $attch_npwp->getClientOriginalName();
+            $activeCompany->attch_photo = $attch_photo->getClientOriginalName();
+           
             try{
-                if($request->session()->exists('activeUser'))
-                {
-                    $user_id = $request->session()->get('activeUser')->user_id;
-                    $attch_siup = $this->uploadSiup($request, $user_id);
-                    $attch_tdp = $this->uploadTdp($request, $user_id);
-                    $attch_npwp = $this->uploadNpwp($request, $user_id);
-                    $attch_photo = $this->uploadPhoto($request, $_user_id);
+                $attch_siup->storeAs('public/company_siup/',$activeUser->user_id.''.$attch_siup->getClientOriginalName());
+                $attch_tdp->storeAs('public/company_siup/',$activeUser->user_id.''.$attch_tdp->getClientOriginalName());
+                $attch_npwp->storeAs('public/company_siup/',$activeUser->user_id.''.$attch_npwp->getClientOriginalName());
+                $attch_photo->storeAs('public/company_siup/',$activeUser->user_id.''.$attch_photo->getClientOriginalName());
+                $activeCompany->save();
 
-                    $mode_id = DB::select("select mode_id from t_user where user_id = '".$user_id."' ");
-
-                    $data = Company::where('company_id',$mode_id);
-                    $data->attch_siup = $attch_siup;
-                    $data->attch_tdp = $attch_tdp;
-                    $data->attch_npwp = $attch_npwp;
-                    $data->attch_photo = $attch_photo;
-                    $data->save();
-                    echo "<div class='alert alert-danger'>success upladed!</div>";
-                    return redirect('/');
-                }
-            }catch(\Exception $e){
-                dd($e);
+                return redirect('/');
+            }catch(\Exception $e)
+            {
+                dd($e->getMessage());
             }
 
         }

@@ -21,8 +21,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('dashboard/index');
+        if($request->session()->exists('activeUser')){
+            return view('dashboard/index');
+        }
+        else{
+            return redirect('login');
+        }
     }
 }
