@@ -3841,7 +3841,8 @@ input[type="button"].btn-block {
   border-radius: calc(0.25rem - 1px); }
 
 .card-img-top {
-  width: 100%;
+  width: 20%;
+  height: 20%;
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px); }
 
@@ -33844,9 +33845,9 @@ body {
       display: flex;
       -ms-flex-item-align: center;
       align-self: center;
-      padding: 0 0.55rem 0 0;
+      padding: 0 0 0 0;
       font-weight: 500;
-      font-size: 1rem;
+      font-size: 2rem;
       color: rgba(255, 255, 255, 0.85); }
     .kt-header__topbar .kt-header__topbar-item.kt-header__topbar-item--user .kt-header__topbar-wrapper .kt-header__topbar-icon {
       background-color: rgba(255, 255, 255, 0.1); }

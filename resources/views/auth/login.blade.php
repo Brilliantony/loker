@@ -238,6 +238,12 @@
 
         <input type='hidden' name='_token' value='{{ csrf_token() }}'>
         <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             $('#form-konten').submit(function() {
                 var data = getFormData('form-konten');
                 ajaxTransfer("{{url('validate-login')}}", data, '#results');
