@@ -112,7 +112,7 @@
                                             <input class="form-control" type="text" placeholder="Code wilayah" name="code_wilayah" id="code_wilayah">
                                         </div>
                                         <div class="kt-login__actions">
-                                            <button  class="btn btn-brand btn-elevate kt-login__btn-primary" onclick="confirmData()">Sign Up</button>&nbsp;&nbsp;
+                                            <button  class="btn btn-brand btn-elevate kt-login__btn-primary" type="submit">Sign Up</button>&nbsp;&nbsp;
                                         </div>
                                     </form>
                                 
@@ -218,7 +218,7 @@
 
     <input type='hidden' name='_token' value='{{ csrf_token() }}'>
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         function confirmData() {
         
             var data = new FormData();
@@ -240,6 +240,20 @@
             })
             
         }
+    </script> --}}
+
+    <script type="text/javascript">
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#form-konten').submit(function() {
+            var data = getFormData('form-konten');
+            ajaxTransfer("{{url('company/register')}}", data, '#results');
+        });
     </script>
 </body>
 </html>

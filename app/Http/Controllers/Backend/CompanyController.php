@@ -96,11 +96,11 @@ class CompanyController extends Controller
         //dd($request->all());
             try{
                 
-                $validation = $request->validate([
-                    'company_name' => 'required|string|max:255',
-                    'company_email' => 'required|string|email|max:255',
-                    'company_telp' => 'required|string|max:12',
-                ]);
+                // $validation = $request->validate([
+                //     'company_name' => 'required|string|max:255',
+                //     'company_email' => 'required|string|email|max:255',
+                //     'company_telp' => 'required|string|max:12',
+                // ]);
 
                 $file=$this->logoUpload($request);
                 if($file==false){
@@ -167,9 +167,9 @@ class CompanyController extends Controller
            
             try{
                 $attch_siup->storeAs('public/company_siup/',$activeUser->user_id.''.$attch_siup->getClientOriginalName());
-                $attch_tdp->storeAs('public/company_siup/',$activeUser->user_id.''.$attch_tdp->getClientOriginalName());
-                $attch_npwp->storeAs('public/company_siup/',$activeUser->user_id.''.$attch_npwp->getClientOriginalName());
-                $attch_photo->storeAs('public/company_siup/',$activeUser->user_id.''.$attch_photo->getClientOriginalName());
+                $attch_tdp->storeAs('public/company_tdp/',$activeUser->user_id.''.$attch_tdp->getClientOriginalName());
+                $attch_npwp->storeAs('public/company_npwp/',$activeUser->user_id.''.$attch_npwp->getClientOriginalName());
+                $attch_photo->storeAs('public/company_photo/',$activeUser->user_id.''.$attch_photo->getClientOriginalName());
                 $activeCompany->save();
 
                 return redirect('/');
@@ -180,7 +180,7 @@ class CompanyController extends Controller
 
         }
     
-    public function  delete(Request $request){
+    public function delete(Request $request){
     
         $id =$request->id;
         try{
@@ -196,89 +196,16 @@ class CompanyController extends Controller
     public function logoUpload(Request $request)
     {
         $validation = $request->validate([
-            'company_logo' => 'required|file|image|mimes:jpeg,png|max:2048'
+            'company_logo' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
         $uploadedlogo = $request->file('company_logo');
         $logo_name = $uploadedlogo->getClientOriginalName();
-        //$logo_extension = $uploadedlogo->getClientOriginalExtension();
-        if($uploadedlogo->storeAs('public/company_logo',$logo_name)){
+        $random = str_random(5);
+        if($uploadedlogo->storeAs('public/company_logo/'.$random,$logo_name)){
             return $logo_name;
         }else{
             return false;
         }
 
-    }
-
-    public function uploadSiup(Request $request, $user_id)
-    {
-        $user = User::where(['user_id'=>$user_id])->first();
-        $validation = $request->validate([
-            'attch_siup' => 'required|file|image|mimes:jpeg,png,pdf|max:2048'
-        ]);
-        $error = $validation->errors()->first();
-        $file = $request->file('attch_siup');
-        $name = $file->getClientOriginalName();
-        //$logo_extension = $uploadedlogo->getClientOriginalExtension();
-        if($file->storeAs('public/company_siup/'.$user->user_id.'',$name)){
-            return $name;
-        }else{
-            $response = new ResponseMessageServiceParameter(404, $error, $name);
-            return $response->getResponse();
-        }
-
-    }
-
-    public function uploadTdp(Request $request, $user_id)
-    {
-        $user = User::where(['user_id'=>$user_id])->first();
-        $validation = $request->validate([
-            'attch_tdp' => 'required|file|image|mimes:jpeg,png,pdf|max:2048'
-        ]);
-        $error = $validation->errors()->first();
-        $file = $request->file('attch_tdp');
-        $name = $file->getClientOriginalName();
-        //$logo_extension = $uploadedlogo->getClientOriginalExtension();
-        if($file->storeAs('public/company_tdp/'.$user->user_id.'',$name)){
-            return $name;
-        }else{
-            $response = new ResponseMessageServiceParameter(404, $error, $name);
-            return $response->getResponse();
-        }
-
-    }
-
-    public function uploadNpwp(Request $request, $user_id)
-    {
-        $user = User::where(['user_id'=>$user_id])->first();
-        $validation = $request->validate([
-            'attch_npwp' => 'required|file|image|mimes:jpeg,png,pdf|max:2048'
-        ]);
-        $error = $validation->errors()->first();
-        $file = $request->file('attch_npwp');
-        $name = $file->getClientOriginalName();
-        if($file->storeAs('public/company_npwp/'.$user->user_id.'',$name)){
-            return $name;
-        }else{
-            $response = new ResponseMessageServiceParameter(404, $error, $name);
-            return $response->getResponse();
-        }
-
-    }
-
-    public function uploadPhoto(Request $request, $user_id)
-    {
-        $user = User::where(['user_id'=>$user_id])->first();
-        $validation = $request->validate([
-            'attch_npwp' => 'required|file|image|mimes:jpeg,png,pdf|max:2048'
-        ]);
-        $error = $validation->errors()->first();
-        $file = $request->file('attch_npwp');
-        $name = $file->getClientOriginalName();
-        if($file->storeAs('public/company_npwp/'.$user->user_id.'',$name)){
-            return $name;
-        }else{
-            $response = new ResponseMessageServiceParameter(404, $error, $name);
-            return $response->getResponse();
-        }
     }
 }

@@ -1,7 +1,8 @@
 <?php
-Route::get('/', 'HomeController@index')->name('index');
+Route::get('/', 'HomeController@index')->middleware('verify-login');;
 Route::get('login','LoginController@index' );
 Route::post('validate-login','LoginController@validateLogin');
+Route::get('logout','LoginController@logout' )->middleware('revalidate');
 
 #company
 Route::get('form/company/register','Backend\CompanyController@formRegis');

@@ -70,10 +70,10 @@ class UserController extends Controller
         
     }
 
-    public function formPass($user_id)
+    public function formPass($token)
     {
         //$this->id = $id;
-       
+        $data_qrr   = DB::select("select * from t_user where token = '".$token."' ");
         if(count($data_qrr) != 0){
             //$data = User::find($token);
             $data = new User;

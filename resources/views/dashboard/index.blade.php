@@ -36,10 +36,16 @@
                                     <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                         <div class="card">
                                             <div class="card-header">
-                                                <p><b> Brilly </b></p>
-                                                <i class="far fa-star"></i>
+                                                <div class="row">
+                                                    <div class="col-sm-10">
+                                                        <p><b> Brilly </b></p>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <i class="far fa-star"></i>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <img class="card-img-top" src="https://source.unsplash.com/daily" witdth="200" alt="Card image top">
+                                            <img class="card-img-top" src="https://www.sportsnet.ca/wp-content/uploads/2019/04/Soccer-Barcelona-Messi-celebrates-after-scoring-1040x572.jpg" alt="Card image top">
                                             <div class="card-body">
                                                 <h4 class="card-title">Teknik Informatika</h4>
                                                 <h4 class="card-subtitle">Diploma 3</h4>
@@ -50,10 +56,16 @@
                                     <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <p><b>Syahna</b></p>
-                                                    <i class="far fa-star"></i>
+                                                    <div class="row">
+                                                        <div class="col-sm-10">
+                                                            <p><b> Syahna </b></p>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <i class="far fa-star"></i>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <img class="card-img-top" src="https://source.unsplash.com/daily" witdth="200" alt="Card image top">
+                                                <img class="card-img-top" src="https://www.sportsnet.ca/wp-content/uploads/2019/04/Soccer-Barcelona-Messi-celebrates-after-scoring-1040x572.jpg" alt="Card image top">
                                                 <div class="card-body">
                                                     <h4 class="card-title">Hukum</h4>
                                                     <h4 class="card-subtitle">Sarjana</h4>
@@ -64,9 +76,16 @@
                                         <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <p><b>Farhan</b></p>
+                                                    <div class="row">
+                                                        <div class="col-sm-10">
+                                                            <p><b> Farhan </b></p>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <i class="far fa-star"></i>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <img class="card-img-top" src="https://source.unsplash.com/daily" witdth="200" alt="Card image top">
+                                                <img class="card-img-top" src="https://www.sportsnet.ca/wp-content/uploads/2019/04/Soccer-Barcelona-Messi-celebrates-after-scoring-1040x572.jpg" alt="Card image top">
                                                 <div class="card-body">
                                                     <h4 class="card-title">DKV</h4>
                                                     <h4 class="card-subtitle">Sarjana</h4>
@@ -86,9 +105,16 @@
                                         <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <p><b>David</b></p>
+                                                    <div class="row">
+                                                        <div class="col-sm-10">
+                                                            <p><b> Dafid </b></p>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <i class="far fa-star"></i>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <img class="card-img-top" src="https://source.unsplash.com/daily" witdth="200" alt="Card image top">
+                                                <img class="card-img-top" src="https://www.sportsnet.ca/wp-content/uploads/2019/04/Soccer-Barcelona-Messi-celebrates-after-scoring-1040x572.jpg" alt="Card image top">
                                                 <div class="card-body">
                                                     <h4 class="card-title">Teknik Informatika</h4>
                                                     <h4 class="card-subtitle">Diploma 3</h4>
@@ -99,9 +125,16 @@
                                         <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <p><b>Aulia</b></p>
+                                                        <div class="row">
+                                                            <div class="col-sm-10">
+                                                                <p><b>Aulia</b></p>
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <i class="far fa-star"></i>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <img class="card-img-top" src="https://source.unsplash.com/daily" witdth="200" alt="Card image top">
+                                                    <img class="card-img-top" src="https://www.sportsnet.ca/wp-content/uploads/2019/04/Soccer-Barcelona-Messi-celebrates-after-scoring-1040x572.jpg"  alt="Card image top">
                                                     <div class="card-body">
                                                         <h4 class="card-title">Hukum</h4>
                                                         <h4 class="card-subtitle">Sarjana</h4>
@@ -112,9 +145,16 @@
                                             <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <p><b>Alvin</b></p>
+                                                        <div class="row">
+                                                            <div class="col-sm-10">
+                                                                <p><b> Alvin </b></p>
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <i class="far fa-star"></i>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <img class="card-img-top" src="https://source.unsplash.com/daily" witdth="200" alt="Card image top">
+                                                    <img class="card-img-top" src="https://www.sportsnet.ca/wp-content/uploads/2019/04/Soccer-Barcelona-Messi-celebrates-after-scoring-1040x572.jpg" alt="Card image top">
                                                     <div class="card-body">
                                                         <h4 class="card-title">DKV</h4>
                                                         <h4 class="card-subtitle">Sarjana</h4>

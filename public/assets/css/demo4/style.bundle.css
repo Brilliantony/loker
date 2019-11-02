@@ -3841,8 +3841,7 @@ input[type="button"].btn-block {
   border-radius: calc(0.25rem - 1px); }
 
 .card-img-top {
-  width: 20%;
-  height: 20%;
+  width: 100%;
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px); }
 
@@ -33847,7 +33846,7 @@ body {
       align-self: center;
       padding: 0 0 0 0;
       font-weight: 500;
-      font-size: 2rem;
+      font-size: 1rem;
       color: rgba(255, 255, 255, 0.85); }
     .kt-header__topbar .kt-header__topbar-item.kt-header__topbar-item--user .kt-header__topbar-wrapper .kt-header__topbar-icon {
       background-color: rgba(255, 255, 255, 0.1); }

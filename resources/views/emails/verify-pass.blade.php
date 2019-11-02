@@ -92,11 +92,11 @@
                                             <input class="form-control" type="password" placeholder="Masukkan Password" name="password" id="pw1">
                                         </div>
                                         <div class="input-group">
-                                            <input class="form-control" type="password" placeholder="Konfirmasi Password" name="password" id="pw2">
+                                            <input class="form-control" type="password" placeholder="Konfirmasi Password" name="password2" id="pw2">
                                         </div>
                                         <div class="kt-login__actions">
                                         <input type="hidden" id="user_id" name="user_id" value="{{$data->user_id}}">
-                                            <button class="btn btn-brand btn-elevate kt-login__btn-primary" onclick="confirmData()">Submit</button>&nbsp;&nbsp;
+                                            <button class="btn btn-brand btn-elevate kt-login__btn-primary" type="submit">Submit</button>&nbsp;&nbsp;
                                         </div>
                                     </form>
                                 
@@ -195,7 +195,7 @@
 
     <input type='hidden' name='_token' value='{{ csrf_token() }}'>
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         function confirmData() {
             var data = new FormData();
             var password=$('#pw1').val();
@@ -206,6 +206,20 @@
             })
             
         }
+    </script> --}}
+
+    <script type="text/javascript">
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#form-konten').submit(function() {
+            var data = getFormData('form-konten');
+            ajaxTransfer("{{url('verify/pass')}}", data, '#results');
+        });
     </script>
 
     <script type="text/javascript">
