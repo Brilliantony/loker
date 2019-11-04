@@ -118,7 +118,7 @@
                                     </div>
                                     <div class="kt-login__actions">
                                         <button type="submit"  class="btn btn-primary">Submit</button>&nbsp;&nbsp;
-                                        <a class="btn btn-primary" href="{{ url('/') }}">Homepage</a>&nbsp;&nbsp;
+                                        <a class="btn btn-primary" href="{{ url('/company') }}">Homepage</a>&nbsp;&nbsp;
                                     </div>
                                 </form>
                             </div>

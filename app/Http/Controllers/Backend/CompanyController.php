@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use App\Mail\SendMail;
 use App\Models\User;
 use App\Models\Company;
+use App\Models\Majors;
+use App\Models\Applicant;
 use App\Models\CompanyService;
 use App\ServiceParameters\ResponseMessageServiceParameter;
 use Illuminate\Http\Request;
@@ -35,7 +37,6 @@ class CompanyController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -50,7 +51,21 @@ class CompanyController extends Controller
 
     public function index(Request $request)
     {
-        
+        if($request->session()->exists('activeUser')){
+
+            $company = Company::all();
+            $majors = Majors::all();
+            $applicant = Applicant::all();
+            $params=[
+                'company'=> $company,
+                'majors'=>$majors,
+                'applicant'=>$applicant,
+            ];
+            return view('company.index');
+        }
+        else{
+            return redirect('login');
+        }
     }
 
     public function formRegis(){
@@ -172,7 +187,7 @@ class CompanyController extends Controller
                 $attch_photo->storeAs('public/company_photo/',$activeUser->user_id.''.$attch_photo->getClientOriginalName());
                 $activeCompany->save();
 
-                return redirect('/');
+                return redirect('/company');
             }catch(\Exception $e)
             {
                 dd($e->getMessage());
