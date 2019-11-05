@@ -5,10 +5,22 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Majors;
+use App\Models\Applicant;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class ApplicantController extends Controller
 {
+    public function formCreate(){
+        $applicant = new Applicant;
+        $user = new User;
+        $params = [
+            'applicant'=>$applicant,
+            'user'=>$user,
+        ];
+        return view('applicant.register',$params);
+    }
+
     public function create(Request $request){
         try{
             $file=$this->photoApplicant($request);
@@ -16,9 +28,9 @@ class ApplicantController extends Controller
                 return "<div class='alert alert-success'Gagal Upload</div>
                 <script> scrollToTop(); reload(1500); </script>";
             }
-
+            
             $name = $request->input('name');
-            $photo = $request->$file;
+            $photo = $file;
             $nick_name = $request->input('nick_name');
             $level = $request->input('level');
             $majors_id = $request->input('majors_id');
@@ -28,8 +40,8 @@ class ApplicantController extends Controller
             $email = $request->input('email');
             $telp = $request->input('telp');
             $birth_date = $request->input('birth_date');
-
-            $applicant = new Applicant;
+            //dd($photo);
+            $applicant = new Applicant; 
             $applicant->create([
                 'name'=>$name,
                 'photo'=>$photo,
@@ -44,7 +56,18 @@ class ApplicantController extends Controller
                 'birth_date'=>$birth_date,
             ]);
 
-            return view();
+            $applicant_id = DB::table('t_applicant')->select('applicant_id')->orderBy('applicant_id','desc')->first();
+                
+            $user = new User;
+            $user->create([
+                'email'=>$email,
+                'mode'=>3,
+                'mode_id'=>$applicant_id->applicant_id,
+                'token'=> str_random(40),
+            ]);
+
+            return "<div class='alert alert-success'>Sukses Ditambahkan!</div>
+            <script> scrollToTop(); reload(1000); </script>";
         }catch(\Exception $e){
             dd($e);
         }
@@ -98,8 +121,8 @@ class ApplicantController extends Controller
         ]);
         $photo = $request->file('photo');
         $name = $photo->getClientOriginalName();
-        if($photo->storeAs('public/photo_applicant /',$logo_name)){
-            return $photo;
+        if($photo->storeAs('public/photo_applicant/',$name)){
+            return $name;
         }else{
             return false;
         }

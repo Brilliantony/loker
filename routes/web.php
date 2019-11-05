@@ -10,6 +10,9 @@ Route::get('form/company/uploadFile','Backend\CompanyController@formUpload')->na
 Route::post('company/register', 'Backend\CompanyController@register')->name('company.register');
 Route::post('company/uploadFile','Backend\CompanyController@updateUpload')->name('upload');
 
+#Applicant
+Route::get('form/applicant/create','Backend\applicantController@formCreate');
+Route::post('applicant/create', 'Backend\ApplicantController@create')->name('applicant.register');
 
 #user
 Route::get('form/verify/pass/{token}', 'Backend\UserController@formPass');

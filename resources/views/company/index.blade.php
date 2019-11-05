@@ -33,136 +33,47 @@
                             <div class="kt-portlet__body kt-portlet__body--fluid">
                                 <div class="kt-widget26">
                                     <div class="row">
-                                    <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <div class="row">
-                                                    <div class="col-sm-10">
-                                                        <p><b> Brilly </b></p>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <i class="far fa-star"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <img class="card-img-top" src="https://www.sportsnet.ca/wp-content/uploads/2019/04/Soccer-Barcelona-Messi-celebrates-after-scoring-1040x572.jpg" alt="Card image top">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Teknik Informatika</h4>
-                                                <h4 class="card-subtitle">Diploma 3</h4>
-                                                <p class="card-text">Surabaya</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <div class="row">
-                                                        <div class="col-sm-10">
-                                                            <p><b> Syahna </b></p>
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            <i class="far fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <img class="card-img-top" src="https://www.sportsnet.ca/wp-content/uploads/2019/04/Soccer-Barcelona-Messi-celebrates-after-scoring-1040x572.jpg" alt="Card image top">
-                                                <div class="card-body">
-                                                    <h4 class="card-title">Hukum</h4>
-                                                    <h4 class="card-subtitle">Sarjana</h4>
-                                                    <p class="card-text">Surabaya</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <div class="row">
-                                                        <div class="col-sm-10">
-                                                            <p><b> Farhan </b></p>
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            <i class="far fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <img class="card-img-top" src="https://www.sportsnet.ca/wp-content/uploads/2019/04/Soccer-Barcelona-Messi-celebrates-after-scoring-1040x572.jpg" alt="Card image top">
-                                                <div class="card-body">
-                                                    <h4 class="card-title">DKV</h4>
-                                                    <h4 class="card-subtitle">Sarjana</h4>
-                                                    <p class="card-text">Surabaya</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="kt-space-20"></div>
-                        <div class="kt-portlet kt-portlet--height-fluid-half kt-portlet--border-bottom-warning">
-                            <div class="kt-portlet__body kt-portlet__body--fluid">
-                                <div class="kt-widget26">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <div class="row">
-                                                        <div class="col-sm-10">
-                                                            <p><b> Dafid </b></p>
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            <i class="far fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <img class="card-img-top" src="https://www.sportsnet.ca/wp-content/uploads/2019/04/Soccer-Barcelona-Messi-celebrates-after-scoring-1040x572.jpg" alt="Card image top">
-                                                <div class="card-body">
-                                                    <h4 class="card-title">Teknik Informatika</h4>
-                                                    <h4 class="card-subtitle">Diploma 3</h4>
-                                                    <p class="card-text">Surabaya</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <div class="row">
-                                                            <div class="col-sm-10">
-                                                                <p><b>Aulia</b></p>
-                                                            </div>
-                                                            <div class="col-sm-2">
-                                                                <i class="far fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <img class="card-img-top" src="https://www.sportsnet.ca/wp-content/uploads/2019/04/Soccer-Barcelona-Messi-celebrates-after-scoring-1040x572.jpg"  alt="Card image top">
-                                                    <div class="card-body">
-                                                        <h4 class="card-title">Hukum</h4>
-                                                        <h4 class="card-subtitle">Sarjana</h4>
-                                                        <p class="card-text">Surabaya</p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        @php
+                                            $i=0;
+                                            $jumlahData = 3;
+                                        @endphp
+
+                                        @foreach ($applicant->all() as $applicants)
+                                            @php
+                                            if ($i++ % $jumlahData == 0) {
+                                                echo "<div class='row margin-bottom-10'>";
+                                            }
+                                            @endphp
+
                                             <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <div class="row">
                                                             <div class="col-sm-10">
-                                                                <p><b> Alvin </b></p>
+                                                                <p><b>{{$applicants->name}}</b></p>
                                                             </div>
                                                             <div class="col-sm-2">
                                                                 <i class="far fa-star"></i>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <img class="card-img-top" src="https://www.sportsnet.ca/wp-content/uploads/2019/04/Soccer-Barcelona-Messi-celebrates-after-scoring-1040x572.jpg" alt="Card image top">
+                                                <img class="card-img-top" src="{{asset('storage/app/public/photo_applicant/'.$applicants->photo)}}" alt="Card image top" width="200" height="200">
                                                     <div class="card-body">
-                                                        <h4 class="card-title">DKV</h4>
-                                                        <h4 class="card-subtitle">Sarjana</h4>
-                                                        <p class="card-text">Surabaya</p>
+                                                        <h4 class="card-title">{{$applicants->getmajors->majors_name}}</h4>
+                                                        <h4 class="card-subtitle">{{$applicants->level}}</h4>
+                                                        <p class="card-text">{{$applicants->address}}</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            @php
+                                            if ($i % $jumlahData == 0 || $i == $applicant->count()) {
+                                                echo "</div>";
+                                            }
+                                            @endphp
+
+                                        @endforeach
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>

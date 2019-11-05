@@ -20,9 +20,9 @@
                 <div class="kt-container ">
                     <!-- begin:: Brand -->
                     <div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
-                        <a class="kt-header__brand-logo" href="demo4/index.html">
-                            <img alt="Logo" src="{{ asset('public/assets/media/logos/logo-4.png') }}" class="kt-header__brand-logo-default" />
-                            <img alt="Logo" src="{{ asset('public/assets/media/logos/logo-4-sm.png') }}" class="kt-header__brand-logo-sticky" />
+                        <a class="kt-header__brand-logo" href="{{url('/company')}}">
+                            <img alt="Logo" src="{{ asset('public/assets/media/logos/fingerspot1.png') }}" class="kt-header__brand-logo-default" />
+                            <img alt="Logo" src="{{ asset('public/assets/media/logos/fingerspot1.png') }}" class="kt-header__brand-logo-sticky" />
                         </a>
                     </div>
                     <!-- end:: Brand -->

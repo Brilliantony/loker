@@ -55,13 +55,13 @@ class CompanyController extends Controller
 
             $company = Company::all();
             $majors = Majors::all();
-            $applicant = Applicant::all();
+            $applicant = new Applicant;
             $params=[
                 'company'=> $company,
                 'majors'=>$majors,
                 'applicant'=>$applicant,
             ];
-            return view('company.index');
+            return view('company.index',$params);
         }
         else{
             return redirect('login');
