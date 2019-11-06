@@ -266,7 +266,7 @@
 
         $('#form-konten').submit(function() {
             var data = getFormData('form-konten');
-            ajaxTransfer("{{url('applicant/create')}}", data, '#results');
+            ajaxTransfer("{{url('applicant/create')}}", data, '#result-form-konten');
         });
     </script>
 </body>

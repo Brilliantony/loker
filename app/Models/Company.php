@@ -15,4 +15,9 @@ class Company extends Model
 
     public $timestamps = false;
 
+    public function getApplicant()
+    {
+        return $this->hasOne('App\Models\User','user_id','company_id');
+    }
+
 }

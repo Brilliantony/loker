@@ -105,3 +105,49 @@
     <!--begin::Page Scripts(used by this page) -->
     <script src="{{ asset ('public/assets/js/demo4/pages/dashboard.js') }}" type="text/javascript"></script>
     <!--end::Page Scripts -->
+
+    {{-- begin::select2 search wilayah --}}
+    <script type="text/javascript">
+        $('.itemProvinsi').select2({
+        placeholder: 'Pilih Provinsi',
+        ajax: {
+          delay: 250,
+          url: "{{url('search-provinsi')}}",
+          dataType: 'json',
+          processResults: function (data) {
+            return {
+              results:  $.map(data, function (item) {
+                    return {
+                        text: item.nama,
+                        kode: item.kode,
+                    }
+                })
+            };
+          },
+          cache: true
+        }
+      });
+    </script>
+
+    <script type="text/javascript">
+        $('.itemKota').select2({
+        placeholder: 'Pilih Kota',
+        ajax: {
+        delay: 250,
+        url: "{{url('search-kota')}}",
+        dataType: 'json',
+        processResults: function (data) {
+            return {
+            results:  $.map(data, function (item) {
+                    return {
+                        text: item.nama,
+                        kode: item.kode,
+                    }
+                })
+            };
+        },
+        cache: true
+        }
+    });
+    </script>
+    {{-- End::select2 company posting --}}

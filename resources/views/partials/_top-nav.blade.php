@@ -1,7 +1,7 @@
 <!-- begin:: Header Mobile -->
 <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
     <div class="kt-header-mobile__logo">
-        <a href="demo4/index.html">
+        <a href="{{url('/company')}}">
             <img alt="Logo" src="{{ asset('public/assets/media/logos/logo-4-sm.png') }}" />
         </a>
     </div>
@@ -108,13 +108,14 @@
 
                             <!--begin: User bar -->
                             <div class="kt-header__topbar-item kt-header__topbar-item--user">
+                                
                                 <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
                                     <span class="kt-header__topbar-welcome">Hi,</span>
-                                    <span class="kt-header__topbar-username">Sean</span>
-
+                                    <span class="kt-header__topbar-username">{{session()->get('activeUser')->getCompany->company_name}}</span>
                                     <span class="kt-header__topbar-icon"><b>S</b></span>
                                     <img alt="Pic" src="{{ asset('public/assets/media/users/300_21.jpg') }}" class="kt-hidden" />
                                 </div>
+                                
                                 <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-xl">
                                     <!--begin: Head -->
 
@@ -122,7 +123,7 @@
 
                                     <!--begin: Navigation -->
                                     <div class="kt-notification">
-                                        <a href="demo4/custom/apps/user/profile-1/personal-information.html" class="kt-notification__item">
+                                        <a href="{{url('/company/profil')}}" class="kt-notification__item">
                                             <div class="kt-notification__item-icon">
                                                 <i class="flaticon2-calendar-3 kt-font-success"></i>
                                             </div>
@@ -177,65 +178,4 @@
                 <div class="kt-body kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-grid--stretch" id="kt_body">
                     <div class="kt-content kt-content--fit-top  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
 
-                        <!-- begin:: Subheader -->
-                        <div class="kt-subheader   kt-grid__item" id="kt_subheader">
-                            <div class="kt-container ">
-                                <div class="kt-subheader__main">
-                                    <h3 class="kt-subheader__title">LOKER MAGANG</h3>
-                                </div>
-                                <div class="kt-subheader__toolbar">
-                                    <div class="kt-subheader__wrapper">
-                                        <button class="btn btn-success" data-toggle="modal" data-target="#myModal">Cari Pelamar Magang</button>
-                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                <span class="pficon pficon-close"></span>
-                                                </button>
-                                                <h4 class="modal-title" id="myModalLabel">Spesifikasi Pelamar Magang</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form class="form-horizontal">
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label" for="textInput-modal-markup">Judul</label>
-                                                    <div class="col-sm-9">
-                                                    <input type="text" id="textInput-modal-markup" class="form-control"></div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label" for="textInput2-modal-markup">Jenjang (SMA/SMK/D3/S1)</label>
-                                                    <div class="col-sm-9">
-                                                    <input type="text" id="textInput2-modal-markup" class="form-control"></div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label" for="textInput3-modal-markup">Jurusan</label>
-                                                    <div class="col-sm-9">
-                                                    <input type="text" id="textInput3-modal-markup" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label" for="textInput3-modal-markup">Propinsi</label>
-                                                    <div class="col-sm-9">
-                                                    <input type="text" id="textInput3-modal-markup" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label" for="textInput3-modal-markup">Kota/Kabupaten</label>
-                                                    <div class="col-sm-9">
-                                                    <input type="text" id="textInput3-modal-markup" class="form-control">
-                                                    </div>
-                                                </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                <button type="button" class="btn btn-primary">Save</button>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end:: Subheader -->
+                        

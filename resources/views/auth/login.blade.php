@@ -246,7 +246,7 @@
 
             $('#form-konten').submit(function() {
                 var data = getFormData('form-konten');
-                ajaxTransfer("{{url('validate-login')}}", data, '#results');
+                ajaxTransfer("{{url('validate-login')}}", data, '#result-form-konten');
             });
         </script>
 </body>

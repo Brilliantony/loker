@@ -17,6 +17,6 @@ class Majors extends Model
 
     public function getApplicant()
     {
-        return $this->hasMany('App\Models\Applicant','majors_id','applicant_id');
+        return $this->hasMany('App\Models\Applicant','applicant_id','majors_id');
     }
 }

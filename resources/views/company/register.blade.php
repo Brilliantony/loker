@@ -252,7 +252,7 @@
 
         $('#form-konten').submit(function() {
             var data = getFormData('form-konten');
-            ajaxTransfer("{{url('company/register')}}", data, '#results');
+            ajaxTransfer("{{url('company/register')}}", data, '#result-form-konten');
         });
     </script>
 </body>

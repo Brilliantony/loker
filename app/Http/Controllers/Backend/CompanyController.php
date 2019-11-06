@@ -68,6 +68,10 @@ class CompanyController extends Controller
         }
     }
 
+    public function profil(Request $request){
+        return view('company.profil.personal-Information');
+    }
+
     public function formRegis(){
         $company = new Company;
         $user = new User;
@@ -222,5 +226,43 @@ class CompanyController extends Controller
             return false;
         }
 
+    }
+
+    public function posting(Request $request){
+
+    }
+
+    public function searchProvinsi(Request $request){
+        $data = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $data = DB::table("m_wilayah")
+                    ->select("kode","nama")
+                    ->where('nama','LIKE',"%$search%")
+                    ->where('kode','NOT LIKE','%.%')
+                    ->where('active','=','1')
+                    ->orderBy('nama','asc')
+                    ->get();
+        }
+        return response()->json($data);
+    }
+
+    public function searchKota(Request $request){
+        $data = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $data = DB::table("m_wilayah")
+                    ->select("kode","nama")
+                    ->where('nama','LIKE',"%$search%")
+                    ->where('kode','LIKE','%.%')
+                    ->where('kode','NOT LIKE','%.%.%')
+                    ->where('active','=','1')
+                    ->orderBy('nama','asc')
+                    ->get();
+        }
+        return response()->json($data);
+        
     }
 }

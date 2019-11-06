@@ -24,6 +24,6 @@ class User extends Authenticatable
     //
     public function getCompany()
     {
-        return $this->hasOne('App\Models\Company');
+        return $this->hasOne('App\Models\Company','company_id','mode_id');
     }
 }

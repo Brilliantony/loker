@@ -268,7 +268,7 @@
 
             $('#form-konten').submit(function() {
                 var data = getFormData('form-konten');
-                ajaxTransfer("{{url('company/uploadFile')}}", data, '#results');
+                ajaxTransfer("{{url('company/uploadFile')}}", data, '#result-form-konten');
             });
         </script>
 </body>

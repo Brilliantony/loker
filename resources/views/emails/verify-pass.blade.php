@@ -218,7 +218,7 @@
 
         $('#form-konten').submit(function() {
             var data = getFormData('form-konten');
-            ajaxTransfer("{{url('verify/pass')}}", data, '#results');
+            ajaxTransfer("{{url('verify/pass')}}", data, '#result-form-konten');
         });
     </script>
 
