@@ -68,7 +68,7 @@
 
 <body style="background-image: url({{ asset ('public/assets/media//bg/bg-3.jpg')}});" >
 	<div class="kt-grid kt-grid--ver kt-grid--root kt-page">
-            <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
+        <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
         <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url({{ asset ('public/assets/media//bg/bg-3.jpg')}});">
             <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
                 <div class="kt-login__container">
@@ -77,7 +77,6 @@
                             <img src="{{ asset ('public/assets/media/logos/logo-5.png')}}">  	
                         </a>
                     </div>
-                  
                         <div class="kt-login__head">
                             <h3 class="kt-login__title">Loker Magang</h3>
                         </div>
@@ -110,11 +109,20 @@
                                         <div class="input-group">
                                             <input class="form-control" type="text" placeholder="Jenis Kelamin" name="gender" id="gender">
                                         </div>
-                                        <div class="input-group">
+                                        <div class="form-group">
                                             <input class="form-control" type="text" placeholder="Alamat" name="address" id="address">
                                         </div>
-                                        <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Code wilayah" name="code_wilayah" id="code_wilayah">
+                                        <div class="form-group">
+                                            {{-- <label class="col-sm-3 control-label" for="">Propinsi</label> --}}
+                                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                                <select class="itemProvinsi form-control" style="width:350px" name="itemProvinsiApp" id="provinsi"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            {{-- <label class="col-sm-3 control-label" for="">Kota/Kabupaten</label> --}}
+                                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                                <select class="itemKota form-control" style="width:350px" name="itemKotaApp" id="kota"></select>
+                                            </div>
                                         </div>
                                         <div class="input-group">
                                             <input class="form-control" type="email" placeholder="Email" name="email" id="email">
@@ -129,14 +137,11 @@
                                             <button  class="btn btn-brand btn-elevate kt-login__btn-primary" type="submit">Sign Up</button>&nbsp;&nbsp;
                                         </div>
                                     </form>
-                                
-                                
                             </div>	
                         </div>
                     </div>
                 </div>	
             </div>
-                    
          <!-- end:: Page -->
          <script>
             var KTAppOptions = {"colors":{"state":{"brand":"#366cf3","light":"#ffffff","dark":"#282a3c","primary":"#5867dd","success":"#34bfa3","info":"#36a3f7","warning":"#ffb822","danger":"#fd3995"},"base":{"label":["#c5cbe3","#a1a8c3","#3d4465","#3e4466"],"shape":["#f0f3ff","#d9dffa","#afb4d4","#646c9a"]}}};
@@ -158,7 +163,7 @@
         <!--begin:: Global Optional Vendors -->
          <script src="{{ asset ('public/assets/vendors/general/jquery-form/dist/jquery.form.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/block-ui/jquery.blockUI.js')}}" type="text/javascript"></script>
-        <script src="{{ asset ('public/assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
+        <script src="{{ asset ('public/assets/vendors/general/bootstrap-dat picker/dist/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/custom/js/vendors/bootstrap-datepicker.init.js')}}" type="text/javascript')}}"></script>
         <script src="{{ asset ('public/assets/vendors/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
         <script src="{{ asset ('public/assets/vendors/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}" type="text/javascript"></script>
@@ -232,30 +237,6 @@
 
     <input type='hidden' name='_token' value='{{ csrf_token() }}'>
 
-    {{-- <script type="text/javascript">
-        function confirmData() {
-        
-            var data = new FormData();
-            var company_name=$('#company_name').val();
-            var company_logo=$("#company_logo").val();
-            var company_telp=$('#company_telp').val();
-            var company_email=$('#company_email').val();
-            var company_address=$('#company_address').val();
-            var code_wilayah=$('#code_wilayah').val();
-
-            data.append('company_name', company_name);
-            data.append('company_logo',company_logo);
-            data.append('company_telp',company_telp);
-            data.append('company_email',company_email);
-            data.append('company_address',company_address);
-            data.append('code_wilayah',code_wilayah);
-            modalConfirm("Konfirmasi", "Apakah Anda Yakin ingin Menyimpan Data?", function () {
-                ajaxTransfer("/company/register", data, "#modal-output");
-            })
-            
-        }
-    </script> --}}
-
     <script type="text/javascript">
 
         $.ajaxSetup({
@@ -269,6 +250,52 @@
             ajaxTransfer("{{url('applicant/create')}}", data, '#result-form-konten');
         });
     </script>
+
+     {{-- begin::select2 search wilayah --}}
+     <script type="text/javascript">
+        $('.itemProvinsiApp').select2({
+        placeholder: 'Pilih Provinsi',
+        ajax: {
+          delay: 250,
+          url: "{{url('add-provinsi-applicant')}}",
+          dataType: 'json',
+          processResults: function (data) {
+            return {
+              results:  $.map(data, function (item) {
+                    return {
+                        text: item.nama,
+                        id: item.kode,
+                    }
+                })
+            };
+          },
+          cache: true
+        }
+      });
+    </script>
+
+    <script type="text/javascript">
+        $('.itemKotaApp').select2({
+        placeholder: 'Pilih Kota',
+        ajax: {
+        delay: 250,
+        url: "{{url('add-kota-applicant')}}",
+        dataType: 'json',
+        processResults: function (data) {
+            return {
+            results:  $.map(data, function (item) {
+                    return {
+                        text: item.nama,
+                        id: item.kode,
+                    }
+                })
+            };
+        },
+        cache: true
+        }
+    });
+    </script>
+    {{-- End::select2 company posting --}}
 </body>
 </html>
 

@@ -22,7 +22,7 @@
                         </div>
                         <div class="modal-body">
                             <div id="resut-posting"></div>
-                            <form class="form-horizontal" id="form-konten" method="POST" enctype="multipart/form-data" action="{{ route('posting') }}">
+                            <form class="form-horizontal" data-parsley-validate id="form-konten" method="POST" enctype="multipart/form-data" action="{{ route('posting') }}">
                             @csrf
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="textInput-modal-markup">Judul</label>
@@ -41,15 +41,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" for="textInput3-modal-markup">Propinsi</label>
+                                <label class="col-sm-3 control-label" for="">Provinsi</label>
                                 <div class="col-lg-9 col-md-9 col-sm-12">
-                                    <select class="itemProvinsi form-control kt-select2" style="width:330px" name="itemProvinsi" id="provinsi"></select>
+                                    <select class="itemProvinsi form-control" style="width:330px" name="itemProvinsi" id="provinsi"></select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" for="textInput3-modal-markup">Kota/Kabupaten</label>
+                                <label class="col-sm-3 control-label" for="">Kota/Kabupaten</label>
                                 <div class="col-sm-9">
-                                    <select class="itemKota form-control kt-select2" style="width:330px" name="itemKota" id="kota"></select>
+                                    <select class="itemKota form-control" style="width:330px" name="itemKota" id="kota"></select>
                                 </div>
                             </div>
                             </form>

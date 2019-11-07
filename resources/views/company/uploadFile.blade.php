@@ -87,7 +87,7 @@
                                 <div class="kt-login__head">
                                     <h3 class="kt-login__title">Company Upload File</h3>
                                 </div>
-                                <div id="result-form-konten"></div>
+                                <div id="results"></div>
                                 <form class="kt-form" action="{{ route('upload') }}" method="POST" enctype="multipart/form-data" id="form-konten">
                                     @csrf
                                     <div class="container" style="padding-left:15%">
@@ -238,26 +238,8 @@
         <script>
             baseURL = '{{url("/")}}';
         </script>
-        <input type='hidden' name='_token' value='{{ csrf_token() }}'> {{--
-        <script type="text/javascript">
-            function confirmData() {
-                var data = new FormData();
-                var attch_siup = $('#attch_siup').val();
-                var attch_tdp = $("#attch_tdp").val();
-                var attch_npwp = $('#attch_npwp').val();
-                var attch_photo = $('#attch_photo').val();
-
-                data.append('attch_siup', attch_siup);
-                data.append('attch_tdp', attch_tdp);
-                data.append('attch_npwp', attch_npwp);
-                data.append('attch_photo', attch_photo);
-
-                modalConfirm("Konfirmasi", "Apakah Anda Yakin ingin Menyimpan Data?", function() {
-                    ajaxTransfer("{{url('company/uploadFile')}}", data, "#modal-output");
-                })
-            }
-        </script> --}}
-
+        <input type='hidden' name='_token' value='{{ csrf_token() }}'> 
+   
         <script type="text/javascript">
 
             $.ajaxSetup({
@@ -268,7 +250,7 @@
 
             $('#form-konten').submit(function() {
                 var data = getFormData('form-konten');
-                ajaxTransfer("{{url('company/uploadFile')}}", data, '#result-form-konten');
+                ajaxTransfer("{{url('company/uploadFile')}}", data, '#results');
             });
         </script>
 </body>

@@ -119,7 +119,7 @@
               results:  $.map(data, function (item) {
                     return {
                         text: item.nama,
-                        kode: item.kode,
+                        id: item.kode,
                     }
                 })
             };
@@ -141,7 +141,7 @@
             results:  $.map(data, function (item) {
                     return {
                         text: item.nama,
-                        kode: item.kode,
+                        id: item.kode,
                     }
                 })
             };

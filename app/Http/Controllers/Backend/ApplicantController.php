@@ -36,7 +36,8 @@ class ApplicantController extends Controller
             $majors_id = $request->input('majors_id');
             $gender = $request->input('gender');
             $address = $request->input('address');
-            $code_wilayah = $request->input('code_wilayah');
+            $provinsi = $request->input('provinsi');
+            $kota = $request->input('kota');
             $email = $request->input('email');
             $telp = $request->input('telp');
             $birth_date = $request->input('birth_date');
@@ -50,7 +51,8 @@ class ApplicantController extends Controller
                 'majors_id'=>$majors_id,
                 'gender'=>$gender,
                 'address'=>$address,
-                'code_wilayah'=>$code_wilayah,
+                'provinsi'=>$provinsi,
+                'kota'=>$kota,
                 'email'=>$email,
                 'telp'=>$telp,
                 'birth_date'=>$birth_date,
@@ -127,6 +129,40 @@ class ApplicantController extends Controller
             return false;
         }
 
+    }
+
+    public function addProvinsi(Request $request){
+        $data = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $data = DB::table("m_wilayah")
+                    ->select("kode","nama")
+                    ->where('nama','LIKE',"%$search%")
+                    ->where('kode','NOT LIKE','%.%')
+                    ->where('active','=','1')
+                    ->orderBy('nama','asc')
+                    ->get();
+        }
+        return response()->json($data);
+    }
+
+    public function addKota(Request $request){
+        $data = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $data = DB::table("m_wilayah")
+                    ->select("kode","nama")
+                    ->where('nama','LIKE',"%$search%")
+                    ->where('kode','LIKE','%.%')
+                    ->where('kode','NOT LIKE','%.%.%')
+                    ->where('active','=','1')
+                    ->orderBy('nama','asc')
+                    ->get();
+        }
+        return response()->json($data);
+        
     }
     
 }

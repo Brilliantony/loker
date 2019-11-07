@@ -72,6 +72,10 @@ class CompanyController extends Controller
         return view('company.profil.personal-Information');
     }
 
+    public function profilChangePassword(Request $request){
+        return view('company.profil.change-password');
+    }
+
     public function formRegis(){
         $company = new Company;
         $user = new User;
@@ -162,8 +166,7 @@ class CompanyController extends Controller
                 // $response = new ResponseMessageServiceParameter(200, 'Register Sukses, Cek Email Anda Untuk Verifikasi', null);
                 // return $response->getResponse();
                 return view('success.email-sended');
-                
-
+      
             }catch (\Exception $e){
                 dd($e);
             }

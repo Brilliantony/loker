@@ -136,19 +136,6 @@
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="demo4/custom/apps/user/profile-3.html" class="kt-notification__item">
-                                            <div class="kt-notification__item-icon">
-                                                <i class="flaticon2-mail kt-font-warning"></i>
-                                            </div>
-                                            <div class="kt-notification__item-details">
-                                                <div class="kt-notification__item-title kt-font-bold">
-                                                    Setting
-                                                </div>
-                                                <div class="kt-notification__item-time">
-                                                    Change Password
-                                                </div>
-                                            </div>
-                                        </a>
                                         <a href="demo4/custom/apps/user/profile-2.html" class="kt-notification__item">
                                             <div class="kt-notification__item-icon">
                                                 <i class="flaticon2-rocket-1 kt-font-danger"></i>
@@ -163,7 +150,7 @@
                                             </div>
                                         </a>
                                         <div class="kt-notification__custom kt-space-between">
-                                            <a href="{{url('logout')}}" target="_blank" class="btn btn-label btn-label-brand btn-sm btn-bold">Sign Out</a>
+                                            <a href="{{url('logout')}}" class="btn btn-label btn-label-brand btn-sm btn-bold">Sign Out</a>
                                         </div>
                                     </div>
                                     <!--end: Navigation -->

@@ -9,7 +9,7 @@ class Applicant extends Model
     protected $table="t_applicant";
     protected $primaryKey = 'applicant_id';
     protected $fillable = [
-        'name', 'photo', 'nick_name', 'level', 'majors_id', 'gender', 'address', 'code_wilayah', 'email', 'telp', 'birth_date','status',
+        'name', 'photo', 'nick_name', 'level', 'majors_id', 'gender', 'address', 'provinsi','kota', 'email', 'telp', 'birth_date','status',
     //
     ];
 
@@ -17,6 +17,6 @@ class Applicant extends Model
 
     public function getMajors()
     {
-        return $this->hasOne('App\Models\Majors','majors_id','applicant_id');
+        return $this->hasOne('App\Models\Majors','majors_id','majors_id');
     }
 }
