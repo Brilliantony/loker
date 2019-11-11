@@ -232,7 +232,17 @@ class CompanyController extends Controller
     }
 
     public function posting(Request $request){
+        try{
+            $judul = $request->input('judul');
+            $level = $request->input('level');
+            $jurusan = $request->input('jurusan');
+            $provinsi = $request->input('itemProvinsi');
+            $kota = $request->input('itemKota');
 
+            dd($judul.'-'.$level.'-'.$jurusan.'-'.$provinsi.'-'.$kota);
+        }catch(\Exception $e){
+            dd($e);
+        }
     }
 
     public function searchProvinsi(Request $request){
@@ -253,7 +263,8 @@ class CompanyController extends Controller
 
     public function searchKota(Request $request){
         $data = [];
-
+        $dataProv = [];
+        
         if($request->has('q')){
             $search = $request->q;
             $data = DB::table("m_wilayah")

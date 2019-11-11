@@ -65,25 +65,24 @@
         <link rel="shortcut icon" href="{{ asset ('public/assets/media/logos/favicon.ico')}}" />
     </head>
         <!-- end::Head -->
-
-<body style="background-image: url({{ asset ('public/assets/media//bg/bg-3.jpg')}});" >
-	<div class="kt-grid kt-grid--ver kt-grid--root kt-page">
-        <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
-        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url({{ asset ('public/assets/media//bg/bg-3.jpg')}});">
-            <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
-                <div class="kt-login__container">
-                    <div class="kt-login__logo">
-                        <a href="#">
-                            <img src="{{ asset ('public/assets/media/logos/logo-5.png')}}">  	
-                        </a>
-                    </div>
-                        <div class="kt-login__head">
-                            <h3 class="kt-login__title">Loker Magang</h3>
+    <body style="background-image: url({{ asset ('public/assets/media//bg/bg-3.jpg')}});" >
+        <div class="kt-grid kt-grid--ver kt-grid--root kt-page">
+            <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url({{ asset ('public/assets/media//bg/bg-3.jpg')}});">
+                <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
+                    <div class="kt-login__container">
+                        <div class="kt-login__logo">
+                            <a href="#">
+                                <img src="{{ asset ('public/assets/media/logos/logo-5.png')}}">  	
+                            </a>
                         </div>
+                            <div class="kt-login__head">
+                                <h3 class="kt-login__title">Loker Magang</h3>
+                            </div>
                             <div class="kt-login__signin">
                                     <div class="kt-login__head">
                                         <h3 class="kt-login__title">Sign Up</h3>
-                                        <div class="kt-login__desc">Enter your details to create your account:</div>
+                                         <div class="kt-login__desc">Enter your details to create your account:</div>
                                     </div>
                                     <div id="result-form-konten"></div>
                                     <form class="kt-form"  id="form-konten" method="POST" enctype="multipart/form-data" action="{{ route('applicant.register') }}">

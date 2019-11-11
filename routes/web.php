@@ -20,6 +20,7 @@ Route::get('form/applicant/create','Backend\applicantController@formCreate');
 Route::post('applicant/create', 'Backend\ApplicantController@create')->name('applicant.register');
 Route::get('add-provinsi-applicant','Backend\ApplicantController@addProvinsi');
 Route::get('add-kota-applicant','Backend\ApplicantController@addKota');
+Route::get('applicant/get-all','Backend\ApplicantController@getAll');
 
 #user
 Route::get('form/verify/pass/{token}', 'Backend\UserController@formPass');

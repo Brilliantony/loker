@@ -21,6 +21,11 @@ class ApplicantController extends Controller
         return view('applicant.register',$params);
     }
 
+    public function getAll(){
+        $data = Applicant::all();
+        return response()->json($data);
+    }
+
     public function create(Request $request){
         try{
             $file=$this->photoApplicant($request);

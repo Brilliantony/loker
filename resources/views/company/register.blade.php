@@ -86,7 +86,7 @@
                                         <h3 class="kt-login__title">Sign Up</h3>
                                         <div class="kt-login__desc">Enter your details to create your account:</div>
                                     </div>
-                                    <div id="result-form-konten"></div>
+                                    <div id="results"></div>
                                     <form class="kt-form"  id="form-konten" method="POST" enctype="multipart/form-data" action="{{ route('company.register') }}">
                                     @csrf
                                         <div class="input-group">

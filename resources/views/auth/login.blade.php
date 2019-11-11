@@ -67,7 +67,6 @@
     <link rel="shortcut icon" href="{{ asset ('public/assets/media/logos/favicon.ico')}}" />
 </head>
 <!-- end::Head -->
-
 <body style="background-image: url({{ asset ('public/assets/media//bg/bg-3.jpg')}});">
     <div class="kt-grid kt-grid--ver kt-grid--root kt-page">
         <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
@@ -115,7 +114,6 @@
                                 </div>
                                     <div class="kt-login__actions">
                                         <button class="btn btn-brand btn-elevate kt-login__btn-primary" type="submit">Sign In</button>&nbsp;&nbsp;
-                                        
                                     </div>
                             </form>
                         </div>

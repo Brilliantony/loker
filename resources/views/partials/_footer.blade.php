@@ -1,5 +1,5 @@
 <!-- begin:: Footer -->
-<div class="kt-footer  kt-footer--extended  kt-grid__item" id="kt_footer" style="background-image: url('./assets/media/bg/bg-2.jpg');">
+<div class="kt-footer  kt-footer--extended  kt-grid__item" id="kt_footer" style="background-image: url({{asset('public/assets/media/bg/bg-2.jpg')}});">
 			<div class="kt-footer__top">
 			<div class="kt-container ">
 				<div class="row">

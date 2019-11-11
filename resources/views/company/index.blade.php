@@ -21,8 +21,8 @@
                             <h4 class="modal-title" id="myModalLabel">Spesifikasi Pelamar Magang</h4>
                         </div>
                         <div class="modal-body">
-                            <div id="resut-posting"></div>
-                            <form class="form-horizontal" data-parsley-validate id="form-konten" method="POST" enctype="multipart/form-data" action="{{ route('posting') }}">
+                            <div id="results"></div>
+                            <form class="form-horizontal" id="form-konten" method="POST" enctype="multipart/form-data" action="{{ route('posting') }}">
                             @csrf
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="textInput-modal-markup">Judul</label>
@@ -32,31 +32,32 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="textInput2-modal-markup">Jenjang (SMA/SMK/D3/S1)</label>
                                 <div class="col-sm-9">
-                                <input type="text" id="level" name="level" class="form-control"></div>
+                                    <input type="text" id="level" name="level" class="form-control">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="textInput3-modal-markup">Jurusan</label>
                                 <div class="col-sm-9">
-                                <input type="text" id="jurusan" name="jurusan" class="form-control">
+                                    <input type="text" id="jurusan" name="jurusan" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="">Provinsi</label>
                                 <div class="col-lg-9 col-md-9 col-sm-12">
-                                    <select class="itemProvinsi form-control" style="width:330px" name="itemProvinsi" id="provinsi"></select>
+                                    <select class="itemProvinsi form-control" style="width:330px" name="itemProvinsi" id="itemProvinsi"></select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="">Kota/Kabupaten</label>
                                 <div class="col-sm-9">
-                                    <select class="itemKota form-control" style="width:330px" name="itemKota" id="kota"></select>
+                                    <select class="itemKota form-control" style="width:330px" name="itemKota" id="itemKota"></select>
                                 </div>
                             </div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                         </div>
                     </div>
@@ -80,13 +81,13 @@
                                 <div class="kt-widget26">
                                     <h4>Judul Pencarian</h4>
                                     <div class="kt-space-20"></div>
-                                    <button disabled="disabled" class="btn btn-primary">Teknik Informatika</button>
+                                    <a disabled="disabled" class="btn btn-primary" href="">Teknik Informatika</a>
                                     <div class="kt-space-20"></div>
-                                    <button disabled="disabled" class="btn btn-primary">Hukum</button>
+                                    <a disabled="disabled" class="btn btn-primary" href="">Hukum</a>
                                     <div class="kt-space-20"></div>
-                                    <button disabled="disabled" class="btn btn-primary">DKV</button>
+                                    <a disabled="disabled" class="btn btn-primary" href="">DKV</a>
                                     <div class="kt-space-20"></div>
-                                    <button disabled="disabled" class="btn btn-primary">Teknik Informatika</button>
+                                    <a disabled="disabled" class="btn btn-primary" href="">Teknik Informatika</a>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +126,7 @@
                                                     <div class="card-body">
                                                         <h4 class="card-title">{{$applicants->getmajors->majors_name}}</h4>
                                                         <h4 class="card-subtitle">{{$applicants->level}}</h4>
-                                                        <p class="card-text">{{$applicants->address}}</p>
+                                                        <p class="card-text">{{$applicants->kota}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -213,4 +214,6 @@
         <!-- end:: Content -->
     </div>
 </div>
+
+
 @endsection

@@ -6,7 +6,6 @@
         </a>
     </div>
     <div class="kt-header-mobile__toolbar">
-
         <button class="kt-header-mobile__toolbar-toggler" id="kt_header_mobile_toggler"><span></span></button>
         <button class="kt-header-mobile__toolbar-topbar-toggler" id="kt_header_mobile_topbar_toggler"><i class="flaticon-more-1"></i></button>
     </div>
@@ -59,7 +58,6 @@
                                             <div class="kt-mycart__head kt-head" style="background-image: url({{asset('public/assets/media/misc/bg-1.jpg')}});">
                                                 <h4>Chart Pelamar Magang</h4>
                                             </div>
-
                                             <div class="kt-mycart__body kt-scroll" data-scroll="true" data-height="245" data-mobile-height="200">
                                                 <div class="kt-mycart__item">
                                                     <div class="kt-mycart__container">

@@ -90,7 +90,7 @@
     <script src="{{ asset ('public/assets/vendors/general/jquery.repeater/src/repeater.js') }}" type="text/javascript"></script>
     <script src="{{ asset ('public/assets/vendors/general/dompurify/dist/purify.js') }}" type="text/javascript"></script>
     <!--end:: Global Optional Vendors -->
-
+    <script src="{{asset('public/assets/corelib/core.js')}}" type="text/javascript"></script>
     <!--begin::Global Theme Bundle(used by all pages) -->
 
     <script src="{{ asset ('public/assets/js/demo4/scripts.bundle.js') }}" type="text/javascript"></script>
@@ -150,4 +150,37 @@
         }
     });
     </script>
-    {{-- End::select2 company posting --}}
+    {{-- End::select2 search wilayah --}}
+    <script type="text/javascript">
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    
+        $(function(){
+           $('#form-konten').on('submit', function(e){
+                e.preventDefault();
+    
+                var judul = $("input[name=judul]").val();
+                var level = $("input[name=level]").val();
+                var jurusan = $("input[name=jurusan]").val();
+                var provinsi = $("input[name=itemProvinsi]").val();
+                var kota = $("input[name=itemKota]").val();
+    
+                $.ajax({
+                    url: "company/posting",
+                    type: "POST",
+                    data: {judul:judul, level:level, jurusan:jurusan, provinsi:provinsi, kota:kota},
+                    success: function(data){
+                        alert("Successfully submitted.")
+                    },
+                    error: function(){
+                        alert("Error");
+                    }
+                });
+           }); 
+        });
+    </script>
+   
