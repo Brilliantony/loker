@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Support\Facades\DB;
 use App\Mail\SendMail;
 use App\Models\User;
+use App\Models\Level;
 use App\Models\Company;
+use App\Models\CompanyPost;
 use App\Models\Majors;
+use App\Models\Gender;
 use App\Models\Applicant;
 use App\Models\CompanyService;
 use App\ServiceParameters\ResponseMessageServiceParameter;
@@ -51,21 +54,32 @@ class CompanyController extends Controller
 
     public function index(Request $request)
     {
-        if($request->session()->exists('activeUser')){
+        try{
+            if($request->session()->exists('activeUser')){
 
-            $company = Company::all();
-            $majors = Majors::all();
-            $applicant = new Applicant;
-            $params=[
-                'company'=> $company,
-                'majors'=>$majors,
-                'applicant'=>$applicant,
-            ];
-            return view('company.index',$params);
+                $company = Company::all();
+                $majors = Majors::all();
+                $applicant = new Applicant;
+                $level = Level::all();
+                $gender = Gender::all();
+                $company_post = CompanyPost::all();
+                $params=[
+                    'levels'=>$level,
+                    'gender'=>$gender,
+                    'company'=> $company,
+                    'majors'=>$majors,
+                    'applicant'=>$applicant,
+                    'company_post'=>$company_post,
+                ];
+                return view('company.index',$params);
+            }
+            else{
+                return redirect('login');
+            }
+        }catch(\Exception $e){
+            dd($e);
         }
-        else{
-            return redirect('login');
-        }
+       
     }
 
     public function profil(Request $request){
@@ -116,7 +130,6 @@ class CompanyController extends Controller
     }
     
     public function register(Request $request){
-        //dd($request->all());
             try{
                 
                 // $validation = $request->validate([
@@ -231,20 +244,6 @@ class CompanyController extends Controller
 
     }
 
-    public function posting(Request $request){
-        try{
-            $judul = $request->input('judul');
-            $level = $request->input('level');
-            $jurusan = $request->input('jurusan');
-            $provinsi = $request->input('itemProvinsi');
-            $kota = $request->input('itemKota');
-
-            dd($judul.'-'.$level.'-'.$jurusan.'-'.$provinsi.'-'.$kota);
-        }catch(\Exception $e){
-            dd($e);
-        }
-    }
-
     public function searchProvinsi(Request $request){
         $data = [];
 
@@ -263,14 +262,13 @@ class CompanyController extends Controller
 
     public function searchKota(Request $request){
         $data = [];
-        $dataProv = [];
-        
+        $kode = $request->input('itemProvinsi');
         if($request->has('q')){
             $search = $request->q;
             $data = DB::table("m_wilayah")
                     ->select("kode","nama")
                     ->where('nama','LIKE',"%$search%")
-                    ->where('kode','LIKE','%.%')
+                    ->where('kode','LIKE',"%$kode.%")
                     ->where('kode','NOT LIKE','%.%.%')
                     ->where('active','=','1')
                     ->orderBy('nama','asc')

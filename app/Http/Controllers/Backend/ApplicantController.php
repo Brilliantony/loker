@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Majors;
 use App\Models\Applicant;
 use App\Models\User;
+use App\Models\Level;
 use Illuminate\Support\Facades\DB;
 
 class ApplicantController extends Controller
@@ -14,7 +15,11 @@ class ApplicantController extends Controller
     public function formCreate(){
         $applicant = new Applicant;
         $user = new User;
+        $majors = new Majors;
+        $level = new Level;
         $params = [
+            'level'=>$level,
+            'majors'=>$majors,
             'applicant'=>$applicant,
             'user'=>$user,
         ];
@@ -52,9 +57,9 @@ class ApplicantController extends Controller
                 'name'=>$name,
                 'photo'=>$photo,
                 'nick_name'=>$nick_name,
-                'level'=>$level,
+                'level_id'=>$level,
                 'majors_id'=>$majors_id,
-                'gender'=>$gender,
+                'gender_id'=>$gender,
                 'address'=>$address,
                 'provinsi'=>$provinsi,
                 'kota'=>$kota,

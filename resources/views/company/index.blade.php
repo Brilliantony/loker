@@ -27,37 +27,67 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="textInput-modal-markup">Judul</label>
                                 <div class="col-sm-9">
-                                <input type="text" id="judul" name="judul" class="form-control"></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="textInput2-modal-markup">Jenjang (SMA/SMK/D3/S1)</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="level" name="level" class="form-control">
+                                    <input type="text" id="judul" name="judul" class="form-control" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" for="textInput3-modal-markup">Jurusan</label>
+                                <label class="col-sm-3 control-label" for="">Jenjang</label>
+                                {{-- <div class="col-sm-9 kt-checkbox-inline" style="margin-left:14px">
+                                    @foreach($level->all() as $levels)
+                                    <label class="kt-checkbox" >
+                                        <input type="checkbox" name="level" id="level" value="{{$levels->level_id}}">{{$levels->level_name}}
+                                        <span></span>
+                                    </label>
+                                    @endforeach
+                                </div> --}}
                                 <div class="col-sm-9">
-                                    <input type="text" id="jurusan" name="jurusan" class="form-control">
+                                    <select class="form-control kt-selectpicker" data-live-search="true" id="level" name="level">
+                                        <option value=''>Pilih Jenjang</option>
+                                        @foreach ($levels->all() as $level)
+                                            <option value="{{$level->level_id}}">{{$level->level_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="">Jurusan</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control kt-selectpicker" data-live-search="true" id="jurusan" name="jurusan" required>
+                                        <option value=''>Pilih Jurusan</option>
+                                        @foreach ($majors->all() as $major)
+                                            <option value="{{$major->majors_id}}">{{$major->majors_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="">Jenis Kelamin</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control kt-selectpicker" data-live-search="true" id="gender" name="gender" required>
+                                        <option value=''>Pilih Jenis Kelamin</option>
+                                        @foreach ($gender->all() as $genders)
+                                            <option value="{{$genders->gender_id}}">{{$genders->gender_name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="">Provinsi</label>
                                 <div class="col-lg-9 col-md-9 col-sm-12">
-                                    <select class="itemProvinsi form-control" style="width:330px" name="itemProvinsi" id="itemProvinsi"></select>
+                                    <select class="itemProvinsi form-control" style="width:330px" name="itemProvinsi" id="itemProvinsi" required></select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="">Kota/Kabupaten</label>
                                 <div class="col-sm-9">
-                                    <select class="itemKota form-control" style="width:330px" name="itemKota" id="itemKota"></select>
+                                    <select class="itemKota form-control" style="width:330px" name="itemKota" id="itemKota" required></select>
                                 </div>
                             </div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary" onclick="confirmData()">Save</button>
                         </div>
                         </div>
                     </div>
@@ -80,14 +110,10 @@
                             <div class="kt-portlet__body kt-portlet__body--fluid">
                                 <div class="kt-widget26">
                                     <h4>Judul Pencarian</h4>
+                                    @foreach($company_post as $post)
                                     <div class="kt-space-20"></div>
-                                    <a disabled="disabled" class="btn btn-primary" href="">Teknik Informatika</a>
-                                    <div class="kt-space-20"></div>
-                                    <a disabled="disabled" class="btn btn-primary" href="">Hukum</a>
-                                    <div class="kt-space-20"></div>
-                                    <a disabled="disabled" class="btn btn-primary" href="">DKV</a>
-                                    <div class="kt-space-20"></div>
-                                    <a disabled="disabled" class="btn btn-primary" href="">Teknik Informatika</a>
+                                <a disabled="disabled" class="btn btn-primary" href="">{{$post->title}}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -125,7 +151,7 @@
                                                 <img class="card-img-top" src="{{asset('storage/app/public/photo_applicant/'.$applicants->photo)}}" alt="Card image top" width="200" height="200">
                                                     <div class="card-body">
                                                         <h4 class="card-title">{{$applicants->getmajors->majors_name}}</h4>
-                                                        <h4 class="card-subtitle">{{$applicants->level}}</h4>
+                                                        <h4 class="card-subtitle">{{$applicants->getLevel->level_name}}</h4>
                                                         <p class="card-text">{{$applicants->kota}}</p>
                                                     </div>
                                                 </div>

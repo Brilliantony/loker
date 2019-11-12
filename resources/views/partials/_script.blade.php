@@ -130,13 +130,14 @@
     </script>
 
     <script type="text/javascript">
+        var kode=$('#itemProvinsi').val();
         $('.itemKota').select2({
         placeholder: 'Pilih Kota',
         ajax: {
         delay: 250,
         url: "{{url('search-kota')}}",
         dataType: 'json',
-        processResults: function (data) {
+        processResults: function (data, kode) {
             return {
             results:  $.map(data, function (item) {
                     return {
@@ -151,36 +152,41 @@
     });
     </script>
     {{-- End::select2 search wilayah --}}
-    <script type="text/javascript">
 
+    <script type="text/javascript">
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-    
-        $(function(){
-           $('#form-konten').on('submit', function(e){
-                e.preventDefault();
-    
-                var judul = $("input[name=judul]").val();
-                var level = $("input[name=level]").val();
-                var jurusan = $("input[name=jurusan]").val();
-                var provinsi = $("input[name=itemProvinsi]").val();
-                var kota = $("input[name=itemKota]").val();
-    
-                $.ajax({
-                    url: "company/posting",
-                    type: "POST",
-                    data: {judul:judul, level:level, jurusan:jurusan, provinsi:provinsi, kota:kota},
-                    success: function(data){
-                        alert("Successfully submitted.")
-                    },
-                    error: function(){
-                        alert("Error");
-                    }
-                });
-           }); 
+        function confirmData() {
+        
+            var data = new FormData();
+            var judul=$('#judul').val();
+            var level=$("#level").val();
+            var jurusan=$('#jurusan').val();
+            var gender=$('#gender').val();
+            var itemProvinsi=$('#itemProvinsi').val();
+            var itemKota=$('#itemKota').val();
+
+            data.append('judul', judul);
+            data.append('level',level);
+            data.append('jurusan',jurusan);
+            data.append('gender',gender);
+            data.append('itemProvinsi',itemProvinsi);
+            data.append('itemKota',itemKota);
+            // modalConfirm("Konfirmasi", "Apakah Anda Yakin ingin Menyimpan Data?", function () {
+                ajaxTransfer("{{url('company/posting')}}", data, "#results");
+            // })
+            
+        }
+
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $('input:checkbox').click(function() {
+                $('input:checkbox').not(this).prop('checked', false);
+            });
         });
     </script>
-   

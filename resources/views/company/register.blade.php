@@ -92,11 +92,12 @@
                                         <div class="input-group">
                                             <input class="form-control" type="text" placeholder="Nama Perusahaan" name="company_name" id="company_name">
                                         </div>
-                                        <div class="input-group">
-                                            <div class="form-control">
-                                            <label for="">Upload Logo</label>
-                                            <input  type="file" placeholder="Upload Logo" name="company_logo" id="company_logo">
-                                            </div>   
+                                        <div class="form-group">
+                                            <label for="">Company Logo</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="company_logo" id="company_logo">
+                                                <label class="custom-file-label" for="customFile">Upload Company Logo</label>
+                                            </div>
                                         </div>
                                         
                                         <div class="input-group">

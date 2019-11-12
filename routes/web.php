@@ -11,7 +11,7 @@ Route::get('form/company/register','Backend\CompanyController@formRegis');
 Route::get('form/company/uploadFile','Backend\CompanyController@formUpload')->name('formUploadFile');
 Route::post('company/register', 'Backend\CompanyController@register')->name('company.register');
 Route::post('company/uploadFile','Backend\CompanyController@updateUpload')->name('upload');
-Route::post('company/posting','Backend\CompanyController@posting')->name('posting');
+Route::post('company/posting','Backend\CompanyPostController@posting')->name('posting');
 Route::get('search-provinsi','Backend\CompanyController@searchProvinsi');
 Route::get('search-kota','Backend\CompanyController@searchKota');
 

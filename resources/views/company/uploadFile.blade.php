@@ -91,28 +91,33 @@
                                 <form class="kt-form" action="{{ route('upload') }}" method="POST" enctype="multipart/form-data" id="form-konten">
                                     @csrf
                                     <div class="container" style="padding-left:15%">
-                                        <div class="input-group">
-                                            <div class="form-control">
-                                                <label for="">Upload SIUP</label>
-                                                <input type="file" placeholder="Upload SIUP" name="attch_siup" id="attch_siup">
+                                        <div class="form-group">
+                                            <label for="">Upload SIUP</label>
+                                            <div></div>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="attch_siup" id="attch_siup">
+                                                <label class="custom-file-label" for="customFile">Upload SIUP</label>
                                             </div>
                                         </div>
-                                        <div class="input-group">
-                                            <div class="form-control">
-                                                <label for="">Upload TDP</label>
-                                                <input type="file" placeholder="Upload TDP" name="attch_tdp" id="attch_tdp">
+                                        <div class="form-group">
+                                            <label for="">Upload TDP</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="attch_tdp" id="attch_tdp">
+                                                <label class="custom-file-label" for="customFile">Upload TDP</label>
                                             </div>
                                         </div>
-                                        <div class="input-group">
-                                            <div class="form-control">
-                                                <label for="">Upload NPWP</label>
-                                                <input type="file" placeholder="Upload NPWP" name="attch_npwp" id="attch_npwp">
+                                        <div class="form-group">
+                                            <label for="">Upload NPWP</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="attch_npwp" id="attch_npwp">
+                                                <label class="custom-file-label" for="customFile">Upload NPWP</label>
                                             </div>
                                         </div>
-                                        <div class="input-group">
-                                            <div class="form-control">
-                                                <label for="">Upload Photo Company</label>
-                                                <input type="file" placeholder="Upload Photo" name="attch_photo" id="attch_photo">
+                                        <div class="form-group">
+                                            <label for="">Upload Photo Company</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="attch_photo" id="attch_photo">
+                                                <label class="custom-file-label" for="customFile">Upload Photo</label>
                                             </div>
                                         </div>
                                     </div>
