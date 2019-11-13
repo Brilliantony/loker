@@ -39,7 +39,7 @@ class CompanyPostController extends Controller
                     'kota'=>$kota,
                 ]);
                     echo "<div class='alert alert-danger'>Posting Success</div>";
-                    return view('company.index');
+                    return "<script> scrollToTop(); reload(1500); </script>";
             }
             else
             {

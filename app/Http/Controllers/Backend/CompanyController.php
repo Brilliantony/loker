@@ -11,6 +11,7 @@ use App\Models\CompanyPost;
 use App\Models\Majors;
 use App\Models\Gender;
 use App\Models\Applicant;
+use App\Models\Quota;
 use App\Models\CompanyService;
 use App\ServiceParameters\ResponseMessageServiceParameter;
 use Illuminate\Http\Request;
@@ -63,7 +64,9 @@ class CompanyController extends Controller
                 $level = Level::all();
                 $gender = Gender::all();
                 $company_post = CompanyPost::all();
+                $quota = Quota::all();
                 $params=[
+                    'quota'=>$quota,
                     'levels'=>$level,
                     'gender'=>$gender,
                     'company'=> $company,

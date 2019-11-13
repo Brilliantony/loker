@@ -112,7 +112,7 @@
                                     <h4>Judul Pencarian</h4>
                                     @foreach($company_post as $post)
                                     <div class="kt-space-20"></div>
-                                <a disabled="disabled" class="btn btn-primary" href="">{{$post->title}}</a>
+                                        <button type="button" class="btn btn-primary" id="title" value="{{$post->title}}" onclick="filter()">{{$post->title}}</button>
                                     @endforeach
                                 </div>
                             </div>
@@ -134,7 +134,7 @@
                                             if ($i++ % $jumlahData == 0) {
                                                 echo "<div class='row margin-bottom-10'>";
                                             }
-                                            @endphp
+                                        @endphp
 
                                             <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
                                                 <div class="card">
@@ -150,8 +150,8 @@
                                                     </div>
                                                 <img class="card-img-top" src="{{asset('storage/app/public/photo_applicant/'.$applicants->photo)}}" alt="Card image top" width="200" height="200">
                                                     <div class="card-body">
-                                                        <h4 class="card-title">{{$applicants->getmajors->majors_name}}</h4>
-                                                        <h4 class="card-subtitle">{{$applicants->getLevel->level_name}}</h4>
+                                                        <h4 class="card-title">{{$applicants->getLevel->level_name}} {{$applicants->getmajors->majors_name}}</h4>
+                                                        
                                                         <p class="card-text">{{$applicants->kota}}</p>
                                                     </div>
                                                 </div>

@@ -21,7 +21,7 @@
                                     Profile	                    </a>
                     <span class="kt-subheader__breadcrumbs-separator"></span>
                     <a href="" class="kt-subheader__breadcrumbs-link">
-                                    Personal Information	                    </a>
+                                    Personal Information	    </a>
                 </div>
             </div>
         </div>
@@ -61,7 +61,6 @@
                                             <i class="flaticon2-correct kt-font-success"></i>                       
                                         </a>
                                     </div>
-    
                                 </div>
                             </div>
                             <div class="kt-widget__body">
@@ -192,18 +191,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group form-group-last row">
-                                                <label class="col-xl-3 col-lg-3 col-form-label">Company Site</label>
-                                                <div class="col-lg-9 col-xl-6">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="Username" value="loop">
-                                                        <div class="input-group-append"><span class="input-group-text">.com</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
-    
                                 </div>
                                 <div class="kt-portlet__foot">
                                     <div class="kt-form__actions">

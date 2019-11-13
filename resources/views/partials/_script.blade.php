@@ -190,3 +190,10 @@
             });
         });
     </script>
+
+    <script>
+        function filter(){
+            var title = $('#title').val();
+            alert(title);
+        }
+    </script>

@@ -33,7 +33,9 @@
                         <!--begin: Search -->
                         <div class="kt-header__topbar-item kt-header__topbar-item--user">
                                 <div class="kt-header__topbar-wrapper">
-                                    <h5 class="kt-header__topbar-username">Sisa Kuota Anda : 100</h5>
+                                    {{-- @foreach ($quota as $quotas) --}}
+                                    <h5 class="kt-header__topbar-username">Sisa Kuota Anda : 20</h5>
+                                    {{-- @endforeach --}}
                                 </div>
                         </div>
                         <!--end: Search -->
