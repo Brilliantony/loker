@@ -197,3 +197,22 @@
             alert(title);
         }
     </script>
+
+    <script>
+        function editData(){
+            var data = new FormData();
+            var company_name=$('#company_name').val();
+            var company_logo = $("#company_logo").val();
+            var company_telp=$('#company_telp').val();
+            var company_email=$('#company_email').val();
+            var company_address=$('#company_address').val();
+
+            data.append('company_name', company_name);
+            data.append('company_logo',company_logo);
+            data.append('company_telp',company_telp);
+            data.append('company_email',company_email);
+            data.append('company_address',company_address);
+
+            ajaxTransfer("{{url('company/edit')}}", data, "#results");
+        }
+    </script>

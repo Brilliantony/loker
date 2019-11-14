@@ -217,6 +217,26 @@ class CompanyController extends Controller
             }
 
         }
+
+    public function edit(Request $request){
+        $activeUser = User::find(session()->get('activeUser')->user_id);
+        $activeCompany = Company::find($activeUser->mode_id);
+
+        $company_name = $request->input('company_name');
+        $company_logo = $request->file('company_logo');
+        $company_telp = $request->input('company_telp');
+        $company_email = $request->input('company_email');
+        $company_address = $request->input('company_address');
+
+        $activeCompany->company_name = $company_name;
+        $activeCompany->company_logo = $company_logo->getClientOriginalName();
+        $activeCompany->company_telp = $company_telp;
+        $activeCompany->company_email = $company_email;
+        $activeCompany->company_address = $company_address;
+        $activeCompany->save();
+
+        return redirect('/company/profil');
+    }   
     
     public function delete(Request $request){
     

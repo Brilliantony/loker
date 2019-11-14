@@ -138,7 +138,6 @@ class ApplicantController extends Controller
         }else{
             return false;
         }
-
     }
 
     public function addProvinsi(Request $request){
@@ -174,5 +173,6 @@ class ApplicantController extends Controller
         return response()->json($data);
         
     }
+    
     
 }

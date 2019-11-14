@@ -143,13 +143,13 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">New Password</label>
                                     <div class="col-lg-9 col-xl-6">
-                                        <input type="password" class="form-control" value="" placeholder="New password">
+                                        <input type="password" class="form-control" name="password" id="password" value="" placeholder="New password">
                                     </div>
                                 </div>
                                 <div class="form-group form-group-last row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Verify Password</label>
                                     <div class="col-lg-9 col-xl-6">
-                                        <input type="password" class="form-control" value="" placeholder="Verify password">
+                                        <input type="password" class="form-control" name="password2" id="password2" value="" placeholder="Verify password">
                                     </div>
                                 </div>
                             </div>

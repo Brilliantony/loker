@@ -14,6 +14,7 @@ Route::post('company/uploadFile','Backend\CompanyController@updateUpload')->name
 Route::post('company/posting','Backend\CompanyPostController@posting')->name('posting');
 Route::get('search-provinsi','Backend\CompanyController@searchProvinsi');
 Route::get('search-kota','Backend\CompanyController@searchKota');
+Route::post('company/edit','Backend\CompanyController@edit')->name('company.edit');
 
 #Applicant
 Route::get('form/applicant/create','Backend\applicantController@formCreate');

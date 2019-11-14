@@ -133,7 +133,9 @@
                                     <h3 class="kt-portlet__head-title">Personal Information <small>update your personal informaiton</small></h3>
                                 </div>
                             </div>
-                            <form class="kt-form kt-form--label-right">
+                            <div id="results"></div>
+                            <form class="kt-form kt-form--label-right" id="form-konten" method="POST" enctype="multipart/form-data" action="{{ route('company.edit') }}">
+                                @csrf
                                 <div class="kt-portlet__body">
                                     <div class="kt-section kt-section--first">
                                         <div class="kt-section__body">
@@ -148,11 +150,11 @@
                                                 <div class="col-lg-9 col-xl-6">
                                                     <div class="kt-avatar kt-avatar--outline" id="kt_user_avatar">
                                                         <div class="kt-avatar__holder" style="background-image: url(&quot;{{asset('storage/app/public/company_logo/'.session()->get('activeUser')->getCompany->company_logo)}}&quot;);"></div>
-                                                        <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change avatar">
+                                                        <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change Logo">
                                                             <i class="fa fa-pen"></i>
-                                                            <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg">
+                                                            <input type="file" name="company_logo" id="company_logo" accept=".png, .jpg, .jpeg">
                                                         </label>
-                                                        <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
+                                                        <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel Logo">
                                                         <i class="fa fa-times"></i>
                                                     </span>
                                                     </div>
@@ -161,11 +163,10 @@
                                             <div class="form-group row">
                                                 <label class="col-xl-3 col-lg-3 col-form-label">Company Name</label>
                                                 <div class="col-lg-9 col-xl-6">
-                                                <input class="form-control" type="text" value="{{session()->get('activeUser')->getCompany->company_name}}">
+                                                <input class="form-control" type="text" id="company_name" name="company_name" value="{{session()->get('activeUser')->getCompany->company_name}}">
                                                     <span class="form-text text-muted">If you want your invoices addressed to a company. Leave blank to use your full name.</span>
                                                 </div>
                                             </div>
-    
                                             <div class="row">
                                                 <label class="col-xl-3"></label>
                                                 <div class="col-lg-9 col-xl-6">
@@ -177,7 +178,7 @@
                                                 <div class="col-lg-9 col-xl-6">
                                                     <div class="input-group">
                                                         <div class="input-group-prepend"><span class="input-group-text"><i class="la la-phone"></i></span></div>
-                                                        <input type="text" class="form-control" value="{{session()->get('activeUser')->getCompany->company_telp}}" placeholder="Phone" aria-describedby="basic-addon1">
+                                                        <input type="text" class="form-control" id="company_telp" name="company_telp" value="{{session()->get('activeUser')->getCompany->company_telp}}" placeholder="Phone" aria-describedby="basic-addon1">
                                                     </div>
                                                     <span class="form-text text-muted">We'll never share your email with anyone else.</span>
                                                 </div>
@@ -187,7 +188,16 @@
                                                 <div class="col-lg-9 col-xl-6">
                                                     <div class="input-group">
                                                         <div class="input-group-prepend"><span class="input-group-text"><i class="la la-at"></i></span></div>
-                                                        <input type="text" class="form-control" value="{{session()->get('activeUser')->getCompany->company_email}}" placeholder="Email" aria-describedby="basic-addon1">
+                                                        <input type="text" class="form-control" name="company_email" id="company_email" value="{{session()->get('activeUser')->getCompany->company_email}}" placeholder="Email" aria-describedby="basic-addon1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-xl-3 col-lg-3 col-form-label">Company Address</label>
+                                                <div class="col-lg-9 col-xl-6">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend"><span class="input-group-text"><i class="la la-building-o"></i></span></div>
+                                                        <input type="text" class="form-control" name="company_address" id="company_address" value="{{session()->get('activeUser')->getCompany->company_address}}" placeholder="Address" aria-describedby="basic-addon1">
                                                     </div>
                                                 </div>
                                             </div>
@@ -200,7 +210,7 @@
                                             <div class="col-lg-3 col-xl-3">
                                             </div>
                                             <div class="col-lg-9 col-xl-9">
-                                                <button type="reset" class="btn btn-success">Submit</button>&nbsp;
+                                                <button type="submit" onclick="editData()" class="btn btn-success">Submit</button>&nbsp;
                                                 <button type="reset" class="btn btn-secondary">Cancel</button>
                                             </div>
                                         </div>

@@ -16,7 +16,7 @@
                         <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            <span class="pficon pficon-close"></span>
+                                <span class="pficon pficon-close"></span>
                             </button>
                             <h4 class="modal-title" id="myModalLabel">Spesifikasi Pelamar Magang</h4>
                         </div>
