@@ -112,7 +112,7 @@
                                     <h4>Judul Pencarian</h4>
                                     @foreach($company_post as $post)
                                     <div class="kt-space-20"></div>
-                                        <button type="button" class="btn btn-primary" id="title" value="{{$post->title}}" onclick="filter()">{{$post->title}}</button>
+                                        <button type="button" class="btn btn-primary" id="title" name="title" value="{{$post->title}}" onclick="filter({{$post->post_id}})">{{$post->title}}</button>
                                     @endforeach
                                 </div>
                             </div>

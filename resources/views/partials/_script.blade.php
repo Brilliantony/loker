@@ -192,9 +192,10 @@
     </script>
 
     <script>
-        function filter(){
-            var title = $('#title').val();
-            alert(title);
+        function filter(post_id){
+            var data=new FormData();
+            data.append('post_id',post_id);
+            ajaxTransfer("{{url('applicant-filter')}}", data, "#results");
         }
     </script>
 

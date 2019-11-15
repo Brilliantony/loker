@@ -2,7 +2,7 @@
 <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
     <div class="kt-header-mobile__logo">
         <a href="{{url('/company')}}">
-            <img alt="Logo" src="{{ asset('public/assets/media/logos/logo-4-sm.png') }}" />
+            <img alt="Logo" src="{{ asset('public/assets/media/logos/fingerspot1.png') }}" />
         </a>
     </div>
     <div class="kt-header-mobile__toolbar">
@@ -132,7 +132,7 @@
                                                     My Profile
                                                 </div>
                                                 <div class="kt-notification__item-time">
-                                                    Account settings and more
+                                                   Edit Account and Change Password
                                                 </div>
                                             </div>
                                         </a>

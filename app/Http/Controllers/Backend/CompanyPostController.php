@@ -50,5 +50,25 @@ class CompanyPostController extends Controller
             dd($e);
         }
     }
-    //
+    
+    public function filter(Request $request){
+        $post_id = $request->post_id;
+        $post = new CompanyPost;
+        $applicant = new Applicant;
+        try{
+            $post = DB::table('t_company_post')->where('post_id','=',$post_id)->first();
+            
+            $applicant = DB('t_applicant')
+            ->where('level_id','=',$post->level_id)
+            ->where('majors_id','=',$post->majors_id)
+            ->where('gender_id','=',$post->gender_id)
+            ->where('kota','=',$post->kota)->first();
+
+            return view('company.index')->with(['data'=>$applicant]);
+         
+        }catch(\Exception $e){
+            dd($e);
+        }
+        
+    }
 }
